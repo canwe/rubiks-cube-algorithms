@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/se.slackers.cube.widget"
+	xmlns:cube="http://schemas.android.com/apk/res/se.slackers.cube"	
+	android:orientation="vertical" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+	
+	<ScrollView 
+		android:id="@+id/listScroll"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"				
+		android:layout_gravity="center_horizontal"
+		>	
+		<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_gravity="center_horizontal">
+			<TextView 
+					android:text="@string/ollText" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:layout_gravity="center_horizontal" 
+					android:textSize="@dimen/header"
+					/>
+			<TableLayout android:id="@+id/ollTable" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+			</TableLayout>
+
+			<TextView 
+					android:text="@string/pllText" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:layout_gravity="center_horizontal" 
+					android:textSize="@dimen/header"
+					/>
+			<TableLayout android:id="@+id/pllTable" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+			</TableLayout>			
+		</LinearLayout>
+	</ScrollView>
+</RelativeLayout>

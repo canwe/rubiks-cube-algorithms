@@ -1,0 +1,611 @@
+<resources>
+	<string-array name="oll_algorithms">
+<item>1, OLL, 10cea1, , OLL 27, RUR\'URU2R\'</item>
+<item>0, OLL, 10cea1, , OLL 27, RUR\'URUR\'RUR\'</item>
+<item>0, OLL, 10cea1, , OLL 27, y\'R\'U2RUR\'UR</item>
+<item>0, OLL, 10cea1, , OLL 27, yL\'U2LUL\'UL</item>
+<item>0, OLL, 10cea1, , OLL 27, y2LUL\'ULU2L\'</item>
+<item>0, OLL, 10cea1, , OLL 27, RU\'L\'UR\'U\'L</item>
+<item>0, OLL, 10cea1, , OLL 27, U2r2UR\'U\'L\'URU\'r\'</item>
+<item>0, OLL, 58e2c, , OLL 26, y2R\'U\'RU\'R\'U2R</item>
+<item>0, OLL, 58e2c, , OLL 26, y\'RU2R\'U\'RU\'R\'</item>
+<item>0, OLL, 58e2c, , OLL 26, y\'LU2L\'U\'LU\'L\'</item>
+<item>1, OLL, 58e2c, , OLL 26, L\'U\'LU\'L\'U2L</item>
+<item>0, OLL, 58e2c, , OLL 26, L\'URU\'LUR\'</item>
+<item>0, OLL, 58e2c, , OLL 26, y\'L\'URU\'LUR\'</item>
+<item>0, OLL, 58e2c, , OLL 26, y\'RUR\'RUR\'U\'RUR\'RUR\'RUR\'</item>
+<item>0, OLL, 58e2c, , OLL 26, U2R\'U\'RU\'R\'U2R</item>
+<item>0, OLL, 2aea8, , OLL 21, RUR\'URU\'R\'URU2R\'</item>
+<item>0, OLL, 2aea8, , OLL 21, yRU2R\'U\'RUR\'U\'RU\'R\'</item>
+<item>1, OLL, 2aea8, , OLL 21, yFRUR\'U\'RUR\'U\'RUR\'U\'F\'</item>
+<item>0, OLL, 2aea8, , OLL 21, yF\'L\'U\'LUL\'U\'LUL\'U\'LUF</item>
+<item>0, OLL, 2aea8, , OLL 21, R\'U\'RU\'R\'URU\'R\'U2R</item>
+<item>0, OLL, 2aea8, , OLL 21, LUL\'ULU\'L\'ULU2L\'</item>
+<item>0, OLL, 2aea8, , OLL 21, yL\'U2LUL\'U\'LUL\'UL</item>
+<item>0, OLL, 2aea8, , OLL 21, yR\'URUR\'URU\'R\'URU\'R\'U\'RU2R\'UR</item>
+<item>0, OLL, 2aea8, , OLL 21, UFRUR\'U\'RUR\'U\'RUR\'U\'</item>
+<item>1, OLL, 10ae2c, , OLL 22, RU2R2\'U\'R2U\'R2\'U2R</item>
+<item>0, OLL, 10ae2c, , OLL 22, fRUR\'U\'f\'FRUR\'U\'F\'</item>
+<item>0, OLL, 10ae2c, , OLL 22, y2f\'L\'U\'LUfF\'L\'U\'LUF</item>
+<item>0, OLL, 10ae2c, , OLL 22, y2L\'U2L2UL2UL2U2L\'</item>
+<item>0, OLL, 10ae2c, , OLL 22, RU2R2U\'R\'URU\'RU\'R\'yM\'U2M</item>
+<item>0, OLL, 10ae2c, , OLL 22, R\'ULU\'RU\'L\'U\'LU\'L\'</item>
+<item>0, OLL, 10ae2c, , OLL 22, y2LU\'R\'UL\'URUR\'UR</item>
+<item>0, OLL, 10ae2c, , OLL 22, y2L\'URU\'LU\'R\'U\'RU\'R\'</item>
+<item>0, OLL, 10ae2c, , OLL 22, RU\'L\'UR\'ULUL\'UL</item>
+<item>0, OLL, 10ae2c, , OLL 22, RUR\'URU2R\'y\'RUR\'URU2R\'</item>
+<item>0, OLL, 1ce25, , OLL 23, R2D\'RU2R\'DRU2R</item>
+<item>0, OLL, 1ce25, , OLL 23, L2DL\'U2LD\'L\'U2L\'</item>
+<item>0, OLL, 1ce25, , OLL 23, R\'U2RFU\'R\'U\'RUF\'</item>
+<item>0, OLL, 1ce25, , OLL 23, l2U\'RD2R\'URD2R</item>
+<item>0, OLL, 1ce25, , OLL 23, l2\'U\'z\'UR2U\'LUR2z\'L</item>
+<item>0, OLL, 1ce25, , OLL 23, y\'RUR\'U\'RU\'R\'U2RU\'R\'U2RUR\'</item>
+<item>0, OLL, 1ce25, , OLL 23, y2R\'F2RU2RU2R\'F2RU2R\'</item>
+<item>1, OLL, 1ce25, , OLL 23, y2R2DR\'U2RD\'R\'U2R\'</item>
+<item>0, OLL, 1ce25, , OLL 23, R\'U\'RUR\'U2R2UR\'URU2R</item>
+<item>0, OLL, 1ce25, , OLL 23, R2\'B2RF2\'R\'B2RF2\'R</item>
+<item>0, OLL, 1ce25, , OLL 23, U2R2\'DR\'U2RD\'R\'U2R</item>
+<item>0, OLL, 58e61, , OLL 24, rUR\'U\'L\'URU\'x\'</item>
+<item>0, OLL, 58e61, , OLL 24, rUR\'U\'r\'FRF\'</item>
+<item>0, OLL, 58e61, , OLL 24, y\'FRUR\'U\'RU\'RU\'RUR\'F\'</item>
+<item>0, OLL, 58e61, , OLL 24, y\'RUR2\'U\'R2U\'R2\'U2\'RU\'RU\'R\'</item>
+<item>0, OLL, 58e61, , OLL 24, y\'RU\'R\'U2RUR\'U2RUR\'URU\'R\'</item>
+<item>0, OLL, 58e61, , OLL 24, yxD\'R\'URDR\'U\'Rx\'</item>
+<item>0, OLL, 58e61, , OLL 24, yxDLU\'L\'D\'LUL\'x\'</item>
+<item>0, OLL, 58e61, , OLL 24, yx\'U\'R\'DRUR\'D\'Rx</item>
+<item>0, OLL, 58e61, , OLL 24, y2R\'F\'rURU\'r\'F</item>
+<item>1, OLL, 58e61, , OLL 24, y2l\'U\'LURU\'r\'F</item>
+<item>0, OLL, 58e61, , OLL 24, y\'lUl\'FRB\'R\'F\'</item>
+<item>1, OLL, 1ae34, , OLL 25, y2R\'FRB\'R\'F\'RB</item>
+<item>0, OLL, 1ae34, , OLL 25, y\'F\'rUR\'U\'r\'FR</item>
+<item>0, OLL, 1ae34, , OLL 25, y\'xUR\'U\'LURU\'r\'</item>
+<item>0, OLL, 1ae34, , OLL 25, R\'F\'L\'FRF\'LF</item>
+<item>0, OLL, 1ae34, , OLL 25, yR\'U\'RUR\'F\'RUR\'U\'R\'FR2</item>
+<item>0, OLL, 1ae34, , OLL 25, y2RU2\'RDR\'U2RD\'R2\'</item>
+<item>0, OLL, 1ae34, , OLL 25, y2FR\'F\'rURU\'r\'</item>
+<item>0, OLL, 1ae34, , OLL 25, y2l\'URD\'R\'U\'RDx\'</item>
+<item>0, OLL, 1ae34, , OLL 25, y2x\'L\'U\'R\'ULU\'RU</item>
+<item>0, OLL, 1ae34, , OLL 25, x\'DRUR\'D\'RU\'l\'</item>
+<item>0, OLL, 1ae34, , OLL 25, x\'UL\'U\'RULU\'l\'</item>
+<item>0, OLL, 1ae34, , OLL 25, x\'R\'DRU\'R\'D\'RUx</item>
+<item>0, OLL, 1ae34, , OLL 25, xR\'URD\'R\'U\'RDx\'</item>
+<item>0, OLL, 1ae34, , OLL 25, y2xLU\'L\'DLUL\'D\'x\'</item>
+<item>0, OLL, 1ae34, , OLL 25, l\'U\'L\'URU\'LUx\'</item>
+<item>0, OLL, 1ae34, , OLL 25, UrURU\'L\'UR\'U\'x\'</item>
+<item>0, OLL, 1ae34, , OLL 25, RU2R\'U\'RUR\'U\'RUR\'U\'RU\'R\'</item>
+<item>0, OLL, 1ae34, , OLL 25, RUR\'URU\'R\'URU\'R\'URU2R\'</item>
+<item>0, OLL, 1ae34, , OLL 25, y2L\'RUR\'U\'LURU\'R\'</item>
+<item>0, OLL, 1ae34, , OLL 25, FRBR\'F\'lU\'l\'</item>
+<item>0, OLL, a358a, , OLL 1, RU2R2\'FRF\'U2\'R\'FRF\'</item>
+<item>1, OLL, a358a, , OLL 1, RUB\'RBR2U\'R\'FRF\'</item>
+<item>1, OLL, 18350e, , OLL 2, FRUR\'U\'F\'fRUR\'U\'f\'</item>
+<item>0, OLL, 18350e, , OLL 2, y2F\'L\'U\'LUFf\'L\'U\'LUf</item>
+<item>0, OLL, 18350e, , OLL 2, yrUr\'U2rU2R\'U2RU\'r\'</item>
+<item>0, OLL, 18350e, , OLL 2, yl\'U\'lU2l\'U2LU2L\'Ul</item>
+<item>1, OLL, 183543, , OLL 3, yfRUR\'U\'f\'U\'FRUR\'U\'F\'</item>
+<item>0, OLL, 183543, , OLL 3, y2r\'R2UR\'UrU2r\'UR\'r</item>
+<item>0, OLL, 183543, , OLL 3, y2MUl\'U2lUL\'ULM\'</item>
+<item>1, OLL, e154a, , OLL 4, fRUR\'U\'f\'UFRUR\'U\'F\'</item>
+<item>0, OLL, e154a, , OLL 4, R\'U2xR\'URU\'yR\'U\'R\'UR\'F</item>
+<item>0, OLL, e154a, , OLL 4, yr\'RU\'rU2r\'U\'RU\'R2\'r</item>
+<item>0, OLL, e154a, , OLL 4, yMU\'rU2\'r\'U\'RU\'R\'M\'</item>
+<item>0, OLL, e154a, , OLL 4, lL2U\'LU\'l\'U2lU\'M\'</item>
+<item>1, OLL, 95552, , OLL 20, r\'RURUR\'U\'r2R2\'URU\'r\'</item>
+<item>0, OLL, 95552, , OLL 20, MURUR\'U\'M2URU\'r\'</item>
+<item>0, OLL, 95552, , OLL 20, rUR\'U\'M2URU\'R\'U\'M\'</item>
+<item>0, OLL, 95552, , OLL 20, M\'U2M\'U2M\'UMU2MU2M</item>
+<item>0, OLL, 95552, , OLL 20, M\'U2MU2M\'UMU2M\'U2M</item>
+<item>0, OLL, 95552, , OLL 20, MU2M\'U2MUM\'U2MU2M\'U\'</item>
+<item>0, OLL, 95552, , OLL 20, MU2MU2MUM\'U2M\'U2M\'U\'</item>
+<item>0, OLL, 95552, , OLL 20, M\'UM\'UM\'UM\'UMUMUMUMU</item>
+<item>0, OLL, 95552, , OLL 20, M\'UMUM\'U2M\'UM\'UMUM\'UM\'</item>
+<item>0, OLL, 95552, , OLL 20, M\'U\'MU\'M\'U2M\'U\'M\'U\'MU\'M\'U\'M\'</item>
+<item>0, OLL, 95552, , OLL 20, M\'U\'MU2M\'U\'M2UM\'U2MUM\'</item>
+<item>0, OLL, 95552, , OLL 20, Mdr2UM\'U2MUr2S\'</item>
+<item>0, OLL, 95552, , OLL 20, MUMFR\'F\'M2FRF\'U\'</item>
+<item>0, OLL, 95552, , OLL 20, R2U2R\'F2U2R2F\'R2U2F2RU2R2U\'</item>
+<item>0, OLL, 95552, , OLL 20, RBUB\'R\'F2BD\'L\'DB\'F2</item>
+<item>0, OLL, 95552, , OLL 20, L\'R\'F\'U2L2U2L2U2L2FLR</item>
+<item>0, OLL, 95552, , OLL 20, FU2F\'UL\'U\'B\'R\'U2RU\'BUL</item>
+<item>0, OLL, 95552, , OLL 20, F2MF2M2U\'M2F2M\'F2U</item>
+<item>0, OLL, 95552, , OLL 20, F2MF2U\'M2UB2MB2</item>
+<item>0, OLL, 95552, , OLL 20, F\'B\'RESRS\'R2E\'FB</item>
+<item>0, OLL, 95552, , OLL 20, B\'R\'BF2U\'R\'U\'R\'FR2UF2R</item>
+<item>0, OLL, 95552, , OLL 20, BLB\'F2ULULF\'L2U\'F2L\'</item>
+<item>0, OLL, 95552, , OLL 20, SUS2U\'LULSL\'U\'L\'</item>
+<item>0, OLL, 95552, , OLL 20, S\'U\'S2UR\'U\'R\'S\'RUR</item>
+<item>0, OLL, 95552, , OLL 20, MUM\'U</item>
+<item>1, OLL, 93516, , OLL 17, RUR\'UR\'FRF\'U2R\'FRF\'</item>
+<item>0, OLL, 93516, , OLL 17, fRUR\'U\'y\'r\'RUR\'U\'R\'FRF\'</item>
+<item>0, OLL, 93516, , OLL 17, FR\'F\'lRL\'URU\'R\'U\'M\'</item>
+<item>0, OLL, 9354a, , OLL 18, y\'rUR\'URU2r2\'U\'RU\'R\'U2r</item>
+<item>1, OLL, 9354a, , OLL 18, y2FRUR\'dR\'U2R\'FRF\'</item>
+<item>0, OLL, 9354a, , OLL 18, RU2R2FRF\'U2M\'URU\'r\'</item>
+<item>0, OLL, 9354a, , OLL 18, l\'U\'r\'U2LU2L\'U2rUl</item>
+<item>0, OLL, 9354a, , OLL 18, yFR\'F\'RU2FR\'F\'RU\'RU\'R\'</item>
+<item>0, OLL, 9354a, , OLL 18, yxUR\'U\'RB2UR\'U\'RB\'RB\'R\'x\'</item>
+<item>0, OLL, a3552, , OLL 19, r\'U2RUR\'Ur2U2\'R\'U\'RU\'r\'</item>
+<item>1, OLL, a3552, , OLL 19, R\'U2FRUR\'U\'y\'R2U2RB</item>
+<item>0, OLL, a3552, , OLL 19, r\'RURUR\'U\'rR2\'FRF\'</item>
+<item>0, OLL, a3552, , OLL 19, MURUR\'U\'rR2\'FRF\'</item>
+<item>0, OLL, a3552, , OLL 19, MURUR\'U\'M\'l\'URU\'</item>
+<item>0, OLL, 10d616, , OLL 31, yFR\'F\'RURUR\'U\'RU\'R\'</item>
+<item>1, OLL, 10d616, , OLL 31, L\'d\'RdLU\'L\'B\'L</item>
+<item>0, OLL, 10d616, , OLL 31, S\'L\'U\'LULF\'L\'f</item>
+<item>0, OLL, 10d616, , OLL 31, yxUR\'U\'lURUR\'U\'RU\'R\'</item>
+<item>0, OLL, 10d616, , OLL 31, y2R\'U\'FURU\'R\'F\'R</item>
+<item>0, OLL, 10d616, , OLL 31, L\'U\'BULU\'L\'B\'L</item>
+<item>1, OLL, 58d43, , OLL 32, RdL\'d\'R\'URBR\'</item>
+<item>0, OLL, 58d43, , OLL 32, SRUR\'U\'R\'FRf\'</item>
+<item>0, OLL, 58d43, , OLL 32, yx\'U\'RUl\'U\'R\'U\'RUR\'UR</item>
+<item>0, OLL, 58d43, , OLL 32, RUB\'U\'R\'URBR\'</item>
+<item>0, OLL, 58d43, , OLL 32, y2FURU\'F\'rUR\'U\'r\'</item>
+<item>1, OLL, 2d692, , OLL 43, f\'L\'U\'LUf</item>
+<item>0, OLL, 2d692, , OLL 43, B\'U\'R\'URB</item>
+<item>0, OLL, 2d692, , OLL 43, y2F\'U\'L\'ULF</item>
+<item>0, OLL, 2d692, , OLL 43, URUR\'F\'L\'U\'LF</item>
+<item>0, OLL, 2d692, , OLL 43, y2R\'U\'FR\'F\'RUR</item>
+<item>1, OLL, 1ad4a, , OLL 44, fRUR\'U\'f\'</item>
+<item>0, OLL, 1ad4a, , OLL 44, y2FURU\'R\'F\'</item>
+<item>0, OLL, 1ad4a, , OLL 44, yRUy\'LU\'L\'B\'</item>
+<item>0, OLL, 1ad4a, , OLL 44, yFUR\'FRF\'U\'F\'</item>
+<item>0, OLL, 59692, , OLL 36, R\'U\'RU\'R\'URURB\'R\'B</item>
+<item>1, OLL, 59692, , OLL 36, y2L\'U\'LU\'L\'ULULF\'L\'F</item>
+<item>0, OLL, 59692, , OLL 36, RUR\'U\'yL\'U2\'LUy\'RUR\'</item>
+<item>0, OLL, 10cd4a, , OLL 38, LUL\'ULU\'L\'U\'L\'BLB\'</item>
+<item>1, OLL, 10cd4a, , OLL 38, y2RUR\'URU\'R\'U\'R\'FRF\'</item>
+<item>0, OLL, 10cd4a, , OLL 38, L\'U\'LUy\'RU2R\'U\'yL\'U\'L</item>
+<item>1, OLL, 18362c, , OLL 48, FRUR\'U\'RUR\'U\'F\'</item>
+<item>0, OLL, 18362c, , OLL 48, y2fURU\'R\'URU\'R\'f\'</item>
+<item>0, OLL, 18362c, , OLL 48, yrU2R\'U\'RU\'r\'R\'U\'RU\'R\'U2R</item>
+<item>0, OLL, 18362c, , OLL 48, y\'r\'U\'RU\'R\'U2rRU2R\'U\'RU\'R\'</item>
+<item>1, OLL, e0da1, , OLL 47, F\'L\'U\'LUL\'U\'LUF</item>
+<item>0, OLL, e0da1, , OLL 47, y\'rUR\'URU2r\'R\'U2RUR\'UR</item>
+<item>0, OLL, a36a8, , OLL 53, l\'U\'LU\'L\'ULU\'L\'U2l</item>
+<item>0, OLL, a36a8, , OLL 53, y\'lU2LUL\'U\'LUL\'U\'l\'</item>
+<item>1, OLL, a36a8, , OLL 53, y2r\'U\'RU\'R\'URU\'R\'U2r</item>
+<item>0, OLL, a36a8, , OLL 53, y\'r\'U2RUR\'U\'RUR\'Ur</item>
+<item>0, OLL, a36a8, , OLL 53, y\'rU2R\'U\'RU\'r\'RU2R\'U\'RU\'R\'</item>
+<item>0, OLL, a36a8, , OLL 53, rUR\'URU2r\'RUR\'URU2R\'</item>
+<item>0, OLL, a36a8, , OLL 53, FRUR\'U\'F\'RUR\'U\'R\'FRF\'</item>
+<item>1, OLL, a2da8, , OLL 54, rUR\'URU\'R\'URU2r\'</item>
+<item>0, OLL, a2da8, , OLL 54, y\'rU2R\'U\'RUR\'U\'RU\'r\'</item>
+<item>0, OLL, a2da8, , OLL 54, y2lUL\'ULU\'L\'ULU2l\'</item>
+<item>0, OLL, a2da8, , OLL 54, yl\'U2LUL\'U\'LUL\'U\'l</item>
+<item>0, OLL, a2da8, , OLL 54, y2r\'U\'RU\'R\'U2rR\'U\'RU\'R\'U2R</item>
+<item>0, OLL, a2da8, , OLL 54, yr\'U2RUR\'UrR\'U2RUR\'UR</item>
+<item>0, OLL, 69683, , OLL 49, RB\'R2FR2BR2F\'R</item>
+<item>0, OLL, 69683, , OLL 49, lU\'l2\'Ul2Ul2\'U\'l</item>
+<item>0, OLL, 69683, , OLL 49, y2rU\'r2Ur2Ur2U\'r</item>
+<item>1, OLL, 69683, , OLL 49, y2R\'FR\'F\'R2d2y\'R\'FRF\'</item>
+<item>0, OLL, 69683, , OLL 49, y2rU2R2\'U\'R2U\'r\'R\'U2R</item>
+<item>0, OLL, 69683, , OLL 49, y\'x\'Ul\'U2RU2lU2R\'Ux</item>
+<item>0, OLL, 69683, , OLL 49, y\'R\'U2RUR\'URFRUR\'U\'F\'</item>
+<item>0, OLL, 10ad0e, , OLL 50, y2R\'FR2B\'R2F\'R2BR\'</item>
+<item>0, OLL, 10ad0e, , OLL 50, r\'Ur2U\'r2\'U\'r2Ur\'</item>
+<item>1, OLL, 10ad0e, , OLL 50, RB\'RBR2\'U2FR\'F\'R</item>
+<item>0, OLL, 10ad0e, , OLL 50, y2l\'Ul2U\'l2U\'l2Ul\'</item>
+<item>0, OLL, 10ad0e, , OLL 50, r\'U2R2\'UR2UrRU2R\'</item>
+<item>0, OLL, 10ad0e, , OLL 50, y\'RU2R\'U\'RU\'R\'FRUR\'U\'F\'</item>
+<item>0, OLL, 10ad0e, , OLL 50, yx\'U\'rU2L\'U2r\'U2LU\'x</item>
+<item>0, OLL, 94e8a, , OLL 34, RUR\'U\'xD\'R\'URE\'z\'</item>
+<item>0, OLL, 94e8a, , OLL 34, y2R\'U\'RUy\'x\'RUL\'U\'M\'</item>
+<item>0, OLL, 94e8a, , OLL 34, RUR\'U\'y\'r\'U\'RUM\'</item>
+<item>0, OLL, 94e8a, , OLL 34, RUR\'U\'B\'R\'FRF\'B</item>
+<item>0, OLL, 94e8a, , OLL 34, RUR\'d\'l\'U\'LUr\'R</item>
+<item>1, OLL, 94e8a, , OLL 34, RUR2U\'R\'FRURU\'F\'</item>
+<item>0, OLL, 94e8a, , OLL 34, y2FRUR\'U\'R\'F\'rURU\'r\'</item>
+<item>1, OLL, 2d5b0, , OLL 46, R\'U\'R\'FRF\'UR</item>
+<item>0, OLL, 2d5b0, , OLL 46, R\'U\'l\'UlF\'UR</item>
+<item>0, OLL, 2d5b0, , OLL 46, yFUFl\'U\'lU\'F\'</item>
+<item>0, OLL, 2d5b0, , OLL 46, RUlU\'R\'UF\'l\'</item>
+<item>0, OLL, 2d5b0, , OLL 46, y2LFU\'RUR\'F\'L\'</item>
+<item>0, OLL, 2d5b0, , OLL 46, RUR2\'U\'R\'FRURU\'F</item>
+<item>1, OLL, d0e43, , OLL 33, RUR\'U\'R\'FRF\'</item>
+<item>0, OLL, d0e43, , OLL 33, R\'U\'RUlU\'R\'Ux</item>
+<item>1, OLL, 92e4a, , OLL 45, FRUR\'U\'F\'</item>
+<item>0, OLL, 92e4a, , OLL 45, f\'U\'L\'ULf</item>
+<item>0, OLL, 92e4a, , OLL 45, y2fURU\'R\'f\'</item>
+<item>0, OLL, 92e4a, , OLL 45, y2F\'L\'U\'LUF</item>
+<item>0, OLL, 2b5a8, , OLL 55, RU2R2U\'RU\'R\'U2FRF\'</item>
+<item>1, OLL, 2b5a8, , OLL 55, R\'U2R2UR\'URU2yl\'U\'l</item>
+<item>0, OLL, 2b5a8, , OLL 55, rU2R2FRF\'U2r\'FRF\'</item>
+<item>0, OLL, 2b5a8, , OLL 55, yR\'FRUR\'FRU\'R\'F\'RUM\'U\'M</item>
+<item>0, OLL, 2b5a8, , OLL 55, LF\'L\'U\'LF\'L\'ULFL\'U\'M\'UM</item>
+<item>0, OLL, 2b5a8, , OLL 55, LF\'L\'U\'LF\'L\'ULFL\'U\'LR\'FRL\'</item>
+<item>0, OLL, 2b5a8, , OLL 55, Rd\'R2DR\'U2RD\'R2dR\'</item>
+<item>0, OLL, 2b5a8, , OLL 55, yrU2R\'U\'R2r\'UR\'U\'rU\'r\'</item>
+<item>0, OLL, a2e8a, , OLL 56, rUr\'URU\'R\'URU\'R\'rU\'r\'</item>
+<item>0, OLL, a2e8a, , OLL 56, r\'U\'rU\'R\'URU\'R\'URr\'Ur</item>
+<item>0, OLL, a2e8a, , OLL 56, LFL\'URU\'R\'URU\'R\'LF\'L\'</item>
+<item>1, OLL, a2e8a, , OLL 56, FRUR\'U\'RF\'rUR\'U\'r\'</item>
+<item>0, OLL, a2e8a, , OLL 56, RBR\'ULU\'L\'ULU\'L\'RB\'R\'</item>
+<item>0, OLL, e0e83, , OLL 51, y2fRUR\'U\'RUR\'U\'f\'</item>
+<item>1, OLL, e0e83, , OLL 51, FURU\'R\'URU\'R\'F\'</item>
+<item>0, OLL, 695a1, , OLL 52, RUR\'URd\'RU\'R\'F\'</item>
+<item>1, OLL, 695a1, , OLL 52, y2R\'U\'xUR\'U\'RUR\'U\'Rx\'UR</item>
+<item>0, OLL, 695a1, , OLL 52, R\'U\'RU\'R\'dR\'URB</item>
+<item>0, OLL, 695a1, , OLL 52, RUR\'URU2R\'UFURU\'R\'F\'</item>
+<item>1, OLL, 1ad83, , OLL 5, r\'U2RUR\'Ur</item>
+<item>0, OLL, 1ad83, , OLL 5, y2l\'U2LUL\'Ul\'</item>
+<item>0, OLL, 2d60e, , OLL 6, y2rU2R\'U\'RU\'r\'</item>
+<item>1, OLL, 2d60e, , OLL 6, lU2L\'U\'LU\'l\'</item>
+<item>0, OLL, a4e43, , OLL 39, LF\'L\'U\'LUFU\'L\'</item>
+<item>0, OLL, a4e43, , OLL 39, y2f\'LFL\'U\'L\'ULS</item>
+<item>0, OLL, a4e43, , OLL 39, y2RUR\'F\'U\'FURU2R\'</item>
+<item>1, OLL, a4e43, , OLL 39, y2RB\'R\'U\'RUBU\'R\'</item>
+<item>0, OLL, a4e43, , OLL 39, y2x\'RU\'xR\'U\'RUx\'UF\'l\'</item>
+<item>0, OLL, 92e16, , OLL 40, R\'FRUR\'U\'F\'UR</item>
+<item>0, OLL, 92e16, , OLL 40, y2fR\'F\'RURU\'R\'S\'</item>
+<item>1, OLL, 92e16, , OLL 40, y2L\'BLUL\'U\'B\'UL</item>
+<item>1, OLL, 1856a1, , OLL 7, rUR\'URU2r\'</item>
+<item>0, OLL, 1856a1, , OLL 7, FR\'F\'RU2RU2R\'</item>
+<item>0, OLL, 1856a1, , OLL 7, L\'U2LU2LF\'L\'F</item>
+<item>1, OLL, d0d2c, , OLL 8, y2r\'U\'RU\'R\'U2r</item>
+<item>0, OLL, d0d2c, , OLL 8, RU2R\'U2R\'FRF\'</item>
+<item>0, OLL, 10cd83, , OLL 11, r\'R2UR\'URU2R\'UrR\'</item>
+<item>0, OLL, 10cd83, , OLL 11, y2rUR\'UR\'FRF\'RU2r\'</item>
+<item>1, OLL, 10cd83, , OLL 11, yF\'L\'U\'LUFyFRUR\'U\'F\'</item>
+<item>0, OLL, 10cd83, , OLL 11, RUR\'y\'U\'R\'U\'RyUR\'F\'RURU\'R\'F</item>
+<item>1, OLL, 68d4a, , OLL 12, FRUR\'U\'F\'yFRUR\'U\'F\'</item>
+<item>0, OLL, 68d4a, , OLL 12, yFRUR2FRy\'R2URU2R\'</item>
+<item>0, OLL, 68d4a, , OLL 12, y\'rR2U\'RU\'R\'U2RU\'Rr\'</item>
+<item>1, OLL, a4d2c, , OLL 9, y\'R\'U\'Ry\'x\'RU\'R\'FRUR\'x</item>
+<item>0, OLL, a4d2c, , OLL 9, y\'R\'U\'RxU\'R\'UyRUy\'RU\'x\'</item>
+<item>0, OLL, a4d2c, , OLL 9, y\'RUR\'U\'R\'FR2UR\'U\'F\'</item>
+<item>0, OLL, a4d2c, , OLL 9, y\'R\'U\'RyrU\'r\'UrUr</item>
+<item>1, OLL, 936a1, , OLL 10, y\'RUR\'yR\'FRU\'R\'F\'R</item>
+<item>0, OLL, 936a1, , OLL 10, y\'RUR\'y\'r\'UrU\'r\'U\'r</item>
+<item>0, OLL, 936a1, , OLL 10, y\'RUR\'UR\'FRF\'RU2R\'</item>
+<item>0, OLL, 936a1, , OLL 10, y\'R\'U\'RURB\'R2U\'RUB</item>
+<item>1, OLL, 58d92, , OLL 35, RU2R2\'FRF\'RU2R\'</item>
+<item>0, OLL, 58d92, , OLL 35, y\'R\'U2RlU\'R\'Ul\'U2R</item>
+<item>0, OLL, 2d643, , OLL 37, x\'U\'RUl\'U\'R\'UR</item>
+<item>0, OLL, 2d643, , OLL 37, lU\'R\'Uy\'RUR\'U\'z\'</item>
+<item>1, OLL, 2d643, , OLL 37, yFRU\'R\'U\'RUR\'F\'</item>
+<item>0, OLL, 2d643, , OLL 37, yR\'FRF\'U\'F\'UF</item>
+<item>0, OLL, 2d643, , OLL 37, yFR\'F\'RURU\'R\'</item>
+<item>0, OLL, 2d643, , OLL 37, RB\'R\'BUBU\'B\'</item>
+<item>0, OLL, 184e83, , OLL 13, FURU\'R2F\'RURU\'R\'</item>
+<item>0, OLL, 184e83, , OLL 13, FURU2R\'U\'RUR\'F\'</item>
+<item>0, OLL, 184e83, , OLL 13, rU\'r\'U\'rUr\'y\'R\'UR</item>
+<item>1, OLL, 184e83, , OLL 13, y2x\'RU\'R\'F\'RUR\'xyR\'UR</item>
+<item>0, OLL, 184e83, , OLL 13, y2fRUR2U\'R\'URU\'f\'</item>
+<item>1, OLL, d0e0e, , OLL 14, R\'FRUR\'F\'Ry\'RU\'R\'</item>
+<item>0, OLL, d0e0e, , OLL 14, y\'R\'U\'y\'R\'UR2BR\'U\'R\'UR</item>
+<item>0, OLL, d0e0e, , OLL 14, y2B\'U\'R\'UR2BR\'U\'R\'UR</item>
+<item>0, OLL, d0e0e, , OLL 14, y2x\'RU\'R\'F\'RUR\'xyR\'UR</item>
+<item>0, OLL, d0e0e, , OLL 14, y2r\'UrUr\'U\'ryRU\'R\'</item>
+<item>1, OLL, 92e83, , OLL 15, y2l\'U\'lL\'U\'LUl\'Ul</item>
+<item>0, OLL, 92e83, , OLL 15, y2R\'F\'RL\'U\'LUR\'FR</item>
+<item>0, OLL, 92e83, , OLL 15, r\'U\'rR\'U\'RUr\'Ur</item>
+<item>1, OLL, a4e0e, , OLL 16, y2rUr\'RUR\'U\'rU\'r\'</item>
+<item>0, OLL, a4e0e, , OLL 16, y2rUMUR\'U\'rU\'r\'</item>
+<item>0, OLL, a4e0e, , OLL 16, y2F\'RUR\'U\'R\'FRU\'y\'R\'URUyRU\'R\'</item>
+<item>0, OLL, 2b652, , OLL 29, y2R\'FRF\'RU2R\'d\'L\'U\'L</item>
+<item>0, OLL, 2b652, , OLL 29, y2R\'FRF\'RU2R\'U\'y\'R\'U\'R</item>
+<item>0, OLL, 2b652, , OLL 29, y2R2\'U\'RFR\'UR2\'U\'R\'F\'R</item>
+<item>1, OLL, 2b652, , OLL 29, yRUR\'U\'RU\'R\'F\'U\'FRUR\'</item>
+<item>0, OLL, 2b652, , OLL 29, yR\'U2R2UR\'U\'R\'U2FRF\'</item>
+<item>0, OLL, 2b652, , OLL 29, MURUR\'U\'R\'FRF\'M\'</item>
+<item>0, OLL, 2b652, , OLL 29, y2rU2R\'U\'RU\'r\'R\'U2RUR\'UR</item>
+<item>0, OLL, 2ad52, , OLL 30, y2FR\'FR2U\'R\'U\'RUR\'F2</item>
+<item>0, OLL, 2ad52, , OLL 30, lU\'R\'Ul\'U2dLUL\'</item>
+<item>0, OLL, 2ad52, , OLL 30, fRUR2U\'R\'UR2U\'R\'f\'</item>
+<item>0, OLL, 2ad52, , OLL 30, y2FURU\'x\'UR\'D\'RU\'R\'</item>
+<item>1, OLL, 2ad52, , OLL 30, R2\'UR\'B\'RU\'R2\'URBR\'</item>
+<item>0, OLL, 2ad52, , OLL 30, MU\'L\'U\'LULF\'L\'FM\'</item>
+<item>0, OLL, 2ad52, , OLL 30, y2M\'U\'R\'U\'RUxRU\'R\'UMx</item>
+<item>0, OLL, 2ad52, , OLL 30, r\'U2RUR\'UrRU2R\'U\'RU\'R\'</item>
+<item>1, OLL, 148d52, , OLL 41, RU\'R\'U2RUyRU\'R\'y\'U\'R\'</item>
+<item>0, OLL, 148d52, , OLL 41, yRU2\'R\'U\'RU\'R2yL\'U\'LUF</item>
+<item>0, OLL, 148d52, , OLL 41, y2FURU\'R\'F\'R\'U2RUR\'UR</item>
+<item>0, OLL, 148d52, , OLL 41, y2RUR\'URU2R\'FRUR\'U\'F\'</item>
+<item>0, OLL, 148d52, , OLL 41, y2rR2y\'R\'U\'RUyRU\'M</item>
+<item>0, OLL, 148d52, , OLL 41, y2R2Lz\'l\'U\'RdLU\'Ll\'</item>
+<item>0, OLL, 148d52, , OLL 41, y\'LF\'L\'F2LU\'L\'ULU\'L</item>
+<item>0, OLL, 149652, , OLL 42, r\'R2yRUR\'U\'y\'R\'UM\'</item>
+<item>0, OLL, 149652, , OLL 42, R\'U\'RUFRUR\'U\'R\'URU\'F\'</item>
+<item>1, OLL, 149652, , OLL 42, L\'ULU2L\'U\'y\'L\'ULUF</item>
+<item>0, OLL, 149652, , OLL 42, yR\'U2RUR\'UR2yRUR\'U\'F\'</item>
+<item>0, OLL, 149652, , OLL 42, yR\'FRF\'2RUR\'U\'RUR\'</item>
+<item>0, OLL, 149652, , OLL 42, y2L2R\'zrUL\'d\'R\'UR\'r</item>
+<item>0, OLL, 95670, , OLL 28, rUR\'U\'r\'RURU\'R\'</item>
+<item>0, OLL, 95670, , OLL 28, yrU2R\'U\'RU\'r\'RUR\'URU2R\'</item>
+<item>0, OLL, 95670, , OLL 28, rUR\'URU2r\'RU2R\'U\'RU\'R\'</item>
+<item>0, OLL, 95670, , OLL 28, yr\'U\'RU\'R\'U2rR\'U2RUR\'UR</item>
+<item>0, OLL, 95670, , OLL 28, y\'r\'U\'RUM\'U\'R\'UR</item>
+<item>0, OLL, 95670, , OLL 28, r\'U2RUR\'UrR\'U\'RU\'R\'U2R</item>
+<item>0, OLL, 95670, , OLL 28, FRUR\'U\'F\'U2FRUR\'U\'F\'</item>
+<item>0, OLL, 95670, , OLL 28, FRUR\'U\'F2L\'U\'LUF</item>
+<item>1, OLL, 95670, , OLL 28, MUM\'U2MUM\'</item>
+<item>0, OLL, 95670, , OLL 28, yMU\'M\'U2MU\'M\'</item>
+<item>0, OLL, 95670, , OLL 28, y2M\'UMU2M\'UM</item>
+<item>0, OLL, 95670, , OLL 28, y\'MUM2UM\'U2MUM</item>
+<item>0, OLL, 95670, , OLL 28, MUMUM\'U\'MU\'MUM</item>
+<item>0, OLL, 95670, , OLL 28, MUM\'UMU2M\'U\'MU\'M\'</item>
+<item>0, OLL, 95670, , OLL 28, yMU\'MU\'M\'UMUMU\'M</item>
+<item>0, OLL, 95670, , OLL 28, y2MU\'M2U\'M\'U2MU\'M</item>
+<item>0, OLL, 95670, , OLL 28, y\'MUM\'UMUM\'UMUM\'</item>
+<item>0, OLL, 95670, , OLL 28, y\'M\'U\'MUMUMU\'MU\'M\'UM2</item>
+<item>0, OLL, 95670, , OLL 28, y\'M2UM\'U2MUMUMU2M\'UM</item>
+<item>0, OLL, 95670, , OLL 28, y2M\'UMU\'MU\'MUMUM\'U\'M2</item>
+<item>0, OLL, 95670, , OLL 28, MU\'M2U2M\'U\'MU2MU\'MU\'M\'</item>
+<item>0, OLL, 95670, , OLL 28, y\'M\'U\'F2M2U\'MUF2UM2</item>
+<item>0, OLL, 95670, , OLL 28, y2M\'UF2M2UMU\'F2U\'M2</item>
+<item>0, OLL, 95670, , OLL 28, R\'FRSR\'F\'RS\'</item>
+<item>0, OLL, 95670, , OLL 28, L2SU\'S\'UL2USUS\'</item>
+<item>0, OLL, 95670, , OLL 28, yLF\'L\'S\'LFL\'S</item>
+<item>0, OLL, 94e52, , OLL 57, RUR\'U\'rR\'URU\'r\'</item>
+<item>0, OLL, 94e52, , OLL 57, x\'M\'U\'RUMU\'R\'Ux</item>
+<item>1, OLL, 94e52, , OLL 57, R\'U\'RUMU\'R\'Ur</item>
+<item>0, OLL, 94e52, , OLL 57, MUMUMU2M\'UM\'UM\'</item>
+<item>0, OLL, 94e52, , OLL 57, MUMUMU2M\'UM\'UM\'</item>
+<item>0, OLL, 94e52, , OLL 57, M\'U\'M\'U\'M\'U2MU\'MU\'M</item>
+<item>0, OLL, 94e52, , OLL 57, MUM\'U\'MUM\'UMU2M\'</item>
+<item>0, OLL, 94e52, , OLL 57, M\'U\'MUM\'U\'MU\'M\'U2M</item>
+<item>0, OLL, 94e52, , OLL 57, MUM2U2MUMU2MU\'M\'U\'M\'</item>
+<item>0, OLL, 94e52, , OLL 57, M\'U\'M2U2M\'U\'M\'U2M\'UMUM</item>
+<item>0, OLL, 94e52, , OLL 57, M2U\'MUM\'UM\'U\'M\'U\'M\'UM</item>
+<item>0, OLL, 94e52, , OLL 57, M2U\'M\'UMUMU\'MU\'MUM\'</item>
+<item>0, OLL, 94e52, , OLL 57, yM\'UM\'UM\'UM\'UM\'U\'M\'U\'M\'U\'M\'</item>
+<item>0, OLL, 94e52, , OLL 57, yM\'UMUM\'UMU\'M\'U\'M</item>
+<item>0, OLL, 94e52, , OLL 57, yM\'U\'MU\'M\'U\'MUM\'UM</item>
+<item>0, OLL, 94e52, , OLL 57, yMU\'M\'U\'MU\'M\'UMUM\'</item>
+<item>0, OLL, 94e52, , OLL 57, yMUM\'UMUM\'U\'MU\'M\'</item>
+<item>0, OLL, 94e52, , OLL 57, MUM\'U\'F2MUM\'U\'F2</item>
+<item>0, OLL, 94e52, , OLL 57, M\'U\'MUF2M\'U\'MUF2</item>
+<item>0, OLL, 94e52, , OLL 57, M2U\'F2U\'M\'UM2F2UM</item>
+<item>0, OLL, 94e52, , OLL 57, FM\'FUM2U2M2UF\'MF\'</item>
+	</string-array>
+	<string-array name="pll_algorithms">
+<item>1, PLL, 1ce70, 17355371, H Permutation, M2UM2U2M2UM2</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, M2U\'M2U2\'M2U\'M2</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, R2\'r2U\'L2l2\'U2R2\'r2U\'L2l2\'</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, U\'M2U2M2UM2U2M2</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, F2M2F2U\'F2M2F2U</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, xU2M2U2B\'U2M2U2B</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, SRU2R2U2R2U2RS\'</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, R2U2R2U2R2UR2U2R2U2R2U\'</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, LRU2L\'R\'F\'B\'U2FB</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, LRU2L\'R\'yL\'R\'U2LR</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, RU2R\'U\'R\'U\'R2U\'R2U2R2U2R\'U</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, R2U2RU2R2U2R2U2RU2R2</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, M2UM2UM2UM2UM2UM2U\'</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, R\'D\'RD\'BDB\'DR\'D\'RUR\'DRD\'BD\'B\'DR\'DRU</item>
+<item>0, PLL, 1ce70, 17355371, H Permutation, M2U2\'M2U\'M2U2\'M2U</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, y2F2U\'LR\'F2L\'RU\'F2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, M2UM\'U2MUM2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, y2M2UMU2M\'UM2</item>
+<item>1, PLL, 1ce70, 133551, U Permutation: a, R2U\'R\'U\'RURURU\'R</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, y2L2U\'L\'U\'LULULU\'L</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, B2U\'MU2M\'U\'B2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, y2RU\'RURURU\'R\'U\'R2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, M2UM\'U2MU2M\'U2MUM2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, yR2U\'yrU2r\'RU2R\'y\'U\'R2</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, RUR\'U\'L\'U\'LU2RU\'R\'U\'L\'UL</item>
+<item>0, PLL, 1ce70, 133551, U Permutation: a, yR2\'U\'S\'U2SU\'R2\'</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, y2F2UR\'LF2RL\'UF2</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, M2U\'M\'U2MU\'M2</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, y2M2U\'MU2M\'U\'M2</item>
+<item>1, PLL, 1ce70, 153153, U Permutation: b, R\'UR\'U\'R\'U\'R\'URUR2</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, y2R2\'URUR\'U\'R\'U\'R\'UR\'</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, B2UMU2M\'UB2</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, L2ULUL\'U\'L\'U\'L\'UL\'</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, RU\'RURUR\'U\'R\'U\'R\'U2R\'</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, M2U\'M\'U2MU2M\'U2MU\'M2</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, L\'U\'LURUR\'U2L\'ULURU\'R\'</item>
+<item>0, PLL, 1ce70, 153153, U Permutation: b, RUR\'U\'L\'U\'LU2RU\'R\'U\'L\'UL</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yx\'RU\'R\'UDR\'DU\'R\'URD2\'Fx</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, xL\'ULU\'D\'LD\'ULU\'L\'D2F\'x\'</item>
+<item>1, PLL, 1ce70, 13315775, Z Permutation, M2UM2UMU2M2U2MU2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yM2UM2UM\'U2M2U2M\'U2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yM2\'U\'M\'U2\'M2\'U2\'M\'UM2\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yUR\'U\'RU\'RURU\'R\'URUR2U\'R\'U2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, R\'U\'R2URUR\'U\'RURU\'RU\'R\'U2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, RB\'R\'BFR\'FB\'R\'BRF2U</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, R2UR2U\'R2F2R2U\'F2UR2F2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, y\'M2U2M\'U\'M2U\'M2U\'M\'U</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, R\'UL\'U2D2RU\'LR\'UL\'U2D2RU\'L</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, R\'UL\'E2LU\'RL\'UR\'E2RU\'L\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yR2U\'R2UR2x\'U2R2FU2F\'R2U2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, M\'UM2UM2UM\'U2M2U\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, U\'l\'URU\'D\'RUD\'RU\'R\'D2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, dRUR2U\'R\'FRURU\'RU\'R\'U\'RUR\'F\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, M2U\'ME2ME2UM2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, F2M2F2M2UM2UM2U2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, U2\'RURU\'RU2RU\'R\'U\'RUR\'U\'R\'URU\'RU\'RURU\'R\'U\'R\'U\'RU\'R</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yRUR\'UR\'U\'R\'URU\'R\'U\'R2URU2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, y\'RURB\'R\'BU\'R\'fRUR\'U\'f\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, x2yM2US2U\'S\'M2S</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, M2UF2M2F2M2U\'M2</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, yM2U2M\'UM2UM2UM\'U\'</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, R\'U\'R\'FRF\'URF\'U\'L\'ULF</item>
+<item>0, PLL, 1ce70, 13315775, Z Permutation, x\'RU\'R\'UDR\'DU\'R\'URD2\'F</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, R\'FR\'B2RF\'R\'B2R2</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, x\'R\'DR\'U2RD\'R\'U2R2</item>
+<item>1, PLL, 1ce70, 022880, A Permutation: a, xR\'UR\'D2RU\'R\'D2R2</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, y\'xL2D2L\'U\'LD2L\'UL\'</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, y2L\'BL\'F2LB\'L\'F2L2</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, y2zF2RU2R\'U2F2L\'U2LU2</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, yz\'U2RU2R\'F2U2L\'U2LF2</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, R\'U2R2U\'L\'UR\'U\'LUR\'U2R</item>
+<item>0, PLL, 1ce70, 022880, A Permutation: a, yR2F2R\'B\'RF2R\'BR\'</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, RB\'RF2R\'BRF2R2</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, xRD\'RU2R\'DRU2R2</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, x\'RU\'RD2R\'URD2R2</item>
+<item>1, PLL, 1ce70, 266882, A Permutation: b, y\'xR2D2RUR\'D2RU\'R</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, y2xLU\'LD2L\'ULD2L2</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, yzU2L\'U2LF2U2RU2R\'F2</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, z\'F2L\'U2LU2F2RU2R\'U2</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, y\'R\'U2RU\'L\'URU\'LUR2U2R</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, zUR\'Dr2U\'RUr2\'U\'D\'</item>
+<item>0, PLL, 1ce70, 266882, A Permutation: b, z\'y2U\'rxl2\'ULU\'R\'UL\'U\'L\'R\'U</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, R2UR\'U\'yRUR\'U\'2RUR\'y\'RU\'R2\'</item>
+<item>1, PLL, 1ce70, 02206886, E Permutation, xUR\'U\'LURU\'L\'URU\'LUR\'U\'L\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, yx\'RU\'R\'DRUR\'D2L\'ULDL\'U\'L</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, yx\'RU\'R\'DRUR\'D\'RUR\'DRU\'R\'D\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, xUR\'U\'LURU\'r2\'U\'RULU\'R\'U</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, yxRU\'R\'DRUR\'u2R\'URDR\'U\'R</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, LR\'U\'RUL\'U\'R\'URrUR\'U\'r\'FRF\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, yx\'L\'ULD\'L\'U\'Lu2LU\'L\'D\'LUL\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, l\'U\'L\'URU\'lUR\'U\'LURU\'l\'U</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, r\'R\'U\'LD\'L\'ULRU\'R\'DRU</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, r2Ur2Dx\'RU\'R\'UxD\'r2U\'r2</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, R2UR\'yRU\'R\'Uy\'RU\'R2</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, x\'U\'RUL\'U\'R\'Ur2UR\'U\'r\'FRF\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, y\'z\'R\'FR2UR\'B\'RU\'R2F\'RzRBR\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, R\'UL\'D2LU\'RL\'UR\'D2RU\'L</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, RBLB\'R\'yRLyLB\'R\'BL\'y\'R\'L\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, l\'U\'r\'FRF\'RUR\'U\'LURU\'R\'F</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, F\'RUR\'U\'L\'URU\'l\'UR\'U\'rBR</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, U\'RUR\'UR\'U\'RF\'RUR\'U\'R\'FR2U\'R2UR</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, U2FRUR\'U\'F\'URUR\'U\'R\'FR2U\'R\'U\'RUR2\'F\'RURU\'R\'</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, R\'D\'RU\'R\'DRUR\'D\'RU2R\'DRU\'R\'D\'RUR\'DRU2</item>
+<item>0, PLL, 1ce70, 02206886, E Permutation, U2RL\'U\'LUR\'U\'L\'ULU2rUR\'U\'L\'URU\'</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, y2RU\'R\'UR2yRUR\'U\'xU\'R\'URU2</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, yzRUR\'U\'RU2z\'y\'RUR\'U\'yxL\'U\'LUL2x\'</item>
+<item>1, PLL, 1ce70, 02203553, F Permutation, R\'URU\'R2F\'U\'FUxRUR\'U\'R2B\'</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, R\'URU\'R2\'F\'U\'FURU\'x\'R2U\'R\'U</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, R\'URU\'R2y\'R\'U\'RUyxRUR\'U\'R2x\'</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, yRUR\'URU2R2U\'RU\'R\'U2RUrUR\'U\'L\'URU\'</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, y2R\'U2R\'d\'R\'F\'R2U\'R\'UR\'FRU\'F</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, yU\'R\'URU\'R2\'F\'U\'FURxUR\'U\'R2</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, y2MU2r\'Ul\'U2rU\'R2rU2R2</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, yR\'U\'F\'RUR\'U\'R\'FR2U\'R\'U\'RUR\'UR</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, LU2LU2R\'ULULU\'L\'U2RU2L\'U\'L\'</item>
+<item>0, PLL, 1ce70, 02203553, F Permutation, rUR\'U\'zU\'l\'U2r\'U\'rU2l\'Ul2</item>
+<item>1, PLL, 1ce70, 081337607186, G Permutation: a, yR2\'uR\'UR\'U\'Ru\'R2y\'R\'UR</item>
+<item>0, PLL, 1ce70, 081337607186, G Permutation: a, yR2DB\'UB\'U\'BD\'R2F\'UF</item>
+<item>0, PLL, 1ce70, 081337607186, G Permutation: a, y2F2\'DR\'UR\'U\'RD\'F2L\'UL</item>
+<item>0, PLL, 1ce70, 081337607186, G Permutation: a, RLU2R\'L\'y\'R\'UL\'U2RU\'L</item>
+<item>0, PLL, 1ce70, 081337607186, G Permutation: a, yd\'LU\'R\'UL\'U\'LUL\'ULU2L\'URU\'R\'URU\'R\'U2R</item>
+<item>1, PLL, 1ce70, 061731687380, G Permutation: b, R\'U\'RyR2uR\'URU\'Ru\'R2</item>
+<item>0, PLL, 1ce70, 061731687380, G Permutation: b, R\'U\'RB2DL\'ULU\'LD\'B2</item>
+<item>0, PLL, 1ce70, 061731687380, G Permutation: b, y2L\'U\'Ly\'R2\'uR\'URU\'Ru\'R2</item>
+<item>0, PLL, 1ce70, 061731687380, G Permutation: b, y\'R\'UL\'U2RU\'LyRLU2L\'R\'</item>
+<item>0, PLL, 1ce70, 061731687380, G Permutation: b, y2dR\'U2RUR\'U\'RUR\'U\'LU2L\'U\'LU\'L\'ULU\'RUL\'</item>
+<item>1, PLL, 1ce70, 152657687182, G Permutation: c, yR2\'u\'RU\'RUR\'uR2yRU\'R\'</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, yR2\'u\'RU\'RUR\'uR2BU\'B\'</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, yR2\'D\'FU\'FUF\'DR2BU\'B\'</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, y2F2\'D\'LU\'LUL\'DF2RU\'R\'</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, L\'R\'U2LRyLU\'RU2L\'UR\'</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, y\'l\'U\'U\'L\'UlF\'U\'LUFR\'FR</item>
+<item>0, PLL, 1ce70, 152657687182, G Permutation: c, y\'dR\'ULU\'RUR\'U\'RU\'R\'U2RU\'L\'ULU\'L\'ULU2L\'</item>
+<item>1, PLL, 1ce70, 172851627586, G Permutation: d, y2RUR\'y\'R2u\'RU\'R\'UR\'uR2</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, y2RUR\'F2D\'LU\'L\'UL\'DF2</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, y2l2U\'L2U\'F2L\'U\'RU2L\'Ulx</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, yLU\'RU2L\'UR\'yR\'L\'U2RL</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, yLU\'RU2L\'UR\'y\'L\'R\'U2LR</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, y\'R\'F\'RF\'U\'L\'UFR\'F\'LF2R</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, y2d\'LU2L\'U\'LUL\'U\'LUR\'U2RUR\'URU\'R\'UL\'U\'R</item>
+<item>0, PLL, 1ce70, 172851627586, G Permutation: d, U\'xR\'UR\'D2RU\'R\'D2x\'UR\'U\'RURURU\'R</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2R\'U2RUR\'zR2\'UR\'DRU\'</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2LU\'R\'UL\'U2RU\'R\'U2R</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2L\'R\'U2RUR\'U2LU\'RU</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2F2L\'U\'rU2l\'UR\'U\'R2</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2R\'U2RUR\'U2\'LU\'RUL\'</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, y2xU2r\'U\'rU2l\'UR\'U\'R2</item>
+<item>1, PLL, 1ce70, 06376073, J Permutation: a, yR\'UL\'U2RU\'R\'U2LRU\'</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, U\'L\'UR\'zR2UR\'U\'R2UD</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, B2\'R2U\'R2\'uR2D\'R2\'UR2</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, RU\'L\'UR\'U2LU\'L\'U2\'L</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, RLd2R\'U\'Rd2R\'UL\'</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, L\'UR\'U2LU\'RUL\'UR\'U2LU\'R</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, L\'UR\'U2LU\'RUL\'UR\'U2LU\'R</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, L\'U2LUL\'U2RU\'LUR\'</item>
+<item>0, PLL, 1ce70, 06376073, J Permutation: a, L\'U\'LFL\'U\'LULF\'L2ULU</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, RU2R\'U\'RU2L\'UR\'U\'L</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, RU2R\'U\'Rd2\'R\'UL\'U\'R</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y2RLU2L\'U\'LU2R\'UL\'U\'</item>
+<item>1, PLL, 1ce70, 28577582, J Permutation: b, RUR\'F\'RUR\'U\'R\'FR2U\'R\'U\'</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y\'LU\'rU2l\'UR\'U\'l2F2L2</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y\'L\'U\'RU2L\'ULU2L\'RU</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y2F2\'RUR\'yr2y\'RU\'RUR2\'</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, L\'URU\'LU2R\'URU2\'R\'</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y2r2U\'L\'Ur\'U2RB\'R\'U2</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, RU\'LU2R\'ULU\'RU\'LU2R\'UL</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, L\'UR\'U2LU\'L\'U2RL</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, RUR\'F\'RUR\'U\'R\'FR2U\'R\'U\'</item>
+<item>0, PLL, 1ce70, 28577582, J Permutation: b, y2F2RUR\'F2LD\'LDL2</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, R\'UR2B2UR\'B2\'RU\'B2R2\'U\'R</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, zDR\'UR2D\'RU\'DR\'UR2D\'RU\'R</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, y\'LU\'RU2L\'UR\'LU\'RU2L\'UR\'</item>
+<item>1, PLL, 1ce70, 26355362, N Permutation: a, RU\'R\'UlUFU\'R\'F\'RU\'RUl\'UR\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, LU\'L\'ULFUF\'L\'U\'LF\'LFL\'UL\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, RU\'Ld2L\'ULR\'U\'RU2r\'Fl\'U\'y2</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, LU\'RU2L\'UR\'LU\'RU2L\'UR\'U\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, yzR\'UR\'DR2\'U\'RUD\'R\'DR2\'U\'RD\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, RU\'Ld2L\'ULR\'U\'RU2L\'UR\'U\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, F\'RUR\'U\'R\'FR2FU\'R\'U\'RUF\'R\'</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, zU2R2U\'R2y\'R2U2R2UR2yR2U2R2dR2xy</item>
+<item>0, PLL, 1ce70, 26355362, N Permutation: a, zUR\'U\'RUFRF\'U\'R\'UF\'UFU\'RU\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, RU\'R2\'F2U\'RF2\'R\'UF2R2UR\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, zU\'RD\'R2\'UR\'U\'DRD\'R2UR\'D</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, zD\'RU\'R2\'DRU2</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, L\'UR\'U2\'LU\'L\'RUR\'U2\'LU\'RU\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, R\'URU\'R\'F\'U\'FRUR\'FR\'F\'RU\'R</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, zU\'RD\'R2UR\'U\'z\'RUR\'zR2UR\'z\'RU\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, L\'UR\'zR2UR\'Uz\'RUR\'zR2UR\'z\'RU\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, L\'ULU\'r\'U\'F\'ULFL\'UL\'U\'rU\'L</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, LU\'RU2L\'UR\'LU\'RU2L\'UR\'U\'</item>
+<item>0, PLL, 1ce70, 08355380, N Permutation: b, R\'URU\'R\'F\'U\'FRUR\'U\'R\'dRUR\'</item>
+<item>1, PLL, 1ce70, 08355380, N Permutation: b, R\'UL\'U2RU\'LR\'UL\'U2RU\'L</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, y2zUR2U\'R2UF\'U\'R\'URUFU2R</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, y\'RUR\'F\'RU2R\'U2R\'FRURU2R\'U\'</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RU\'RF2URURU\'R\'U\'F2R2U</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, y\'R2B\'R\'U\'R\'URBR\'U2RU2R\'</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RU2R\'U2RB\'R\'U\'RURBR2\'U</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RU2R\'U2RB\'R\'U\'RUlUR2F</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, y2R\'U\'RU2RU2L\'R2URU\'RLU2R\'</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RU2R\'U\'R\'F\'RU2RU2R\'FRU\'R\'U</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RU2RDR\'URD\'R\'U\'R\'URUR\'U</item>
+<item>1, PLL, 1ce70, 15516886, R Permutation: a, y2LU2L\'U2LF\'L\'U\'LULFL2U</item>
+<item>0, PLL, 1ce70, 15516886, R Permutation: a, RlU\'l\'U\'R\'UlUl\'U2RU2\'R\'</item>
+<item>1, PLL, 1ce70, 02205775, R Permutation: b, R\'U2RU2R\'FRUR\'U\'R\'F\'R2\'U\'</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, yR2B2U\'R\'U\'RURUB2RU\'RU</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, R\'U2RU\'y\'R\'FRB\'R\'F\'Rzx\'R\'UR\'</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, y2R\'U2lRU\'R\'Ul\'U2\'RFRU\'R\'U\'RUR\'F\'</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, R\'U2R\'D\'RU\'R\'DRURU\'R\'U\'RU\'</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, yxR2UlURU\'l\'U\'lU2R\'U2R</item>
+<item>0, PLL, 1ce70, 02205775, R Permutation: b, r\'L\'UrULU\'r\'U\'rU2L\'U2L</item>
+<item>1, PLL, 1ce70, 28355382, T Permutation, RUR\'U\'R\'FR2U\'R\'U\'RUR\'F\'</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, y2L\'U\'LULF\'L2ULUL\'U\'LF</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, FRU\'R\'URUR2F\'RURU\'R\'</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, y2BLU\'L\'ULUL2B\'LULU\'L\'</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, L2U\'L2DF2R2UR2D\'F2</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, R2U\'R2DB2L2UL2D\'B2</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, R2\'u\'R2UR2\'yR2uR2\'U\'R2</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, R2UR2\'U\'R2U\'DR2\'U\'R2UR2\'D\'</item>
+<item>0, PLL, 1ce70, 28355382, T Permutation, zx2U2r\'U2rU2xU2rU2r\'U2</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yxR\'FR\'F\'R2U\'R\'URU</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yxR\'U\'R2B\'R\'BR\'URU</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yxR\'U\'R2x\'U\'R\'UR\'FRF</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'B\'DB\'D\'B2R\'B\'RBR</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'x2y\'R\'UR\'U\'lRU\'R\'URU</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yz\'U\'RU\'R\'U2y\'R\'U\'RUR</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yR\'F\'R2U\'R\'UR\'FRF</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'UR\'U\'yR\'DR\'D\'R2F\'R\'FRF</item>
+<item>1, PLL, 1ce70, 08155180, V Permutation, R\'UR\'d\'R\'F\'R2U\'R\'UR\'FRF</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'U2RU2LU\'R\'UL\'ULU\'RUL\'</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R\'U2RU2LU\'R\'Ur\'FrU\'RUr\'</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, R2U\'B2UB2RD\'RDR\'URU\'R</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, y\'R\'ULU\'RUR\'UL\'U\'RU2LU2L\'</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, y2RU\'L\'UR\'U\'RU\'LUR\'U2L\'U2L</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, LU\'R\'UL\'U\'LU\'RUL\'U2R\'U2R</item>
+<item>0, PLL, 1ce70, 08155180, V Permutation, yL\'URU\'LUL\'UR\'U\'LU2RU2R\'</item>
+<item>1, PLL, 1ce70, 08133180, Y Permutation, FRU\'R\'U\'RUR\'F\'RUR\'U\'R\'FRF\'</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, R2uR2\'UR2D\'R\'U\'RF2\'R\'UR</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, FR\'FR2U\'R\'U\'RUR\'F\'RUR\'U\'F\'</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, R\'U\'RF2R\'URdR2U\'R2\'U\'R2</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, R2U\'R\'URU\'z\'y\'L\'U\'RU\'R\'U\'LUyz</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, yF\'L\'ULUL\'U\'LFL\'U\'LUL\'F\'LF</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, FRU\'R\'FDR\'yxR\'U\'RzR2yL\'d2</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, z\'U2L\'U\'LUL\'y\'L\'U\'RU\'R\'U\'LU</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, FR\'F\'RURU\'R2U\'RUlU\'R\'U</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, zU2RUR\'U\'RyRUL\'ULUR\'U\'</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, FRU\'R\'U\'RdRUR\'B\'RU\'R2</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, R\'FRF\'y\'U\'R\'UR2UR\'U\'R\'FRF\'U\'</item>
+<item>0, PLL, 1ce70, 08133180, Y Permutation, y2zU2R\'U2R\'U2RBRB\'U2BR\'B\'</item>
+	</string-array>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:cube="http://schemas.android.com/apk/res/se.slackers.cube"	
+	android:orientation="vertical" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	>
+	
+	<LinearLayout 
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"  
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="48px"
+		>
+		<TextView
+			android:id="@+id/permutationName"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:textSize="@dimen/header"
+			android:layout_marginBottom="@dimen/medium" 
+			/>		
+		<FrameLayout 
+			android:id="@+id/permutationContainer" 
+			android:orientation="vertical" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center_horizontal" 
+			/>
+		<FrameLayout 	
+			android:id="@+id/algorithmContainer" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="20dp"
+			/>			
+	</LinearLayout>
+	<com.admob.android.ads.AdView 
+		android:id="@+id/ad"
+		android:layout_width="fill_parent" 
+		android:layout_height="48px"
+		android:layout_alignParentBottom="true"
+		cube:refreshInterval="60"
+		cube:backgroundColor="#000000" 
+		cube:primaryTextColor="#FFFFFF"
+		cube:secondaryTextColor="#CCCCCC" />
+</RelativeLayout>

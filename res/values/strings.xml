@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Algorithms</string>
+    <string name="labelView">View Algorithm</string>
+    <string name="labelPreferences">Preferences</string>
+    
+    <string name="message">Replaced the favorite algorithms list with a dialog and fixed OLL 36 and 38, thanks Akio. The project is now hosted on Google Code with an attached discussion group. The addresses are found on the info screen.</string>
+    <string name="messageTitle">Changes in Algorithms</string>
+    <string name="additionalAlgorithms">Alternative algorithms:</string>
+    
+    <string name="favorite_algorithm_changed">Algorithm changed</string>
+    <string name="favorite_title">Set favorite algorithm</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- List -->
+    <string name="ollText">Orient Last Layer</string>
+    <string name="pllText">Position Last Layer</string>
+    
+    <!-- Menu -->
+    <string name="properties">Preferences</string>
+    <string name="info">Info</string>
+    <string name="help">Notation</string>
+    <string name="select">Change algorithm</string>
+    
+    <!-- Dialog -->
+	<string name="algorithm_usage">Usage:</string>
+	<string name="algorithm_favorite">Favorite:</string>
+	
+	<!-- Preferences -->
+	<string name="categoryAppearance">Appearance</string>
+	<string name="categoryNotation">Notation</string>
+		
+	<!-- Appearance preferences -->
+	<string name="themeDialog">Choose color theme</string>
+	<string name="themeTitle">Color theme</string>
+	<string name="themeSummary">Color theme for all cubes</string>
+	<string-array name="themeContent">
+		<item>Blue</item>
+		<item>Green</item>
+		<item>Orange</item>
+		<item>Red</item>
+		<item>Yellow</item>
+		<item>White</item>
+	</string-array>
+
+	<string name="sizeDialog">Choose cube size</string>
+	<string name="sizeTitle">Cube size</string>
+	<string name="sizeSummary">Size of the images in the permutation list</string>
+	<string-array name="sizeContent">
+		<item>Small</item>
+		<item>Medium</item>
+		<item>Large</item>
+	</string-array>
+	
+	<!-- Notation -->
+	<string name="notationTitle">Notation scheme</string>	
+	<string name="notationSummary">The notation to use</string> <!-- Singmaster should not be localized -->
+	<string-array name="notationContent">
+		<item>Singmaster</item>
+		<item>WCA</item>
+	</string-array>
+	
+	<!-- Double notation -->
+	<string name="notationDoubleTitle">Half turn format</string>	
+	<string name="notationDoubleSummary">Format options for half turns</string>
+	<string-array name="notationDoubleContent">
+		<item>Superscript</item>
+		<item>Normal</item>
+		<item>Subscript</item>
+	</string-array>	
+	 
+	<string name="notationSuperscriptTitle">Superscript half turns</string>
+	<string name="notationSuperscriptSummary">Format half turns as superscript</string>
+	<string name="notationReverseTitle">Counter-clockwise</string>
+	<string name="notationReverseSummary">Use a darker color for counter-clockwise rotations</string>
+	<string name="notationTriggerTitle">Show triggers</string>
+	<string name="notationTriggerSummary">Group trigger moves in parentheses</string>
+
+	<!-- Notation text -->
+	<string name="notationText">A turn of layer is written by adding a suffix to the face\'s name. All moves should be applied as if you were looking at the face straight-on. Using the U face as an example here are all three cases:\n\nU - A 90-degree clockwise turn.\nU\' - A 90-degree counterclockwise turn.\nU2 - A 180-degree turn.</string>
+
+	<!-- Info -->	
+	<string name="infoText_1">I would like to acknowledge and thank the people who helped me with this release:\n- Patrick Kelly, algorithms (speedsolving.com)\n- Steven Partridge, testing and ideas.\n- Elin Lilius, layout and UI design.\n\nAll feedback/bugs/feature requests are welcome, it\'s always nice to hear from the users. Use the button below to send me an email, visit the google group at http://groups.google.com/rubiks-cube-algorithms/ or the project page at http://code.google.com/p/rubiks-cube-algorithms/</string>
+	<string name="feedback">Send email</string>
+	<string name="email_chooser">Select email application</string>
+	
+	<!-- Should not be localized -->
+	<string-array name="themeValues">
+		<item>Blue</item>
+		<item>Green</item>
+		<item>Orange</item>
+		<item>Red</item>
+		<item>Yellow</item>
+		<item>White</item>
+	</string-array>
+	<!-- Should not be localized -->	
+	<string-array name="sizeValues">
+		<item>Small</item>
+		<item>Medium</item>
+		<item>Large</item>
+	</string-array>
+	<!-- Should not be localized -->	
+	<string-array name="notationValues">
+		<item>Singmaster</item>
+		<item>WCA</item>
+	</string-array>
+	<!-- Should not be localized -->	
+	<string-array name="notationDoubleValues">
+		<item>SuperScript</item>
+		<item>Normal</item>
+		<item>SubScript</item>
+	</string-array>	
+</resources>

@@ -1,0 +1,7 @@
+syntax: glob
+*.class
+*~
+*.apk
+gen/*
+bin/*
+key/*
