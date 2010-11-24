@@ -49,6 +49,7 @@ public class ListActivity extends BaseActivity implements OnClickListener, OnLon
 	public static final String PERMUTATION = "permutation";
 	public static final int PADDING = 2;
 	private static final int MESSAGE_DIALOG = 0;
+	private static final int FIRSTSTART_DIALOG = 1;
 	private static final int PERMUTATION_INFO = 100;
 	private int id = 10000;
 	private long activePermutation = -1;
@@ -146,7 +147,10 @@ public class ListActivity extends BaseActivity implements OnClickListener, OnLon
 		final PackageInfo info = getPackageInfo();
 		final int version = info.versionCode;
 
-		if (config.getMessageDialogVersion() < version) {
+		if (config.isFirstStart()) {
+			showDialog(FIRSTSTART_DIALOG);
+			config.setMessageDialogVersion(version);
+		} else if (config.getMessageDialogVersion() < version) {
 			showDialog(MESSAGE_DIALOG);
 			config.setMessageDialogVersion(version);
 		}
@@ -192,6 +196,21 @@ public class ListActivity extends BaseActivity implements OnClickListener, OnLon
 	@Override
 	protected Dialog onCreateDialog(final int id) {
 		switch (id) {
+		case FIRSTSTART_DIALOG: {
+			final Dialog dialog = new Dialog(this);
+			final PackageInfo info = getPackageInfo();
+
+			dialog.setContentView(R.layout.firststart_dialog);
+			dialog.setTitle(getResources().getString(R.string.firststart_title)
+					+ String.format(" v%s", info.versionName));
+			dialog.findViewById(R.id.dialogRoot).setOnClickListener(new OnClickListener() {
+				public void onClick(final View v) {
+					dialog.dismiss();
+				}
+			});
+
+			return dialog;
+		}
 		case MESSAGE_DIALOG: {
 			final Dialog dialog = new Dialog(this);
 			final PackageInfo info = getPackageInfo();

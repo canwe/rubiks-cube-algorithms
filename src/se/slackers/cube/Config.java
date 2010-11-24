@@ -81,6 +81,10 @@ public class Config {
 		showDialog = settings.getInt(SHOW_DIALOG, 0);
 	}
 
+	public boolean isFirstStart() {
+		return showDialog == 0;
+	}
+
 	public int getMessageDialogVersion() {
 		return showDialog;
 	}
