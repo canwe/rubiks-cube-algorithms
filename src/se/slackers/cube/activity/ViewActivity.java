@@ -53,6 +53,8 @@ import android.widget.Toast;
 public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	private static final int SHOW_CHANGE_ALGORITHM_DIALOG = 1001;
 
+	private static final String ALGORITHM_CANDIDATE = "favorite.candidate";
+
 	private WakeLock wakeLock;
 	private PermutationRenderer renderer;
 
@@ -63,9 +65,9 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 
 	private List<Algorithm> algorithms;
 	private AlgorithmAdapter algorithmAdapter;
-	private Algorithm favorite;
 
-	private Algorithm candidate;
+	private Algorithm favorite;
+	private long candidate_id = -1;
 
 	@Override
 	protected void onCreate(final Bundle state) {
@@ -74,6 +76,10 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 
 		final Bundle bundle = getIntent().getExtras();
 		final long permutationId = bundle.getLong(ListActivity.PERMUTATION);
+
+		if (state != null) {
+			candidate_id = state.getLong(ALGORITHM_CANDIDATE, -1);
+		}
 
 		final Permutation permutation = getPermutation(permutationId);
 		algorithms = getAlgorithms(permutationId);
@@ -189,33 +195,43 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	}
 
 	@Override
-	protected void onSaveInstanceState(final Bundle outState) {
+	protected void onSaveInstanceState(final Bundle out) {
 		if (wakeLock.isHeld()) {
 			wakeLock.release();
 		}
+
+		out.putLong(ALGORITHM_CANDIDATE, candidate_id);
 	}
 
 	public void onItemClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
-		candidate = algorithmAdapter.getItem(position);
+		final Algorithm candidate = algorithmAdapter.getItem(position);
 		algorithmAdapter.setFavorite(candidate);
+
+		candidate_id = candidate.getId();
 	}
 
 	private void changeFavoriteAlgorithm() {
 		final Algorithm previous = favorite;
-		favorite = candidate;
 
-		previous.setRank(0);
-		favorite.setRank(1);
+		for (final Algorithm algorithm : algorithms) {
+			if (algorithm.getId() == candidate_id) {
+				favorite = algorithm;
 
-		// update favorite algorithm in the db
-		AlgorithmProviderHelper.save(getContentResolver(), previous);
-		AlgorithmProviderHelper.save(getContentResolver(), favorite);
+				previous.setRank(0);
+				favorite.setRank(1);
 
-		// update UI
-		algorithmAdapter.setFavorite(favorite);
-		updateAlgorithm();
+				// update favorite algorithm in the db
+				AlgorithmProviderHelper.save(getContentResolver(), previous);
+				AlgorithmProviderHelper.save(getContentResolver(), favorite);
 
-		Toast.makeText(this, R.string.favorite_algorithm_changed, Toast.LENGTH_LONG).show();
+				// update UI
+				algorithmAdapter.setFavorite(favorite);
+				updateAlgorithm();
+
+				Toast.makeText(this, R.string.favorite_algorithm_changed, Toast.LENGTH_LONG).show();
+				break;
+			}
+		}
 	}
 
 	@Override
