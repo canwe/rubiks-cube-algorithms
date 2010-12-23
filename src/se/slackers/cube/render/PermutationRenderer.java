@@ -1,27 +1,31 @@
 /*******************************************************************************
  * Copyright (c) 2010 Erik Byström.
  * 
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of Rubik's Cube Algorithms.
+ * 
+ * Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
+ * Rubik's Cube Algorithms is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
 package se.slackers.cube.render;
 
 import se.slackers.cube.Config;
-import se.slackers.cube.image.Arrow;
 import se.slackers.cube.image.CubeMetric;
 import se.slackers.cube.image.CubeMetric.Metric;
-import se.slackers.cube.provider.Permutation;
+import se.slackers.cube.model.permutation.Arrow;
+import se.slackers.cube.model.permutation.ArrowConfiguration;
+import se.slackers.cube.model.permutation.FaceConfiguration;
+import se.slackers.cube.model.permutation.Permutation;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -62,19 +66,18 @@ public class PermutationRenderer {
 		final Canvas canvas = new Canvas(bitmap);
 		canvas.drawRect(0, 0, size, size, background);
 		canvas.drawRect(metric.getOffset(), border);
-		drawFaces(canvas, permutation.getFaceConfig());
-		drawArrows(canvas, permutation.getArrowConfig());
+		drawFaces(canvas, permutation.getFaceConfiguration());
+		drawArrows(canvas, permutation.getArrowConfiguration());
 
 		return bitmap;
 	}
 
-	private void drawArrows(final Canvas canvas, final String arrowConfig) {
-		if (arrowConfig == null || arrowConfig.length() == 0) {
+	private void drawArrows(final Canvas canvas, final ArrowConfiguration arrowConfig) {
+		if (arrowConfig == null) {
 			return;
 		}
 
-		for (int i = 0; i < arrowConfig.length(); i += 2) {
-			final Arrow arrow = new Arrow(arrowConfig.charAt(i + 0) - '0', arrowConfig.charAt(i + 1) - '0');
+		for (final Arrow arrow : arrowConfig.getArrows()) {
 			final RectF from = arrow.getFrom(metric);
 			final RectF to = arrow.getTo(metric);
 			final Paint paint = arrow.usingCorner() ? blue : red;
@@ -140,11 +143,10 @@ public class PermutationRenderer {
 		return m;
 	}
 
-	private void drawFaces(final Canvas canvas, final long faceConfig) {
-		int bit = 1;
+	private void drawFaces(final Canvas canvas, final FaceConfiguration faceConfig) {
 		for (int i = 0; i < 21; i++) {
 			final RectF rect = metric.rect(i);
-			final boolean active = (faceConfig & bit) != 0;
+			final boolean active = faceConfig.isActive(i);
 
 			if (metric.type(i) == Metric.Top) {
 				final Paint paint = active ? activeFace : unknownFace;
@@ -152,8 +154,6 @@ public class PermutationRenderer {
 			} else if (active) {
 				canvas.drawRect(rect, sideFace);
 			}
-
-			bit <<= 1;
 		}
 	}
 }

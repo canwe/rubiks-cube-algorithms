@@ -17,32 +17,8 @@
  * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.view;
+package se.slackers.cube.model.algorithm;
 
-import se.slackers.cube.model.permutation.Permutation;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.widget.ImageView;
-
-public class PermutationView extends ImageView {
-	private final Permutation permutation;
-
-	public PermutationView(final Context context, final Permutation permutation) {
-		super(context);
-		this.permutation = permutation;
-	}
-
-	public Permutation getPermutation() {
-		return permutation;
-	}
-
-	public PermutationView image(final Bitmap bitmap) {
-		setImageBitmap(bitmap);
-		return this;
-	}
-
-	public PermutationView padding(final int padding) {
-		setPadding(padding, padding, padding, padding);
-		return this;
-	}
+public enum AlgorithmType implements Comparable<AlgorithmType> {
+	OLL, PLL;
 }

@@ -17,32 +17,34 @@
  * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.view;
+package se.slackers.cube.model.algorithm;
 
-import se.slackers.cube.model.permutation.Permutation;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.widget.ImageView;
+/**
+ * @author Erik Byström
+ * 
+ */
+public class InstructionParseException extends RuntimeException {
+	private static final long serialVersionUID = 4906746068320423465L;
+	private final int column;
+	private final String input;
+	private final String text;
 
-public class PermutationView extends ImageView {
-	private final Permutation permutation;
-
-	public PermutationView(final Context context, final Permutation permutation) {
-		super(context);
-		this.permutation = permutation;
+	public InstructionParseException(final String input, final int column) {
+		this.input = input;
+		this.column = column;
+		this.text = String.format("Unknown symbol '%c' at column %d in %s", input.charAt(column), column, input);
 	}
 
-	public Permutation getPermutation() {
-		return permutation;
+	public String input() {
+		return input;
 	}
 
-	public PermutationView image(final Bitmap bitmap) {
-		setImageBitmap(bitmap);
-		return this;
+	public int column() {
+		return column;
 	}
 
-	public PermutationView padding(final int padding) {
-		setPadding(padding, padding, padding, padding);
-		return this;
+	@Override
+	public String toString() {
+		return text;
 	}
 }

@@ -1,18 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2010 Erik Byström.
  * 
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of Rubik's Cube Algorithms.
+ * 
+ * Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
+ * Rubik's Cube Algorithms is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
 package se.slackers.cube.activity;
@@ -22,15 +24,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import se.slackers.cube.R;
-import se.slackers.cube.provider.Algorithm;
+import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
-import se.slackers.cube.provider.Permutation;
+import se.slackers.cube.provider.ContentURI;
 import se.slackers.cube.render.PermutationRenderer;
 import se.slackers.cube.view.AlgorithmAdapter;
 import se.slackers.cube.view.AlgorithmView;
 import se.slackers.cube.view.PermutationView;
 import android.app.Dialog;
-import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -68,6 +70,7 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 
 	private Algorithm favorite;
 	private long candidate_id = -1;
+	private Permutation permutation;
 
 	@Override
 	protected void onCreate(final Bundle state) {
@@ -81,12 +84,12 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 			candidate_id = state.getLong(ALGORITHM_CANDIDATE, -1);
 		}
 
-		final Permutation permutation = getPermutation(permutationId);
-		algorithms = getAlgorithms(permutationId);
+		permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(), permutationId);
+		algorithms = getAlgorithms(permutation);
 
 		favorite = algorithms.get(0);
 		try {
-			favorite = getFavoriteAlgorithm(permutationId);
+			favorite = getFavoriteAlgorithm(permutation);
 		} catch (final IllegalArgumentException e) {
 			// ignore
 		}
@@ -98,20 +101,22 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		algorithmContainer = (FrameLayout) findViewById(R.id.algorithmContainer);
 		algorithmAdapter = new AlgorithmAdapter(this, config, algorithms, favorite);
 
-		// add permutation view
-		final Bitmap bitmap = renderer.render(permutation);
-		permutationView = new PermutationView(this, permutation).image(bitmap);
-		permutationContainer.addView(permutationView);
-
-		// set algorithm name
-		permutationName.setText(permutation.getName());
-
-		// add header algorithms view
+		updatePermutation(permutation);
 		updateAlgorithm();
 
 		// prevent the screen from turning off
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "permutationView-algorithm lock");
+	}
+
+	private void updatePermutation(final Permutation permutation) {
+		final Bitmap bitmap = renderer.render(permutation);
+		permutationView = new PermutationView(this, permutation).image(bitmap);
+		permutationContainer.removeAllViews();
+		permutationContainer.addView(permutationView);
+
+		// set algorithm name
+		permutationName.setText(permutation.getName());
 	}
 
 	private void updateAlgorithm() {
@@ -126,13 +131,12 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		algorithmContainer.addView(algorithmView);
 	}
 
-	private Algorithm getFavoriteAlgorithm(final long permutationId) {
-		final Uri uri = Uri.withAppendedPath(ContentUris.withAppendedId(Algorithm.CONTENT_URI, permutationId),
-				Algorithm.FAVORITE_PATH);
+	private Algorithm getFavoriteAlgorithm(final Permutation permutation) {
+		final Uri uri = ContentURI.favoriteForPermutation(permutation.getId());
 		final Cursor cursor = managedQuery(uri, null, null, null, null);
 		try {
 			if (cursor.moveToFirst()) {
-				return Algorithm.fromCursor(cursor);
+				return Algorithm.fromCursor(cursor, permutation);
 			}
 			throw new IllegalArgumentException("Favorite algorithms doesn't exist");
 		} finally {
@@ -140,31 +144,18 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		}
 	}
 
-	private List<Algorithm> getAlgorithms(final long permutationId) {
-		final Uri uri = ContentUris.withAppendedId(Algorithm.CONTENT_URI, permutationId);
+	private List<Algorithm> getAlgorithms(final Permutation permutation) {
+		final Uri uri = ContentURI.algorithmsForPermutation(permutation.getId());
 		final Cursor cursor = managedQuery(uri, null, null, null, null);
 		try {
 			final List<Algorithm> results = new LinkedList<Algorithm>();
 			if (cursor.moveToFirst()) {
 				do {
-					results.add(Algorithm.fromCursor(cursor));
+					results.add(Algorithm.fromCursor(cursor, permutation));
 				} while (cursor.moveToNext());
 			}
 			Collections.sort(results);
 			return results;
-		} finally {
-			cursor.close();
-		}
-	}
-
-	private Permutation getPermutation(final long permutationId) {
-		final Uri uri = ContentUris.withAppendedId(Permutation.CONTENT_URI, permutationId);
-		final Cursor cursor = managedQuery(uri, null, null, null, null);
-		try {
-			if (cursor.moveToFirst()) {
-				return Permutation.fromCursor(cursor);
-			}
-			throw new IllegalArgumentException("Permutation with id " + permutationId + " doesn't exist");
 		} finally {
 			cursor.close();
 		}
@@ -280,7 +271,6 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, SHOW_CHANGE_ALGORITHM_DIALOG, 0, R.string.select).setIcon(R.drawable.ic_menu_favorite);
-
 		return true;
 	}
 

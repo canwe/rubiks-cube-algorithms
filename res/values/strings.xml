@@ -2,18 +2,20 @@
 <!--
   Copyright (c) 2010 Erik Byström.
   
-  This program is free software: you can redistribute it and/or modify
+  This file is part of Rubik's Cube Algorithms.
+  
+  Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
   
-  This program is distributed in the hope that it will be useful,
+  Rubik's Cube Algorithms is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
   
   You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <resources>
@@ -21,14 +23,14 @@
     <string name="labelView">View Algorithm</string>
     <string name="labelPreferences">Preferences</string>
     
-    <string name="message">Added a welcome message for first time users.</string>
+    <string name="message">Fixed crashes associated with the favorite algorithm dialog. I\'ve also made some major changes to the database so all favorites are back to default, hopefully for the last time.</string>
     <string name="messageTitle">Changes in Algorithms</string>
 
-    <string name="firststart_message">This application is a dictionary over the algorithms used for solving the last layer of Rubik\'s cube using the Friedrich method.\n\nIf you\'re not familiar with the notations used for describing algorithms please read the the notation page carefully. It is accessed by pressing menu and then choosing Notation.\n\nI hope you enjoy the application and please visit the project page for more information, http://code.google.com/p/rubiks-cube-algorithms/</string>
+    <string name="firststart_message">This application is a dictionary over the algorithms used for solving the last layer of Rubik\'s cube using the Friedrich method.\n\nIf you\'re not familiar with the notations used for describing algorithms please read the notation page carefully. It is accessed by pressing menu and then choosing Notation.\n\nPlease visit the project page for more information, http://code.google.com/p/rubiks-cube-algorithms\n\nI hope you enjoy the application!</string>
 	<string name="firststart_title">Welcome to Algorithms</string>    
     
     <string name="additionalAlgorithms">Alternative algorithms:</string>
-    
+
     <string name="favorite_algorithm_changed">Algorithm changed</string>
     <string name="favorite_title">Set favorite algorithm</string>
     <string name="save">Save</string>

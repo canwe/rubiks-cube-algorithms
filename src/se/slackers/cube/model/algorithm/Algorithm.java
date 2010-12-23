@@ -1,32 +1,36 @@
 /*******************************************************************************
  * Copyright (c) 2010 Erik Byström.
  * 
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of Rubik's Cube Algorithms.
+ * 
+ * Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
+ * Rubik's Cube Algorithms is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.provider;
+package se.slackers.cube.model.algorithm;
 
+import se.slackers.cube.model.Rotatable;
+import se.slackers.cube.model.permutation.Permutation;
+import se.slackers.cube.provider.AlgorithmProvider;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public class Algorithm implements BaseColumns, Comparable<Algorithm> {
+public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<Algorithm> {
 	public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.slackers.algorithm";
 	public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.slackers.algorithm";
 
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AlgorithmProvider.AUTHORITY + "/algorithms");
-	public static final String FAVORITE_PATH = "favorite";
 	public static final String DEFAULT_SORT_ORDER = "algorithm";
 
 	public static final String PERMUTATION_ID = "permutation";
@@ -35,13 +39,19 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm> {
 
 	private Long id;
 	private Long permutationId;
-	private String algorithm;
+	private final Instruction instruction;
 	private Integer rank;
 
-	public Algorithm(final long permutationId, final String algorithm, final int rank) {
+	public Algorithm(final long permutationId, final Instruction instruction, final int rank) {
 		this.permutationId = permutationId;
-		this.algorithm = algorithm;
+		this.instruction = instruction;
 		this.rank = rank;
+	}
+
+	public Algorithm rotate(final int turns) {
+		final Algorithm algorithm = new Algorithm(permutationId, instruction.rotate(turns), rank);
+		algorithm.setId(id);
+		return algorithm;
 	}
 
 	public long getId() {
@@ -52,8 +62,8 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm> {
 		return permutationId;
 	}
 
-	public String getAlgorithm() {
-		return algorithm;
+	public Instruction getInstruction() {
+		return instruction;
 	}
 
 	public int getRank() {
@@ -64,14 +74,14 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm> {
 		if (permutationId != a.permutationId) {
 			return permutationId.compareTo(a.permutationId);
 		}
-		return algorithm.compareTo(a.algorithm);
+		return instruction.compareTo(a.instruction);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((algorithm == null) ? 0 : algorithm.hashCode());
+		result = prime * result + ((instruction == null) ? 0 : instruction.hashCode());
 		result = prime * result + ((permutationId == null) ? 0 : permutationId.hashCode());
 		return result;
 	}
@@ -88,11 +98,11 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm> {
 			return false;
 		}
 		final Algorithm other = (Algorithm) obj;
-		if (algorithm == null) {
-			if (other.algorithm != null) {
+		if (instruction == null) {
+			if (other.instruction != null) {
 				return false;
 			}
-		} else if (!algorithm.equals(other.algorithm)) {
+		} else if (!instruction.equals(other.instruction)) {
 			return false;
 		}
 		if (permutationId == null) {
@@ -113,21 +123,17 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm> {
 		this.permutationId = permutationId;
 	}
 
-	public void setAlgorithm(final String algorithm) {
-		this.algorithm = algorithm;
-	}
-
 	public void setRank(final Integer rank) {
 		this.rank = rank;
 	}
 
-	public static Algorithm fromCursor(final Cursor cursor) {
+	public static Algorithm fromCursor(final Cursor cursor, final Permutation permutation) {
 		final long id = cursor.getLong(cursor.getColumnIndex(Algorithm._ID));
 		final long pid = cursor.getLong(cursor.getColumnIndex(Algorithm.PERMUTATION_ID));
 		final int rank = cursor.getInt(cursor.getColumnIndex(Algorithm.RANK));
 		final String algorithm = cursor.getString(cursor.getColumnIndex(Algorithm.ALGORITHM));
 
-		final Algorithm a = new Algorithm(pid, algorithm, rank);
+		final Algorithm a = new Algorithm(pid, new Instruction(algorithm, permutation.getRotation()), rank);
 		a.setId(id);
 		return a;
 

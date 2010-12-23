@@ -1,18 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2010 Erik Byström.
  * 
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of Rubik's Cube Algorithms.
+ * 
+ * Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
+ * Rubik's Cube Algorithms is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
 package se.slackers.cube.provider;
@@ -24,6 +26,13 @@ import java.util.List;
 import java.util.Map;
 
 import se.slackers.cube.R;
+import se.slackers.cube.config.NotationType;
+import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.model.algorithm.AlgorithmType;
+import se.slackers.cube.model.algorithm.Instruction;
+import se.slackers.cube.model.permutation.ArrowConfiguration;
+import se.slackers.cube.model.permutation.FaceConfiguration;
+import se.slackers.cube.model.permutation.Permutation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -33,7 +42,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "algorithms.db";
-	private static final int DATABASE_VERSION = 9;
+	private static final int DATABASE_VERSION = 10;
 
 	public static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
 	public static final String ALGORITHM_TABLE = "algorithms";
@@ -66,8 +75,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " INTEGER);");
 
 		db.execSQL("CREATE TABLE " + PERMUTATION_TABLE + " (" + Permutation._ID + " INTEGER PRIMARY KEY,"
-				+ Permutation.TYPE + " TEXT, " + Permutation.NAME + " INTEGER," + Permutation.FACE_CONFIG + " INTEGER,"
-				+ Permutation.ARROW_CONFIG + " TEXT," + Permutation.VIEWS + " INTEGER);");
+				+ Permutation.TYPE + " TEXT, " + Permutation.NAME + " INTEGER," + Permutation.FACE_CONFIG + " TEXT,"
+				+ Permutation.ARROW_CONFIG + " TEXT," + Permutation.ROTATION + " INTEGER," + Permutation.VIEWS
+				+ " INTEGER);");
 
 		insertAlgorithms(db, algorithms);
 		cleanup();
@@ -99,25 +109,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		case 4:
 		case 5:
 		case 6:
-			// dummy or old upgrades
 		case 7:
-			onCreate(db);
 		case 8:
-			upgradeTo9(db);
+			// dummy or old upgrades
+		case 9:
+			onCreate(db);
 		}
 
 		cleanup();
-	}
-
-	private void upgradeTo9(final SQLiteDatabase db) {
-		// Change face config for OLL 36 and OLL 38
-		// OLL 38: 59692 -> 10cd4a
-		// OLL 36: 59612 -> 59692
-
-		final String sql = "UPDATE " + PERMUTATION_TABLE + " SET " + Permutation.FACE_CONFIG + "=%d WHERE "
-				+ Permutation.NAME + "='%s' AND " + Permutation.FACE_CONFIG + "=%d";
-		db.execSQL(String.format(sql, 0x10cd4a, "OLL 38", 0x59692));
-		db.execSQL(String.format(sql, 0x59692, "OLL 36", 0x59612));
 	}
 
 	private void insertAlgorithms(final SQLiteDatabase db, final List<String> algorithms) {
@@ -133,14 +132,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				permutation = lookup.get(permutation);
 			}
 			final int rank = Integer.parseInt(part[0]);
-			insertAlgorithm(db, new Algorithm(permutation.getId(), part[5], rank));
+			insertAlgorithm(db, new Algorithm(permutation.getId(), new Instruction(part[5]), rank));
 		}
 	}
 
 	private void insertAlgorithm(final SQLiteDatabase db, final Algorithm algorithm) {
 		final ContentValues values = new ContentValues();
 		values.put(Algorithm.PERMUTATION_ID, algorithm.getPermutationId());
-		values.put(Algorithm.ALGORITHM, algorithm.getAlgorithm());
+		values.put(Algorithm.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
 		values.put(Algorithm.RANK, algorithm.getRank());
 		algorithm.setId(db.insert(ALGORITHM_TABLE, null, values));
 	}
@@ -150,16 +149,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Permutation.TYPE, permutation.getType().name());
 		values.put(Permutation.NAME, permutation.getName());
 		values.put(Permutation.VIEWS, 0);
-		values.put(Permutation.FACE_CONFIG, permutation.getFaceConfig());
-		values.put(Permutation.ARROW_CONFIG, permutation.getArrowConfig());
+		values.put(Permutation.FACE_CONFIG, permutation.getFaceConfiguration().serialize());
+		values.put(Permutation.ARROW_CONFIG, permutation.getArrowConfiguration().serialize());
 		permutation.setId(db.insert(PERMUTATION_TABLE, null, values));
 	}
 
 	private Permutation toPermutation(final String[] part) {
 		final AlgorithmType type = AlgorithmType.valueOf(part[1]);
-		final long faceConfig = Long.parseLong(part[2], 16);
-		final String arrowConfig = part[3];
+		final FaceConfiguration faceConfig = new FaceConfiguration(3, Long.parseLong(part[2], 16));
+		final ArrowConfiguration arrowConfig = new ArrowConfiguration(part[3]);
 		final String name = part[4];
-		return new Permutation(0, type, name, faceConfig, arrowConfig, 0);
+		return new Permutation(0, type, name, faceConfig, arrowConfig, 0, 0);
 	}
 }

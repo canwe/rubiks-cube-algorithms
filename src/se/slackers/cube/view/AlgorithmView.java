@@ -1,18 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2010 Erik Byström.
  * 
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of Rubik's Cube Algorithms.
+ * 
+ * Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
+ * Rubik's Cube Algorithms is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
 package se.slackers.cube.view;
@@ -23,7 +25,7 @@ import java.util.regex.Pattern;
 import se.slackers.cube.Config;
 import se.slackers.cube.config.AlgorithmTransform;
 import se.slackers.cube.config.DoubleNotation;
-import se.slackers.cube.provider.Algorithm;
+import se.slackers.cube.model.algorithm.Algorithm;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -60,7 +62,7 @@ public class AlgorithmView extends TextView {
 		this.doubleNotation = config.getDoubleTurns();
 		this.algorithm = algorithm;
 		this.transform = new AlgorithmTransform(config);
-		adjust(algorithm.getAlgorithm());
+		adjust(algorithm.getInstruction().render(config.getNotationScheme()));
 	}
 
 	public Algorithm getAlgorithm() {
