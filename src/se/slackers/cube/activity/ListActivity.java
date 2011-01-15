@@ -131,14 +131,17 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 			final Dialog dialog = new Dialog(this);
 			final PackageInfo info = getPackageInfo();
 
-			dialog.setContentView(R.layout.firststart_dialog);
-			dialog.setTitle(getResources().getString(R.string.firststart_title)
-					+ String.format(" v%s", info.versionName));
-			dialog.findViewById(R.id.dialogRoot).setOnClickListener(new OnClickListener() {
+			final OnClickListener firstDismissListener = new OnClickListener() {
 				public void onClick(final View v) {
 					dialog.dismiss();
 				}
-			});
+			};
+
+			dialog.setContentView(R.layout.firststart_dialog);
+			dialog.setTitle(getResources().getString(R.string.firststart_title)
+					+ String.format(" v%s", info.versionName));
+			dialog.findViewById(R.id.text).setOnClickListener(firstDismissListener);
+			dialog.findViewById(R.id.dialogRoot).setOnClickListener(firstDismissListener);
 
 			return dialog;
 		}
@@ -146,13 +149,16 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 			final Dialog dialog = new Dialog(this);
 			final PackageInfo info = getPackageInfo();
 
-			dialog.setContentView(R.layout.message_dialog);
-			dialog.setTitle(getResources().getString(R.string.messageTitle) + String.format(" v%s", info.versionName));
-			dialog.findViewById(R.id.dialogRoot).setOnClickListener(new OnClickListener() {
+			final OnClickListener dismissListener = new OnClickListener() {
 				public void onClick(final View v) {
 					dialog.dismiss();
 				}
-			});
+			};
+
+			dialog.setContentView(R.layout.message_dialog);
+			dialog.setTitle(getResources().getString(R.string.messageTitle) + String.format(" v%s", info.versionName));
+			dialog.findViewById(R.id.text).setOnClickListener(dismissListener);
+			dialog.findViewById(R.id.dialogRoot).setOnClickListener(dismissListener);
 			return dialog;
 		}
 		case PERMUTATION_INFO:

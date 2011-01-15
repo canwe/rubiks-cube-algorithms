@@ -25,13 +25,18 @@ import se.slackers.cube.config.ColorTheme;
 import se.slackers.cube.config.CubeSize;
 import se.slackers.cube.config.DoubleNotation;
 import se.slackers.cube.config.NotationType;
+import se.slackers.cube.model.permutation.Permutation;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
+import android.widget.Toast;
 
 public class CubePreferencesActivity extends PreferenceActivity {
 	@Override
@@ -111,6 +116,26 @@ public class CubePreferencesActivity extends PreferenceActivity {
 		notationCategory.addPreference(doubleNotation);
 		notationCategory.addPreference(triggers);
 		notationCategory.addPreference(reverseColor);
+
+		// Other
+		final PreferenceCategory systemCategory = new PreferenceCategory(context);
+		systemCategory.setTitle(R.string.categorySystem);
+		root.addPreference(systemCategory);
+
+		final Preference resetStats = new Preference(context);
+		resetStats.setTitle(R.string.systemResetStatsTitle);
+		resetStats.setSummary(R.string.systemResetStatsSummary);
+		resetStats.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(final Preference preference) {
+				final ContentValues values = new ContentValues();
+				values.put(Permutation.VIEWS, 0);
+				getContentResolver().update(Permutation.CONTENT_URI, values, null, null);
+				Toast.makeText(context, R.string.systemResetStatsToast, Toast.LENGTH_SHORT).show();
+				return true;
+			}
+		});
+
+		systemCategory.addPreference(resetStats);
 
 		return root;
 	}

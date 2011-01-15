@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import se.slackers.cube.R;
 import se.slackers.cube.config.NotationType;
@@ -111,12 +112,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		case 6:
 		case 7:
 		case 8:
-			// dummy or old upgrades
-		case 9:
 			onCreate(db);
+		case 9:
+		default: // TODO: remove
+			upgrade8to9(db);
 		}
 
 		cleanup();
+	}
+
+	/**
+	 * @param db
+	 */
+	private void upgrade8to9(final SQLiteDatabase db) {
+		final Map<String, Integer> favorites = storeFavorites(db);
+		onCreate(db);
+		restoreFavorites(db, favorites);
+	}
+
+	/**
+	 * @param db
+	 * @param favorites
+	 */
+	private void restoreFavorites(final SQLiteDatabase db, final Map<String, Integer> favorites) {
+		for (final Entry<String, Integer> entry : favorites.entrySet()) {
+			final ContentValues values = new ContentValues();
+			values.put(Algorithm.RANK, entry.getValue());
+			db.update(ALGORITHM_TABLE, values, Algorithm.ALGORITHM + "=?", new String[] { entry.getKey() });
+		}
+	}
+
+	/**
+	 * 
+	 * @param db
+	 * @return
+	 */
+	private Map<String, Integer> storeFavorites(final SQLiteDatabase db) {
+		final Map<String, Integer> ator = new HashMap<String, Integer>();
+		final Cursor cursor = db.query(ALGORITHM_TABLE, new String[] { Algorithm.ALGORITHM, Algorithm.RANK }, null,
+				null, null, null, null);
+		// store favorites
+		try {
+			if (cursor.moveToFirst()) {
+				do {
+					ator.put(cursor.getString(0), cursor.getInt(1));
+				} while (cursor.moveToNext());
+			}
+		} finally {
+			cursor.close();
+		}
+		return ator;
 	}
 
 	private void insertAlgorithms(final SQLiteDatabase db, final List<String> algorithms) {

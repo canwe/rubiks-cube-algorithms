@@ -23,10 +23,10 @@
     <string name="labelView">View Algorithm</string>
     <string name="labelPreferences">Preferences</string>
     
-    <string name="message">Fixed crashes associated with the favorite algorithm dialog. I\'ve also made some major changes to the database so all favorites are back to default, hopefully for the last time.</string>
+    <string name="message">Cubing for charity! All profit from the ads are donated to charity, read more about this on my blog, http://goo.gl/crHuU.\n\nCrashes related to the favorite dialog is fixed; A new button in preferences allows you to reset usage statistics; A short introduction message for first time users has been added to avoid confusion about this app.</string>
     <string name="messageTitle">Changes in Algorithms</string>
 
-    <string name="firststart_message">This application is a dictionary over the algorithms used for solving the last layer of Rubik\'s cube using the Friedrich method.\n\nIf you\'re not familiar with the notations used for describing algorithms please read the notation page carefully. It is accessed by pressing menu and then choosing Notation.\n\nPlease visit the project page for more information, http://code.google.com/p/rubiks-cube-algorithms\n\nI hope you enjoy the application!</string>
+    <string name="firststart_message">This application is a dictionary over the algorithms used for solving the last layer of Rubik\'s cube using the Friedrich method.\n\nIf you\'re not familiar with the notations used for describing algorithms please read the notation page carefully. It is accessed by pressing menu and choosing Notation.\n\nPlease visit the project page for more information, http://goo.gl/n3V1D\n\nEnjoy!</string>
 	<string name="firststart_title">Welcome to Algorithms</string>    
     
     <string name="additionalAlgorithms">Alternative algorithms:</string>
@@ -103,8 +103,14 @@
 	<!-- Notation text -->
 	<string name="notationText">A turn of layer is written by adding a suffix to the face\'s name. All moves should be applied as if you were looking at the face straight-on. Using the U face as an example here are all three cases:\n\nU - A 90-degree clockwise turn.\nU\' - A 90-degree counterclockwise turn.\nU2 - A 180-degree turn.</string>
 
+	<!-- Other Settings -->
+	<string name="categorySystem">System</string>
+	<string name="systemResetStatsTitle">Reset statistics</string>
+	<string name="systemResetStatsSummary">Reset the permutation usage statistics.</string>
+	<string name="systemResetStatsToast">All usage statistics deleted.</string>
+
 	<!-- Info -->	
-	<string name="infoText_1">I would like to acknowledge and thank the people who helped me with this release:\n- Patrick Kelly, algorithms (speedsolving.com)\n- Steven Partridge, testing and ideas.\n- Elin Lilius, layout and UI design.\n\nAll feedback/bugs/feature requests are welcome, it\'s always nice to hear from the users. Use the button below to send me an email, visit the google group at http://groups.google.com/rubiks-cube-algorithms/ or the project page at http://code.google.com/p/rubiks-cube-algorithms/</string>
+	<string name="infoText_1">I would like to acknowledge and thank the people who helped me with this release:\n- Patrick Kelly, algorithms (speedsolving.com)\n- Steven Partridge, testing and ideas.\n- Elin Lilius, layout and UI design.\n\nAll feedback/bugs/feature requests are welcome, it\'s always nice to hear from the users. Use the button below to send me an email, visit the google group at http://goo.gl/3Mh3k or the project page at http://goo.gl/n3V1D</string>
 	<string name="feedback">Send email</string>
 	<string name="email_chooser">Select email application</string>
 	
