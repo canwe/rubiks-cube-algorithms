@@ -113,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		case 7:
 		case 8:
 			onCreate(db);
+			break;
 		case 9:
 		default: // TODO: remove
 			upgrade8to9(db);
