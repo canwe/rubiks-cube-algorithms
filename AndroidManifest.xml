@@ -19,8 +19,8 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="se.slackers.cube" android:versionCode="19"
-	android:versionName="0.9.11">
+	package="se.slackers.cube" android:versionCode="20"
+	android:versionName="0.9.12">
 	
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
 		android:theme="@android:style/Theme.NoTitleBar">
