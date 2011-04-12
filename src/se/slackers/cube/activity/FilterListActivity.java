@@ -33,10 +33,13 @@ import se.slackers.cube.view.PermutationView;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -45,14 +48,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 public class FilterListActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 	public static final String PERMUTATION = "permutation";
 	private PermutationAlgorithmAdapter adapter;
+	private WakeLock wakeLock;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(final Bundle state) {
 		super.onCreate(state);
+		setContentView(R.layout.layout_quick_list);
 
 		final Map<Long, Algorithm> algorithms = new HashMap<Long, Algorithm>();
 
@@ -69,20 +77,30 @@ public class FilterListActivity extends ListActivity implements OnItemClickListe
 			favorites.close();
 		}
 
-		final boolean sortByViews = true; // TODO: add to settings
-		final String sortBy = (sortByViews ? Permutation.VIEWS + "," : "") + Permutation.TYPE + "," + Permutation.NAME;
+		final Config config = new Config(this);
+
+		final boolean sortByViews = config.sortQuickListByViews();
+		final String sortBy = (sortByViews ? Permutation.VIEWS + " DESC," : "") + Permutation.TYPE + ","
+				+ Permutation.NAME;
 
 		final Cursor cursor = resolver
 				.query(Permutation.CONTENT_URI, null, Permutation.QUICKLIST + "<>0", null, sortBy);
 		startManagingCursor(cursor);
 
-		final Config config = new Config(this);
 		final PermutationRenderer renderer = new PermutationRenderer(config, true);
 		adapter = new PermutationAlgorithmAdapter(this, cursor, renderer, algorithms, config);
 		setListAdapter(adapter);
 
 		getListView().setOnItemClickListener(this);
 		getListView().setOnItemLongClickListener(this);
+
+		// Look up the AdView as a resource and load a request.
+		final AdView adView = (AdView) this.findViewById(R.id.ad);
+		adView.loadAd(new AdRequest());
+
+		// prevent the screen from turning off
+		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "permutationView-algorithm lock");
 	}
 
 	public void onItemClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
@@ -107,7 +125,8 @@ public class FilterListActivity extends ListActivity implements OnItemClickListe
 
 		if (permutation.getQuickList()) {
 			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.quicklist_remove).setCancelable(false)
+			final String title = getResources().getString(R.string.quicklist_remove, permutation.getName());
+			builder.setMessage(title).setCancelable(false)
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(false);
@@ -122,7 +141,8 @@ public class FilterListActivity extends ListActivity implements OnItemClickListe
 			builder.create().show();
 		} else {
 			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.quicklist_add).setCancelable(false)
+			final String title = getResources().getString(R.string.quicklist_add, permutation.getName());
+			builder.setMessage(title).setCancelable(false)
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(true);
@@ -161,9 +181,25 @@ public class FilterListActivity extends ListActivity implements OnItemClickListe
 			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_grid:
-			startActivityForResult(new Intent(this, ListActivity.class), item.getItemId());
+			startActivityForResult(new Intent(this, se.slackers.cube.activity.ListActivity.class), item.getItemId());
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	protected void onPause() {
+		if (wakeLock != null && wakeLock.isHeld()) {
+			wakeLock.release();
+		}
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		if (wakeLock != null && !wakeLock.isHeld()) {
+			wakeLock.acquire();
+		}
+		super.onResume();
 	}
 }

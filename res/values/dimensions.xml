@@ -27,6 +27,6 @@
 	<dimen name="dialog_border">10dp</dimen>
 	<dimen name="margin_standard">3dp</dimen>
 	
-	<dimen name="cube_size_list">50dp</dimen>
-	<dimen name="cube_size_view">100dp</dimen>
+	<dimen name="cube_size_list">60dp</dimen>
+	<dimen name="cube_size_view">120dp</dimen>
 </resources>

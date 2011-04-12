@@ -29,6 +29,8 @@
     <string name="firststart_message">This application is a dictionary over the algorithms used for solving the last layer of Rubik\'s cube using the Friedrich method.\n\nIf you\'re not familiar with the notations used for describing algorithms please read the notation page carefully. It is accessed by pressing menu and choosing Notation.\n\nPlease visit the project page for more information, http://goo.gl/n3V1D\n\nEnjoy!</string>
 	<string name="firststart_title">Welcome to Algorithms</string>    
     
+    <string name="quicklist_no_permutations">No permutations in the quick list.\nTo a permutation, long press on one in the grid.</string>
+    
     <string name="additionalAlgorithms">Alternative algorithms:</string>
 
     <string name="favorite_algorithm_changed">Algorithm changed</string>
@@ -52,36 +54,22 @@
     <string name="menu_select">Change algorithm</string>
     
     <!-- Dialog -->
-	<string name="quicklist_add">Do you want to add this permutation to the quick list?</string>
-	<string name="quicklist_remove">Do you want to remove this permutation from the quick list?</string>
+	<string name="quicklist_add">Do you want to add \'%s\' to the quick list?</string>
+	<string name="quicklist_remove">Do you want to remove \'%s\' from the quick list?</string>
 	
 	<!-- Preferences -->
-	<string name="category_appearance">Appearance</string>
+	<string name="category_application">Application</string>
 	<string name="category_notation">Notation</string>
 	<string name="category_system">System</string>
 		
-	<!-- Appearance preferences -->
-	<string name="pref_theme_dialog">Choose color theme</string>
-	<string name="pref_theme_title">Color theme</string>
-	<string name="pref_theme_summary">Color theme for all cubes</string>
-	<string name="pref_theme_default">White</string>
-	<string-array name="pref_theme_entries">
-		<item>Blue</item>
-		<item>Green</item>
-		<item>Orange</item>
-		<item>Red</item>
-		<item>Yellow</item>
-		<item>White</item>
-	</string-array>
-	<!-- Should not be localized -->
-	<string-array name="pref_theme_values">
-		<item>Blue</item>
-		<item>Green</item>
-		<item>Orange</item>
-		<item>Red</item>
-		<item>Yellow</item>
-		<item>White</item>
-	</string-array>
+	<!-- General -->
+	<string name="pref_quicklist_title">Start with quick list</string>
+	<string name="pref_quicklist_summary">Go directly to the quick list when the application starts.</string>
+	<string name="pref_quicklist_default">false</string>
+
+	<string name="pref_quicklistsort_title">Sort quick list by usage</string>
+	<string name="pref_quicklistsort_summary">Sort the permutations in the quick list by the number of times they\'ve been used.</string>
+	<string name="pref_quicklistsort_default">false</string>
 
 	<!-- Notation Type -->
 	<string name="pref_notation_title">Notation scheme</string>	

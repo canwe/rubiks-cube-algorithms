@@ -3,17 +3,21 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   
     <PreferenceCategory
-    	android:title="@string/category_appearance"
+    	android:title="@string/category_application"
     	>
-    	<!-- Cube rendering color theme -->
-    	<ListPreference
-    		android:key="color.theme"
-    		android:title="@string/pref_theme_title"
-    		android:summary="@string/pref_theme_summary"
-    		android:dialogTitle="@string/pref_theme_dialog"
-    		android:entries="@array/pref_theme_entries"
-    		android:entryValues="@array/pref_theme_values"
-    		android:defaultValue="@string/pref_theme_default"
+    	<!-- Quick list -->
+    	<CheckBoxPreference
+    		android:key="quicklist"
+    		android:title="@string/pref_quicklist_title"
+    		android:summary="@string/pref_quicklist_summary"
+    		android:defaultValue="@string/pref_quicklist_default"
+    		/>
+    	<!-- Quick list sorting-->
+    	<CheckBoxPreference
+    		android:key="quicklist.sort"
+    		android:title="@string/pref_quicklistsort_title"
+    		android:summary="@string/pref_quicklistsort_summary"
+    		android:defaultValue="@string/pref_quicklistsort_default"
     		/>
 	</PreferenceCategory>
 	

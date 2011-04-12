@@ -38,24 +38,23 @@ public class PermutationRenderer {
 	private final Paint background;
 	private final Paint border;
 	private final Paint activeFace;
-	private final Paint red = new Paint();
-	private final Paint blue = new Paint();
-	private final Paint unknownFace = new Paint();
-	private final Paint sideFace = new Paint();
+	private final Paint edge;
+	private final Paint corner;
+	private final Paint unknownFace;
+	private final Paint sideFace;
 
 	public PermutationRenderer(final Config config, final boolean list) {
 		metric = new CubeMetric(list ? config.getListCubeSize() : config.getViewCubeSize());
 
-		background = new Paint();
+		background = config.getBackgroundColor();
 		border = config.getBorderColor();
-		background.setColor(config.getBackgroundColor());
 
-		red.setColor(config.getEdgeColor());
-		blue.setColor(config.getCornerColor());
+		edge = config.getEdgeColor();
+		corner = config.getCornerColor();
 
 		activeFace = config.getImportantFaceColor();
-		unknownFace.setColor(config.getUnknownFaceColor());
-		sideFace.setColor(config.getSideFaceColor());
+		unknownFace = config.getUnknownFaceColor();
+		sideFace = config.getSideFaceColor();
 	}
 
 	public Bitmap render(final Permutation permutation) {
@@ -79,7 +78,7 @@ public class PermutationRenderer {
 		for (final Arrow arrow : arrowConfig.getArrows()) {
 			final RectF from = arrow.getFrom(metric);
 			final RectF to = arrow.getTo(metric);
-			final Paint paint = arrow.usingCorner() ? blue : red;
+			final Paint paint = arrow.usingCorner() ? corner : edge;
 			final int width = (int) (to.right - to.left);
 
 			final float x0 = from.centerX();

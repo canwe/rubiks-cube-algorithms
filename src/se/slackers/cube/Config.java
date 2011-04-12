@@ -19,7 +19,6 @@
 
 package se.slackers.cube;
 
-import se.slackers.cube.config.ColorTheme;
 import se.slackers.cube.config.DoubleNotation;
 import se.slackers.cube.config.NotationType;
 import android.content.Context;
@@ -30,7 +29,8 @@ import android.graphics.Paint;
 import android.preference.PreferenceManager;
 
 public class Config {
-	public static final String COLOR_THEME = "color.theme";
+	public static final String QUICKLIST = "quicklist";
+	public static final String QUICKLIST_SORT = "quicklist.sort";
 	public static final String NOTATION = "cube.notation";
 	public static final String NOTATION_DOUBLE = "cube.notation.double";
 	public static final String NOTATION_COLOR_REVERSE = "cube.notation.reverse";
@@ -40,20 +40,22 @@ public class Config {
 	public static final int COLOR = 0xffffffff;
 	public static final int REVERSE_COLOR = 0xffa0a0a0;
 
-	private DoubleNotation doubleTurns;
 	private final boolean coloredReverse;
 	private boolean triggers;
 	private int showDialog;
+	private final boolean startWithQuickList;
+	private final boolean sortQuickListByViews;
 
-	private NotationType notationScheme;
+	private final NotationType notationScheme;
+	private final DoubleNotation doubleTurns;
 
-	private int unknownFaceColor;
-	private int importantFaceColor;
-	private int borderColor;
-	private int backgroundColor;
-	private int edgeColor;
-	private int cornerColor;
-	private int sideFaceColor;
+	private final int faceUnknown;
+	private final int faceImportant;
+	private final int faceSide;
+	private final int arrowEdge;
+	private final int arrowCorner;
+	private final int borderColor;
+	private final int backgroundColor;
 
 	private final int cubeSizeList;
 	private final int cubeSizeView;
@@ -67,12 +69,26 @@ public class Config {
 		cubeSizeList = resources.getDimensionPixelSize(R.dimen.cube_size_list);
 		cubeSizeView = resources.getDimensionPixelSize(R.dimen.cube_size_view);
 
-		setColorTheme(getString(COLOR_THEME, ColorTheme.Default.name()));
-		setNotationScheme(getString(NOTATION, NotationType.Singmaster.name()));
-		setDoubleTurns(getString(NOTATION_DOUBLE, DoubleNotation.Superscript.name()));
+		faceUnknown = resources.getColor(R.color.face_unknown);
+		faceImportant = resources.getColor(R.color.face_important);
+		faceSide = resources.getColor(R.color.face_side);
+		arrowEdge = resources.getColor(R.color.arrow_edge);
+		arrowCorner = resources.getColor(R.color.arrow_corner);
+		borderColor = resources.getColor(R.color.border);
+		backgroundColor = resources.getColor(R.color.background);
+
+		notationScheme = NotationType.valueOf(getString(NOTATION, NotationType.Singmaster.name()));
+		doubleTurns = DoubleNotation.valueOf(getString(NOTATION_DOUBLE, DoubleNotation.Superscript.name()));
+
+		startWithQuickList = settings.getBoolean(QUICKLIST, false);
+		sortQuickListByViews = settings.getBoolean(QUICKLIST_SORT, false);
 		coloredReverse = settings.getBoolean(NOTATION_COLOR_REVERSE, true);
 		triggers = settings.getBoolean(SHOW_TRIGGERS, true);
 		showDialog = settings.getInt(SHOW_DIALOG, 0);
+	}
+
+	public boolean startWithQuickList() {
+		return startWithQuickList;
 	}
 
 	public boolean isFirstStart() {
@@ -102,56 +118,6 @@ public class Config {
 		}
 	}
 
-	private void setColorTheme(final String theme) {
-		switch (ColorTheme.valueOf(theme)) {
-		default:
-		case White:
-			unknownFaceColor = 0xff4d4d4d;
-			importantFaceColor = 0xfff0f0f0;
-			borderColor = 0xff000000;
-			edgeColor = 0xffcc0000;
-			cornerColor = 0xff003399;
-			break;
-		case Blue:
-			unknownFaceColor = 0xff404040;
-			importantFaceColor = 0xff3366cc;
-			borderColor = 0xff000000;
-			edgeColor = 0xffcc0000;
-			cornerColor = 0xff00cc00;
-			break;
-		case Green:
-			unknownFaceColor = 0xffbfbfbf;
-			importantFaceColor = 0xff00cc00;
-			borderColor = 0xff000000;
-			edgeColor = 0xffcc0000;
-			cornerColor = 0xff0000cc;
-			break;
-		case Yellow:
-			unknownFaceColor = 0xffbfbfbf;
-			importantFaceColor = 0xffffcc00;
-			borderColor = 0xff000000;
-			edgeColor = 0xffcc0000;
-			cornerColor = 0xff003399;
-			break;
-		case Red:
-			unknownFaceColor = 0xffbfbfbf;
-			importantFaceColor = 0xffcc0000;
-			borderColor = 0xff000000;
-			edgeColor = 0xff00cc00;
-			cornerColor = 0xff003399;
-			break;
-		case Orange:
-			unknownFaceColor = 0xffbfbfbf;
-			importantFaceColor = 0xffff6600;
-			borderColor = 0xff000000;
-			edgeColor = 0xff00cc00;
-			cornerColor = 0xff003399;
-			break;
-		}
-		sideFaceColor = importantFaceColor;
-		backgroundColor = borderColor;
-	}
-
 	public int getListCubeSize() {
 		return cubeSizeList;
 	}
@@ -160,36 +126,38 @@ public class Config {
 		return cubeSizeView;
 	}
 
-	public int getUnknownFaceColor() {
-		return unknownFaceColor;
+	private Paint asPaint(final int color) {
+		final Paint p = new Paint();
+		p.setColor(color);
+		return p;
+	}
+
+	public Paint getUnknownFaceColor() {
+		return asPaint(faceUnknown);
 	}
 
 	public Paint getImportantFaceColor() {
-		final Paint paint = new Paint();
-		paint.setColor(importantFaceColor);
-		return paint;
+		return asPaint(faceImportant);
+	}
+
+	public Paint getSideFaceColor() {
+		return asPaint(faceSide);
 	}
 
 	public Paint getBorderColor() {
-		final Paint paint = new Paint();
-		paint.setColor(borderColor);
-		return paint;
+		return asPaint(borderColor);
 	}
 
-	public int getBackgroundColor() {
-		return backgroundColor;
+	public Paint getBackgroundColor() {
+		return asPaint(backgroundColor);
 	}
 
-	public int getEdgeColor() {
-		return edgeColor;
+	public Paint getEdgeColor() {
+		return asPaint(arrowEdge);
 	}
 
-	public int getCornerColor() {
-		return cornerColor;
-	}
-
-	public int getSideFaceColor() {
-		return sideFaceColor;
+	public Paint getCornerColor() {
+		return asPaint(arrowCorner);
 	}
 
 	public boolean isTriggers() {
@@ -204,15 +172,11 @@ public class Config {
 		return notationScheme;
 	}
 
-	public void setNotationScheme(final String notationScheme) {
-		this.notationScheme = NotationType.valueOf(notationScheme);
-	}
-
 	public DoubleNotation getDoubleTurns() {
 		return doubleTurns;
 	}
 
-	public void setDoubleTurns(final String string) {
-		this.doubleTurns = DoubleNotation.valueOf(string);
+	public boolean sortQuickListByViews() {
+		return sortQuickListByViews;
 	}
 }

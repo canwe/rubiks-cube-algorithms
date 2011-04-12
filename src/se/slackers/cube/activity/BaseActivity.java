@@ -59,9 +59,6 @@ public abstract class BaseActivity extends Activity {
 		case R.id.menu_filtered:
 			startActivityForResult(new Intent(this, FilterListActivity.class), item.getItemId());
 			return true;
-		case R.id.menu_grid:
-			startActivityForResult(new Intent(this, ListActivity.class), item.getItemId());
-			return true;
 		}
 		return false;
 	}

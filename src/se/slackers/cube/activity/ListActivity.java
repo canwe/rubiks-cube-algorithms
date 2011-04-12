@@ -48,9 +48,6 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 	private static final int MESSAGE_DIALOG = 0;
 	private static final int FIRSTSTART_DIALOG = 1;
 
-	private long activePermutation = -1;
-	private int totalPermutationViews = 0;
-
 	private PermutationCursorAdapter pllCursorAdapter;
 	private PermutationCursorAdapter ollCursorAdapter;
 
@@ -60,11 +57,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		super.onCreate(state);
 		setContentView(R.layout.layout_list);
 
-		// restore state if any
-		if (state != null) {
-			activePermutation = state.getLong(PERMUTATION, -1);
-		}
-
+		final Config config = new Config(this);
 		final ContentResolver resolver = getContentResolver();
 		final PermutationRenderer renderer = new PermutationRenderer(new Config(this), true);
 
@@ -88,8 +81,6 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		ollGrid.setOnItemClickListener(this);
 		ollGrid.setOnItemLongClickListener(this);
 
-		// TODO: implement total views
-
 		// fetch version to see if the welcome/update dialog needs to be shown
 		final PackageInfo info = getPackageInfo();
 		final int version = info.versionCode;
@@ -100,6 +91,8 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		} else if (config.getMessageDialogVersion() < version) {
 			showDialog(MESSAGE_DIALOG);
 			config.setMessageDialogVersion(version);
+		} else if (config.startWithQuickList()) {
+			startActivity(new Intent(this, FilterListActivity.class));
 		}
 	}
 
@@ -118,7 +111,6 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		// update permutation for statistics
 		permutation.setViews(permutation.getViews() + 1);
 		AlgorithmProviderHelper.save(getContentResolver(), permutation);
-		totalPermutationViews++;
 
 		// start activity
 		final Intent intent = new Intent(this, ViewActivity.class);
@@ -132,7 +124,8 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		final Permutation permutation = ((PermutationView) view).getPermutation();
 		if (permutation.getQuickList()) {
 			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.quicklist_remove).setCancelable(false)
+			final String title = getResources().getString(R.string.quicklist_remove, permutation.getName());
+			builder.setMessage(title).setCancelable(false)
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(false);
@@ -156,7 +149,8 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 			builder.create().show();
 		} else {
 			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.quicklist_add).setCancelable(false)
+			final String title = getResources().getString(R.string.quicklist_add, permutation.getName());
+			builder.setMessage(title).setCancelable(false)
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(true);
@@ -212,11 +206,6 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		}
 
 		return super.onCreateDialog(id);
-	}
-
-	@Override
-	protected void onSaveInstanceState(final Bundle out) {
-		out.putLong(PERMUTATION, activePermutation);
 	}
 
 	@Override
