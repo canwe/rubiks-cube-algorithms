@@ -56,14 +56,25 @@
 	<string name="quicklist_remove">Do you want to remove this permutation from the quick list?</string>
 	
 	<!-- Preferences -->
-	<string name="categoryAppearance">Appearance</string>
-	<string name="categoryNotation">Notation</string>
+	<string name="category_appearance">Appearance</string>
+	<string name="category_notation">Notation</string>
+	<string name="category_system">System</string>
 		
 	<!-- Appearance preferences -->
-	<string name="themeDialog">Choose color theme</string>
-	<string name="themeTitle">Color theme</string>
-	<string name="themeSummary">Color theme for all cubes</string>
-	<string-array name="themeContent">
+	<string name="pref_theme_dialog">Choose color theme</string>
+	<string name="pref_theme_title">Color theme</string>
+	<string name="pref_theme_summary">Color theme for all cubes</string>
+	<string name="pref_theme_default">White</string>
+	<string-array name="pref_theme_entries">
+		<item>Blue</item>
+		<item>Green</item>
+		<item>Orange</item>
+		<item>Red</item>
+		<item>Yellow</item>
+		<item>White</item>
+	</string-array>
+	<!-- Should not be localized -->
+	<string-array name="pref_theme_values">
 		<item>Blue</item>
 		<item>Green</item>
 		<item>Orange</item>
@@ -72,69 +83,44 @@
 		<item>White</item>
 	</string-array>
 
-	<!-- Notation -->
-	<string name="notationTitle">Notation scheme</string>	
-	<string name="notationSummary">The notation to use</string> <!-- Singmaster should not be localized -->
-	<string-array name="notationContent">
+	<!-- Notation Type -->
+	<string name="pref_notation_title">Notation scheme</string>	
+	<string name="pref_notation_summary">The notation to use</string>
+	<string name="pref_notation_default">Singmaster</string>
+	<string-array name="pref_notation_entries">
 		<item>Singmaster</item>
 		<item>WCA</item>
 	</string-array>
 	
-	<!-- Double notation -->
-	<string name="notationDoubleTitle">Half turn format</string>	
-	<string name="notationDoubleSummary">Format options for half turns</string>
-	<string-array name="notationDoubleContent">
+	<!-- Double Notation Format -->
+	<string name="pref_double_title">Half turn format</string>	
+	<string name="pref_double_summary">Format options for half turns</string>
+	<string name="pref_double_default">Superscript</string>
+	<string-array name="pref_double_entries">
 		<item>Superscript</item>
 		<item>Normal</item>
 		<item>Subscript</item>
 	</string-array>	
-	 
-	<string name="notationSuperscriptTitle">Superscript half turns</string>
-	<string name="notationSuperscriptSummary">Format half turns as superscript</string>
-	<string name="notationReverseTitle">Counter-clockwise</string>
-	<string name="notationReverseSummary">Use a darker color for counter-clockwise rotations</string>
-	<string name="notationTriggerTitle">Show triggers</string>
-	<string name="notationTriggerSummary">Group trigger moves in parentheses</string>
+		 
+	<string name="pref_trigger_title">Show triggers</string>
+	<string name="pref_trigger_summary">Group trigger moves in parentheses</string>
+	<string name="pref_trigger_default">true</string>
+
+	<string name="pref_reverse_title">Counter-clockwise</string>
+	<string name="pref_reverse_summary">Use a darker color for counter-clockwise rotations</string>
+	<string name="pref_reverse_default">true</string>
+
+	<string name="pref_reset_title">Reset statistics</string>
+	<string name="pref_reset_summary">Reset the permutation usage statistics.</string>
+	<string name="pref_reset_toast">All usage statistics deleted.</string>
+	
 
 	<!-- Notation text -->
 	<string name="notation_header">Notation</string>
 	<string name="notation_text">A turn of layer is written by adding a suffix to the face\'s name. All moves should be applied as if you were looking at the face straight-on. Using the U face as an example here are all three cases:\n\nU - A 90-degree clockwise turn.\nU\' - A 90-degree counterclockwise turn.\nU2 - A 180-degree turn.</string>
 
-	<!-- Other Settings -->
-	<string name="categorySystem">System</string>
-	<string name="systemResetStatsTitle">Reset statistics</string>
-	<string name="systemResetStatsSummary">Reset the permutation usage statistics.</string>
-	<string name="systemResetStatsToast">All usage statistics deleted.</string>
-
 	<!-- Info -->	
 	<string name="infoText_1">I would like to acknowledge and thank the people who helped me with this release:\n- Patrick Kelly, algorithms (speedsolving.com)\n- Steven Partridge, testing and ideas.\n- Elin Lilius, layout and UI design.\n\nAll feedback/bugs/feature requests are welcome, it\'s always nice to hear from the users. Use the button below to send me an email, visit the google group at http://goo.gl/3Mh3k or the project page at http://goo.gl/n3V1D</string>
 	<string name="feedback">Send email</string>
 	<string name="email_chooser">Select email application</string>
-	
-	<!-- Should not be localized -->
-	<string-array name="themeValues">
-		<item>Blue</item>
-		<item>Green</item>
-		<item>Orange</item>
-		<item>Red</item>
-		<item>Yellow</item>
-		<item>White</item>
-	</string-array>
-	<!-- Should not be localized -->	
-	<string-array name="sizeValues">
-		<item>Small</item>
-		<item>Medium</item>
-		<item>Large</item>
-	</string-array>
-	<!-- Should not be localized -->	
-	<string-array name="notationValues">
-		<item>Singmaster</item>
-		<item>WCA</item>
-	</string-array>
-	<!-- Should not be localized -->	
-	<string-array name="notationDoubleValues">
-		<item>SuperScript</item>
-		<item>Normal</item>
-		<item>SubScript</item>
-	</string-array>	
 </resources>

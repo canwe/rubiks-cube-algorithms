@@ -69,7 +69,7 @@ public class Config {
 
 		setColorTheme(getString(COLOR_THEME, ColorTheme.Default.name()));
 		setNotationScheme(getString(NOTATION, NotationType.Singmaster.name()));
-		setDoubleTurns(getString(NOTATION_DOUBLE, DoubleNotation.SuperScript.name()));
+		setDoubleTurns(getString(NOTATION_DOUBLE, DoubleNotation.Superscript.name()));
 		coloredReverse = settings.getBoolean(NOTATION_COLOR_REVERSE, true);
 		triggers = settings.getBoolean(SHOW_TRIGGERS, true);
 		showDialog = settings.getInt(SHOW_DIALOG, 0);

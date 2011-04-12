@@ -82,7 +82,7 @@ public class AlgorithmView extends TextView {
 			while (matcher.find(index)) {
 				final int start = matcher.start();
 				final int end = matcher.end();
-				final CharacterStyle style = (doubleNotation == DoubleNotation.SuperScript) ? new SuperscriptSpan()
+				final CharacterStyle style = (doubleNotation == DoubleNotation.Superscript) ? new SuperscriptSpan()
 						: new SubscriptSpan();
 				span.setSpan(style, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 				span.setSpan(new RelativeSizeSpan(0.8f), start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);

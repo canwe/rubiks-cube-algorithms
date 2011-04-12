@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+    <PreferenceCategory
+    	android:title="@string/category_appearance"
+    	>
+    	<!-- Cube rendering color theme -->
+    	<ListPreference
+    		android:key="color.theme"
+    		android:title="@string/pref_theme_title"
+    		android:summary="@string/pref_theme_summary"
+    		android:dialogTitle="@string/pref_theme_dialog"
+    		android:entries="@array/pref_theme_entries"
+    		android:entryValues="@array/pref_theme_values"
+    		android:defaultValue="@string/pref_theme_default"
+    		/>
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="@string/category_notation"
+		>
+		<!-- Notation Type -->
+		<ListPreference
+    		android:key="cube.notation"
+    		android:title="@string/pref_notation_title"
+    		android:summary="@string/pref_notation_summary"
+    		android:dialogTitle="@string/pref_notation_title"
+    		android:entries="@array/pref_notation_entries"
+    		android:entryValues="@array/pref_notation_entries"
+    		android:defaultValue="@string/pref_notation_default"
+    		/>
+    	<!-- Double Notation Format -->
+    	<ListPreference
+    		android:key="cube.notation.double"
+    		android:title="@string/pref_double_title"
+    		android:summary="@string/pref_double_summary"
+    		android:dialogTitle="@string/pref_double_title"
+    		android:entries="@array/pref_double_entries"
+    		android:entryValues="@array/pref_double_entries"
+    		android:defaultValue="@string/pref_double_default"
+    		/>
+    	<!-- Use Triggers -->
+    	<CheckBoxPreference
+    		android:key="cube.triggers"
+    		android:title="@string/pref_trigger_title"
+    		android:summary="@string/pref_trigger_summary"
+    		android:defaultValue="@string/pref_trigger_default"
+    		/>
+    	<!-- Darker CC-turns -->
+    	<CheckBoxPreference
+    		android:key="cube.notation.reverse"
+    		android:title="@string/pref_reverse_title"
+    		android:summary="@string/pref_reverse_summary"
+    		android:defaultValue="@string/pref_reverse_default"
+    		/>
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="@string/category_system"
+		>
+		<Preference
+			android:key="reset"
+			android:title="@string/pref_reset_title"
+			android:summary="@string/pref_reset_summary"
+			/>
+	</PreferenceCategory>
+</PreferenceScreen>
