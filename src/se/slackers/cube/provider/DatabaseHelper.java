@@ -29,8 +29,8 @@ import java.util.Map.Entry;
 import se.slackers.cube.R;
 import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.algorithm.Algorithm;
-import se.slackers.cube.model.algorithm.AlgorithmType;
 import se.slackers.cube.model.algorithm.Instruction;
+import se.slackers.cube.model.algorithm.PermutationType;
 import se.slackers.cube.model.permutation.ArrowConfiguration;
 import se.slackers.cube.model.permutation.FaceConfiguration;
 import se.slackers.cube.model.permutation.Permutation;
@@ -43,31 +43,20 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "algorithms.db";
-	private static final int DATABASE_VERSION = 10;
+	private static final int DATABASE_VERSION = 11;
 
 	public static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
 	public static final String ALGORITHM_TABLE = "algorithms";
 	public static final String PERMUTATION_TABLE = "permutation";
-	private final List<String> algorithms;
+	private final Context context;
 
 	DatabaseHelper(final Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
-		algorithms = new LinkedList<String>();
-		algorithms.addAll(Arrays.asList(context.getResources().getStringArray(R.array.oll_algorithms)));
-		algorithms.addAll(Arrays.asList(context.getResources().getStringArray(R.array.pll_algorithms)));
-	}
-
-	public void cleanup() {
-		algorithms.clear();
+		this.context = context;
 	}
 
 	@Override
 	public void onCreate(final SQLiteDatabase db) {
-		if (algorithms.isEmpty()) {
-			throw new RuntimeException("onCreate is called twice or no algorithms can be found");
-		}
-
 		db.execSQL("DROP TABLE IF EXISTS " + ALGORITHM_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + PERMUTATION_TABLE);
 
@@ -76,12 +65,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " INTEGER);");
 
 		db.execSQL("CREATE TABLE " + PERMUTATION_TABLE + " (" + Permutation._ID + " INTEGER PRIMARY KEY,"
-				+ Permutation.TYPE + " TEXT, " + Permutation.NAME + " INTEGER," + Permutation.FACE_CONFIG + " TEXT,"
+				+ Permutation.TYPE + " TEXT," + Permutation.NAME + " INTEGER," + Permutation.FACE_CONFIG + " TEXT,"
 				+ Permutation.ARROW_CONFIG + " TEXT," + Permutation.ROTATION + " INTEGER," + Permutation.VIEWS
-				+ " INTEGER);");
+				+ " INTEGER," + Permutation.QUICKLIST + " INTEGER);");
 
+		final List<String> algorithms = new LinkedList<String>();
+		algorithms.addAll(Arrays.asList(context.getResources().getStringArray(R.array.oll_algorithms)));
+		algorithms.addAll(Arrays.asList(context.getResources().getStringArray(R.array.pll_algorithms)));
 		insertAlgorithms(db, algorithms);
-		cleanup();
 	}
 
 	@Override
@@ -91,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		if (db.isReadOnly() || db.getVersion() != 6) {
 			return;
 		}
+		// Check if the database is empty
 		final String[] columns = new String[] { Permutation._ID };
 		final Cursor cursor = db.query(PERMUTATION_TABLE, columns, "", null, null, null, null);
 		try {
@@ -107,25 +99,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.w(LOG_TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
 
 		switch (oldVersion) {
-		case 4:
-		case 5:
-		case 6:
-		case 7:
-		case 8:
-			onCreate(db);
-			break;
-		case 9:
-		default: // TODO: remove
-			upgrade8to9(db);
+		default:
+			recreateButSaveFavorites(db);
 		}
-
-		cleanup();
 	}
 
 	/**
 	 * @param db
 	 */
-	private void upgrade8to9(final SQLiteDatabase db) {
+	private void recreateButSaveFavorites(final SQLiteDatabase db) {
 		final Map<String, Integer> favorites = storeFavorites(db);
 		onCreate(db);
 		restoreFavorites(db, favorites);
@@ -197,14 +179,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Permutation.VIEWS, 0);
 		values.put(Permutation.FACE_CONFIG, permutation.getFaceConfiguration().serialize());
 		values.put(Permutation.ARROW_CONFIG, permutation.getArrowConfiguration().serialize());
+		values.put(Permutation.ROTATION, permutation.getRotation());
+		values.put(Permutation.QUICKLIST, permutation.getQuickList() ? 1 : 0);
 		permutation.setId(db.insert(PERMUTATION_TABLE, null, values));
 	}
 
 	private Permutation toPermutation(final String[] part) {
-		final AlgorithmType type = AlgorithmType.valueOf(part[1]);
+		final PermutationType type = PermutationType.valueOf(part[1]);
 		final FaceConfiguration faceConfig = new FaceConfiguration(3, Long.parseLong(part[2], 16));
 		final ArrowConfiguration arrowConfig = new ArrowConfiguration(part[3]);
 		final String name = part[4];
-		return new Permutation(0, type, name, faceConfig, arrowConfig, 0, 0);
+		return new Permutation(0, type, name, faceConfig, arrowConfig, 0, 0, false);
 	}
 }

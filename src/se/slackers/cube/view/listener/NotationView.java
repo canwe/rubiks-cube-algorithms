@@ -17,7 +17,7 @@
  * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.widget;
+package se.slackers.cube.view.listener;
 
 import se.slackers.cube.R;
 import android.content.Context;
@@ -39,11 +39,13 @@ public class NotationView extends LinearLayout {
 
 		textView.setGravity(Gravity.CENTER_HORIZONTAL);
 		textView.setText(text);
+
 		imageView.setImageResource(resource);
+
 		addView(imageView);
 		addView(textView);
 
-		textView.setTextSize(getResources().getDimension(R.dimen.medium));
+		textView.setTextSize(getResources().getDimension(R.dimen.font_size_smaller));
 	}
 
 	public TextView getTextView() {

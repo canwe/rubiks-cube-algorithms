@@ -133,6 +133,11 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 		final int rank = cursor.getInt(cursor.getColumnIndex(Algorithm.RANK));
 		final String algorithm = cursor.getString(cursor.getColumnIndex(Algorithm.ALGORITHM));
 
+		if (permutation == null) {
+			final Algorithm a = new Algorithm(pid, new Instruction(algorithm), rank);
+			a.setId(id);
+			return a;
+		}
 		final Algorithm a = new Algorithm(pid, new Instruction(algorithm, permutation.getRotation()), rank);
 		a.setId(id);
 		return a;

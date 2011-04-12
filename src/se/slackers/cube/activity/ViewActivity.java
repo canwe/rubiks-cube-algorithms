@@ -24,12 +24,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import se.slackers.cube.R;
+import se.slackers.cube.adapter.AlgorithmAdapter;
 import se.slackers.cube.model.algorithm.Algorithm;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
 import se.slackers.cube.provider.ContentURI;
 import se.slackers.cube.render.PermutationRenderer;
-import se.slackers.cube.view.AlgorithmAdapter;
 import se.slackers.cube.view.AlgorithmView;
 import se.slackers.cube.view.PermutationView;
 import android.app.Dialog;
@@ -51,6 +51,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	private static final int SHOW_CHANGE_ALGORITHM_DIALOG = 1001;
@@ -75,7 +78,7 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	@Override
 	protected void onCreate(final Bundle state) {
 		super.onCreate(state);
-		setContentView(R.layout.view);
+		setContentView(R.layout.layout_view);
 
 		final Bundle bundle = getIntent().getExtras();
 		final long permutationId = bundle.getLong(ListActivity.PERMUTATION);
@@ -104,6 +107,10 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		updatePermutation(permutation);
 		updateAlgorithm();
 
+		// Look up the AdView as a resource and load a request.
+		final AdView adView = (AdView) this.findViewById(R.id.ad);
+		adView.loadAd(new AdRequest());
+
 		// prevent the screen from turning off
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "permutationView-algorithm lock");
@@ -121,7 +128,7 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 
 	private void updateAlgorithm() {
 		final AlgorithmView algorithmView = new AlgorithmView(this, config, favorite);
-		algorithmView.setTextSize(getResources().getDimension(R.dimen.large));
+		algorithmView.setTextSize(getResources().getDimension(R.dimen.font_size_standard));
 		algorithmView.setOnClickListener(new View.OnClickListener() {
 			public void onClick(final View v) {
 				showDialog(SHOW_CHANGE_ALGORITHM_DIALOG);
@@ -231,7 +238,7 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		case SHOW_CHANGE_ALGORITHM_DIALOG:
 			final Dialog dialog = new Dialog(this);
 			dialog.setTitle(R.string.favorite_title);
-			dialog.setContentView(R.layout.algorithm_dialog);
+			dialog.setContentView(R.layout.dialog_favorite_algorithm);
 
 			final ListView list = (ListView) dialog.findViewById(R.id.list);
 			list.setAdapter(algorithmAdapter);
@@ -268,13 +275,6 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		menu.add(0, SHOW_CHANGE_ALGORITHM_DIALOG, 0, R.string.select).setIcon(R.drawable.ic_menu_favorite);
-		return true;
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case SHOW_CHANGE_ALGORITHM_DIALOG:
@@ -282,5 +282,13 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		menu.findItem(R.id.menu_grid).setVisible(false);
+		menu.findItem(R.id.menu_filtered).setVisible(false);
+		return true;
 	}
 }

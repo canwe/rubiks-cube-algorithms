@@ -18,6 +18,22 @@
   along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" 
-	android:layout_height="wrap_content"/>			
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/dialogRoot"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              >
+	<se.slackers.cube.view.PermutationView
+		android:id="@+id/placeholder_permutation"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="@dimen/dialog_border"
+		/>
+	<se.slackers.cube.view.AlgorithmView
+		android:id="@+id/placeholder_algorithm"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		/>
+		
+</LinearLayout>

@@ -19,6 +19,6 @@
 
 package se.slackers.cube.model.algorithm;
 
-public enum AlgorithmType implements Comparable<AlgorithmType> {
-	OLL, PLL;
+public enum PermutationType implements Comparable<PermutationType> {
+	OLL, PLL, F2L;
 }

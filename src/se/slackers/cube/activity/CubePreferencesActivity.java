@@ -22,7 +22,6 @@ package se.slackers.cube.activity;
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.config.ColorTheme;
-import se.slackers.cube.config.CubeSize;
 import se.slackers.cube.config.DoubleNotation;
 import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.permutation.Permutation;
@@ -42,7 +41,6 @@ public class CubePreferencesActivity extends PreferenceActivity {
 	@Override
 	protected void onCreate(final Bundle state) {
 		super.onCreate(state);
-		getPreferenceManager().setSharedPreferencesName(Config.PREFERENCES);
 		setPreferenceScreen(createPreferenceHierarchy());
 	}
 
@@ -54,6 +52,8 @@ public class CubePreferencesActivity extends PreferenceActivity {
 		cubeCategory.setTitle(R.string.categoryAppearance);
 		root.addPreference(cubeCategory);
 
+		// TODO: Migrate to XML
+
 		// Color theme
 		final ListPreference colorThemeList = new ListPreference(context);
 		colorThemeList.setKey(Config.COLOR_THEME);
@@ -64,18 +64,7 @@ public class CubePreferencesActivity extends PreferenceActivity {
 		colorThemeList.setEntries(R.array.themeContent);
 		colorThemeList.setEntryValues(R.array.themeValues);
 
-		// Cube size
-		final ListPreference sizeList = new ListPreference(context);
-		sizeList.setKey(Config.CUBE_SIZE);
-		sizeList.setDefaultValue(CubeSize.Small.name());
-		sizeList.setTitle(R.string.sizeTitle);
-		sizeList.setSummary(R.string.sizeSummary);
-		sizeList.setDialogTitle(R.string.sizeDialog);
-		sizeList.setEntries(R.array.sizeContent);
-		sizeList.setEntryValues(R.array.sizeValues);
-
 		cubeCategory.addPreference(colorThemeList);
-		cubeCategory.addPreference(sizeList);
 
 		// Notation
 		final PreferenceCategory notationCategory = new PreferenceCategory(context);

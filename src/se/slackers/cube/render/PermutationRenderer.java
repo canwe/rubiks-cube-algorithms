@@ -44,8 +44,7 @@ public class PermutationRenderer {
 	private final Paint sideFace = new Paint();
 
 	public PermutationRenderer(final Config config, final boolean list) {
-		final int size = list ? config.getListWidth() : config.getViewWidth();
-		metric = new CubeMetric(size);
+		metric = new CubeMetric(list ? config.getListCubeSize() : config.getViewCubeSize());
 
 		background = new Paint();
 		border = config.getBorderColor();

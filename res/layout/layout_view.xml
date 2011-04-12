@@ -20,7 +20,7 @@
 
 <RelativeLayout 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:cube="http://schemas.android.com/apk/res/se.slackers.cube"	
+	xmlns:ads="http://schemas.android.com/apk/res/se.slackers.cube"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
@@ -31,14 +31,12 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"  
 		android:layout_gravity="center_horizontal"
-		android:layout_marginBottom="48px"
+		android:layout_above="@+id/ad"
 		>
 		<TextView
 			android:id="@+id/permutationName"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/header"
-			android:layout_marginBottom="@dimen/medium" 
+			style="@style/text_headers"
+			android:layout_marginBottom="@dimen/margin_large" 
 			/>		
 		<FrameLayout 
 			android:id="@+id/permutationContainer" 
@@ -56,13 +54,11 @@
 			android:layout_marginBottom="20dp"
 			/>			
 	</LinearLayout>
-	<com.admob.android.ads.AdView 
+	<com.google.ads.AdView 
 		android:id="@+id/ad"
-		android:layout_width="fill_parent" 
-		android:layout_height="48px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		cube:refreshInterval="60"
-		cube:backgroundColor="#000000" 
-		cube:primaryTextColor="#FFFFFF"
-		cube:secondaryTextColor="#CCCCCC" />
+        ads:adUnitId="a14bf394ef36475"
+        ads:adSize="BANNER"/>
 </RelativeLayout>

@@ -22,6 +22,7 @@ package se.slackers.cube.provider;
 import java.util.HashMap;
 
 import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.model.algorithm.PermutationType;
 import se.slackers.cube.model.permutation.Permutation;
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -42,6 +43,9 @@ public class AlgorithmProvider extends ContentProvider {
 	private static final int PERMUTATION_ID = 4;
 	private static final int PERMUTATION_ALGORITHMS = 5;
 	private static final int PERMUTATION_FAVORITE = 6;
+	private static final int PERMUTATIONS_OLL = 7;
+	private static final int PERMUTATIONS_PLL = 8;
+	private static final int PERMUTATIONS_F2L = 9;
 
 	private static final UriMatcher sUriMatcher;
 	public static final String AUTHORITY = "se.slackers.cube.Algorithms";
@@ -73,6 +77,24 @@ public class AlgorithmProvider extends ContentProvider {
 		case PERMUTATIONS:
 			qb.setTables(DatabaseHelper.PERMUTATION_TABLE);
 			qb.setProjectionMap(permutationProjectionMap);
+			orderBy = Permutation.DEFAULT_SORT_ORDER;
+			break;
+		case PERMUTATIONS_OLL:
+			qb.setTables(DatabaseHelper.PERMUTATION_TABLE);
+			qb.setProjectionMap(permutationProjectionMap);
+			qb.appendWhere(Permutation.OLL_FILTER);
+			orderBy = Permutation.DEFAULT_SORT_ORDER;
+			break;
+		case PERMUTATIONS_PLL:
+			qb.setTables(DatabaseHelper.PERMUTATION_TABLE);
+			qb.setProjectionMap(permutationProjectionMap);
+			qb.appendWhere(Permutation.PLL_FILTER);
+			orderBy = Permutation.DEFAULT_SORT_ORDER;
+			break;
+		case PERMUTATIONS_F2L:
+			qb.setTables(DatabaseHelper.PERMUTATION_TABLE);
+			qb.setProjectionMap(permutationProjectionMap);
+			qb.appendWhere(Permutation.TYPE + "='" + PermutationType.F2L.name() + "'");
 			orderBy = Permutation.DEFAULT_SORT_ORDER;
 			break;
 		case PERMUTATION_ID:
@@ -121,6 +143,9 @@ public class AlgorithmProvider extends ContentProvider {
 		case ALGORITHMS:
 		case PERMUTATION_ALGORITHMS:
 			return Algorithm.CONTENT_TYPE;
+		case PERMUTATIONS_OLL:
+		case PERMUTATIONS_PLL:
+		case PERMUTATIONS_F2L:
 		case PERMUTATIONS:
 			return Permutation.CONTENT_TYPE;
 		case PERMUTATION_ID:
@@ -164,10 +189,13 @@ public class AlgorithmProvider extends ContentProvider {
 		sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		sUriMatcher.addURI(AUTHORITY, "algorithms", ALGORITHMS);
 		sUriMatcher.addURI(AUTHORITY, "algorithms/#", ALGORITHM_ID);
-		sUriMatcher.addURI(AUTHORITY, "permutations/#/favorite", PERMUTATION_FAVORITE);
-		sUriMatcher.addURI(AUTHORITY, "permutations/#/algorithms", PERMUTATION_ALGORITHMS);
 		sUriMatcher.addURI(AUTHORITY, "permutations", PERMUTATIONS);
 		sUriMatcher.addURI(AUTHORITY, "permutations/#", PERMUTATION_ID);
+		sUriMatcher.addURI(AUTHORITY, "permutations/#/favorite", PERMUTATION_FAVORITE);
+		sUriMatcher.addURI(AUTHORITY, "permutations/#/algorithms", PERMUTATION_ALGORITHMS);
+		sUriMatcher.addURI(AUTHORITY, "permutations/pll", PERMUTATIONS_PLL);
+		sUriMatcher.addURI(AUTHORITY, "permutations/oll", PERMUTATIONS_OLL);
+		sUriMatcher.addURI(AUTHORITY, "permutations/f2l", PERMUTATIONS_F2L);
 
 		algorithmProjectionMap = new HashMap<String, String>();
 		algorithmProjectionMap.put(Algorithm._ID, Algorithm._ID);
@@ -183,5 +211,6 @@ public class AlgorithmProvider extends ContentProvider {
 		permutationProjectionMap.put(Permutation.ARROW_CONFIG, Permutation.ARROW_CONFIG);
 		permutationProjectionMap.put(Permutation.ROTATION, Permutation.ROTATION);
 		permutationProjectionMap.put(Permutation.VIEWS, Permutation.VIEWS);
+		permutationProjectionMap.put(Permutation.QUICKLIST, Permutation.QUICKLIST);
 	}
 }

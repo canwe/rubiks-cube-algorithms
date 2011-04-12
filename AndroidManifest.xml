@@ -31,32 +31,23 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".activity.ViewActivity"
-			android:label="@string/labelView">
-		</activity>
-		<activity android:name=".activity.CubePreferencesActivity"
-			android:label="@string/labelPreferences">
-		</activity>
-		<activity android:name=".activity.HelpActivity"
-			android:label="@string/help">
-		</activity>
-		<activity android:name=".activity.InfoActivity"
-			android:label="@string/info">
-		</activity>
+
+		<activity android:name=".activity.FilterListActivity" />
+		<activity android:name=".activity.ViewActivity" />
+		<activity android:name=".activity.CubePreferencesActivity" />
+		<activity android:name=".activity.NotationActivity" />
+		<activity android:name=".activity.InfoActivity" />
+ 		<activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
 		
 		<provider android:name=".provider.AlgorithmProvider" android:authorities="se.slackers.cube.Algorithms"/>
-		<meta-data android:value="a14bf394ef36475" android:name="ADMOB_PUBLISHER_ID" />
-		<meta-data android:value="true" android:name="ADMOB_ALLOW_LOCATION_FOR_ADS" />
-        <receiver android:name="com.admob.android.ads.analytics.InstallReceiver" android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
+
 	</application>
 	<uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="4" />
-	<uses-permission android:name="android.permission.INTERNET" />
+        android:targetSdkVersion="7" />
+        
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest> 

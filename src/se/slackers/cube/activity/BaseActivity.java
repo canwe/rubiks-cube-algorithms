@@ -25,45 +25,42 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.admob.android.ads.AdManager;
-
 public abstract class BaseActivity extends Activity {
-
-	protected static final int MENU_PROPERTIES = 1;
-	protected static final int MENU_INFO = 2;
-	protected static final int MENU_HELP = 3;
-
 	protected Config config;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		config = new Config(this);
-
-		AdManager.setTestDevices(new String[] { AdManager.TEST_EMULATOR });
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		menu.add(0, BaseActivity.MENU_INFO, 0, R.string.info).setIcon(R.drawable.ic_menu_info_details);
-		menu.add(0, BaseActivity.MENU_HELP, 0, R.string.help).setIcon(R.drawable.ic_menu_help);
-		menu.add(0, BaseActivity.MENU_PROPERTIES, 0, R.string.properties).setIcon(R.drawable.ic_menu_preferences);
+		final MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.default_menu, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
-		case BaseActivity.MENU_PROPERTIES:
-			startActivityForResult(new Intent(this, CubePreferencesActivity.class), BaseActivity.MENU_PROPERTIES);
+		case R.id.menu_properties:
+			startActivityForResult(new Intent(this, CubePreferencesActivity.class), item.getItemId());
 			return true;
-		case BaseActivity.MENU_INFO:
-			startActivityForResult(new Intent(this, InfoActivity.class), BaseActivity.MENU_INFO);
+		case R.id.menu_info:
+			startActivityForResult(new Intent(this, InfoActivity.class), item.getItemId());
 			return true;
-		case BaseActivity.MENU_HELP:
-			startActivityForResult(new Intent(this, HelpActivity.class), BaseActivity.MENU_HELP);
+		case R.id.menu_notation:
+			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
+			return true;
+		case R.id.menu_filtered:
+			startActivityForResult(new Intent(this, FilterListActivity.class), item.getItemId());
+			return true;
+		case R.id.menu_grid:
+			startActivityForResult(new Intent(this, ListActivity.class), item.getItemId());
 			return true;
 		}
 		return false;
@@ -72,7 +69,7 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
 		switch (requestCode) {
-		case BaseActivity.MENU_PROPERTIES:
+		case R.id.menu_properties:
 			final Intent intent = new Intent();
 			intent.setClass(this, this.getClass());
 			final Bundle bundle = getIntent().getExtras();

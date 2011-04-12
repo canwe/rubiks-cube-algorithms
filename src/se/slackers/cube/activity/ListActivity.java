@@ -19,66 +19,76 @@
 
 package se.slackers.cube.activity;
 
+import se.slackers.cube.Config;
 import se.slackers.cube.R;
+import se.slackers.cube.adapter.PermutationCursorAdapter;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
-import se.slackers.cube.view.PermutationTableLayout;
-import se.slackers.cube.view.PermutationTableLayout.TableCellListener;
+import se.slackers.cube.render.PermutationRenderer;
+import se.slackers.cube.view.FlowLayout;
 import se.slackers.cube.view.PermutationView;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.TextView;
+import android.view.View.OnLongClickListener;
 
-public class ListActivity extends BaseActivity implements TableCellListener {
+public class ListActivity extends BaseActivity implements OnLongClickListener, OnClickListener {
 	public static final String PERMUTATION = "permutation";
-	public static final int PADDING = 2;
+
 	private static final int MESSAGE_DIALOG = 0;
 	private static final int FIRSTSTART_DIALOG = 1;
-	private static final int PERMUTATION_INFO = 100;
+
 	private long activePermutation = -1;
 	private int totalPermutationViews = 0;
+
+	private PermutationCursorAdapter pllCursorAdapter;
+	private PermutationCursorAdapter ollCursorAdapter;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(final Bundle state) {
 		super.onCreate(state);
-		setContentView(R.layout.list);
+		setContentView(R.layout.layout_list);
 
 		// restore state if any
 		if (state != null) {
 			activePermutation = state.getLong(PERMUTATION, -1);
 		}
 
-		final Cursor pllCursor = getContentResolver().query(Permutation.CONTENT_URI, null, Permutation.PLL_FILTER,
-				null, null);
-		final Cursor ollCursor = getContentResolver().query(Permutation.CONTENT_URI, null, Permutation.OLL_FILTER,
-				null, null);
+		final ContentResolver resolver = getContentResolver();
+		final PermutationRenderer renderer = new PermutationRenderer(new Config(this), true);
 
-		final PermutationTableLayout pllTable = (PermutationTableLayout) findViewById(R.id.pllTable);
-		final PermutationTableLayout ollTable = (PermutationTableLayout) findViewById(R.id.ollTable);
-
-		pllTable.config(config).tableCellListener(this).init(pllCursor);
-		ollTable.config(config).tableCellListener(this).init(ollCursor);
+		final Cursor pllCursor = resolver.query(Permutation.CONTENT_URI_PLL, null, null, null, null);
+		final Cursor ollCursor = resolver.query(Permutation.CONTENT_URI_OLL, null, null, null, null);
 
 		startManagingCursor(pllCursor);
 		startManagingCursor(ollCursor);
 
-		// Note(erik.b): Not needed until users can add their own algorithms
-		// final Handler handler = new Handler();
-		// getContentResolver().registerContentObserver(Permutation.CONTENT_URI, true, new ContentObserver(handler) {
-		// @Override
-		// public void onChange(final boolean selfChange) {
-		// ollTable.init(ollCursor);
-		// }
-		// });
+		final FlowLayout pllGrid = (FlowLayout) findViewById(R.id.grid_pll);
+		final FlowLayout ollGrid = (FlowLayout) findViewById(R.id.grid_oll);
+
+		pllCursorAdapter = new PermutationCursorAdapter(this, pllCursor, renderer);
+		ollCursorAdapter = new PermutationCursorAdapter(this, ollCursor, renderer);
+
+		pllGrid.setAdapter(pllCursorAdapter);
+		ollGrid.setAdapter(ollCursorAdapter);
+
+		pllGrid.setOnItemClickListener(this);
+		pllGrid.setOnItemLongClickListener(this);
+		ollGrid.setOnItemClickListener(this);
+		ollGrid.setOnItemLongClickListener(this);
+
+		// TODO: implement total views
 
 		// fetch version to see if the welcome/update dialog needs to be shown
 		final PackageInfo info = getPackageInfo();
@@ -102,8 +112,8 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 		}
 	}
 
-	public void onClick(final PermutationView view) {
-		final Permutation permutation = (view).getPermutation();
+	public void onClick(final View view) {
+		final Permutation permutation = ((PermutationView) view).getPermutation();
 
 		// update permutation for statistics
 		permutation.setViews(permutation.getViews() + 1);
@@ -118,9 +128,47 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 		startActivity(intent);
 	}
 
-	public boolean onLongClick(final PermutationView view) {
-		activePermutation = (view).getPermutation().getId();
-		showDialog(PERMUTATION_INFO);
+	public boolean onLongClick(final View view) {
+		final Permutation permutation = ((PermutationView) view).getPermutation();
+		if (permutation.getQuickList()) {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.quicklist_remove).setCancelable(false)
+					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int id) {
+							permutation.setQuickList(false);
+							AlgorithmProviderHelper.save(getContentResolver(), permutation);
+							switch (permutation.getType()) {
+							case PLL:
+								pllCursorAdapter.notifyDataSetChanged();
+								break;
+							case OLL:
+								ollCursorAdapter.notifyDataSetChanged();
+								break;
+							case F2L:
+								break;
+							}
+						}
+					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int id) {
+							dialog.cancel();
+						}
+					});
+			builder.create().show();
+		} else {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.quicklist_add).setCancelable(false)
+					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int id) {
+							permutation.setQuickList(true);
+							AlgorithmProviderHelper.save(getContentResolver(), permutation);
+						}
+					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int id) {
+							dialog.cancel();
+						}
+					});
+			builder.create().show();
+		}
 		return true;
 	}
 
@@ -137,7 +185,7 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 				}
 			};
 
-			dialog.setContentView(R.layout.firststart_dialog);
+			dialog.setContentView(R.layout.dialog_firststart);
 			dialog.setTitle(getResources().getString(R.string.firststart_title)
 					+ String.format(" v%s", info.versionName));
 			dialog.findViewById(R.id.text).setOnClickListener(firstDismissListener);
@@ -155,31 +203,15 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 				}
 			};
 
-			dialog.setContentView(R.layout.message_dialog);
+			dialog.setContentView(R.layout.dialog_message);
 			dialog.setTitle(getResources().getString(R.string.messageTitle) + String.format(" v%s", info.versionName));
 			dialog.findViewById(R.id.text).setOnClickListener(dismissListener);
 			dialog.findViewById(R.id.dialogRoot).setOnClickListener(dismissListener);
 			return dialog;
 		}
-		case PERMUTATION_INFO:
-			return createPermutationInfoDialog();
 		}
 
 		return super.onCreateDialog(id);
-	}
-
-	private Dialog createPermutationInfoDialog() {
-		final Dialog dialog = new Dialog(this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.permutation_info);
-
-		// add a close handler
-		dialog.findViewById(R.id.dialogRoot).setOnClickListener(new OnClickListener() {
-			public void onClick(final View v) {
-				dialog.dismiss();
-			}
-		});
-		return dialog;
 	}
 
 	@Override
@@ -188,24 +220,10 @@ public class ListActivity extends BaseActivity implements TableCellListener {
 	}
 
 	@Override
-	protected void onPrepareDialog(final int id, final Dialog dialog) {
-		switch (id) {
-		case PERMUTATION_INFO:
-			final Permutation permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(),
-					activePermutation);
-			final int views = permutation.getViews();
-
-			double percent = 0;
-			if (totalPermutationViews != 0) {
-				percent = 100.0 * views / totalPermutationViews;
-			}
-
-			final TextView title = (TextView) dialog.findViewById(R.id.title);
-			final TextView text = (TextView) dialog.findViewById(R.id.usage);
-			title.setText(permutation.getName());
-			text.setText(String.format("%d/%d (%.2f%%)", views, totalPermutationViews, percent));
-			break;
-		}
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		menu.findItem(R.id.menu_favorite).setVisible(false);
+		menu.findItem(R.id.menu_grid).setVisible(false);
+		return true;
 	}
-
 }

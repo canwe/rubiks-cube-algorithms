@@ -36,7 +36,7 @@ public class InfoActivity extends Activity {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.info);
+		setContentView(R.layout.layout_info);
 		final TextView appName = (TextView) findViewById(R.id.infoAppName);
 		final String version = appName.getText() + " v" + getCurrentVersion();
 		appName.setText(version);

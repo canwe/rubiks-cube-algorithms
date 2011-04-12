@@ -35,20 +35,25 @@
     <string name="favorite_title">Set favorite algorithm</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     
     <!-- List -->
-    <string name="ollText">Orient Last Layer</string>
-    <string name="pllText">Position Last Layer</string>
+    <string name="header_oll">Orient Last Layer</string>
+    <string name="header_pll">Position Last Layer</string>
+    <string name="header_f2l">First Two Layers</string>
     
     <!-- Menu -->
-    <string name="properties">Preferences</string>
-    <string name="info">Info</string>
-    <string name="help">Notation</string>
-    <string name="select">Change algorithm</string>
+    <string name="menu_info">About</string>
+    <string name="menu_notation">Notation</string>
+    <string name="menu_properties">Preferences</string>
+    <string name="menu_filtered">Quick list</string>
+    <string name="menu_grid">Grid view</string>
+    <string name="menu_select">Change algorithm</string>
     
     <!-- Dialog -->
-	<string name="algorithm_usage">Usage:</string>
-	<string name="algorithm_favorite">Favorite:</string>
+	<string name="quicklist_add">Do you want to add this permutation to the quick list?</string>
+	<string name="quicklist_remove">Do you want to remove this permutation from the quick list?</string>
 	
 	<!-- Preferences -->
 	<string name="categoryAppearance">Appearance</string>
@@ -67,15 +72,6 @@
 		<item>White</item>
 	</string-array>
 
-	<string name="sizeDialog">Choose cube size</string>
-	<string name="sizeTitle">Cube size</string>
-	<string name="sizeSummary">Size of the images in the permutation list</string>
-	<string-array name="sizeContent">
-		<item>Small</item>
-		<item>Medium</item>
-		<item>Large</item>
-	</string-array>
-	
 	<!-- Notation -->
 	<string name="notationTitle">Notation scheme</string>	
 	<string name="notationSummary">The notation to use</string> <!-- Singmaster should not be localized -->
@@ -101,7 +97,8 @@
 	<string name="notationTriggerSummary">Group trigger moves in parentheses</string>
 
 	<!-- Notation text -->
-	<string name="notationText">A turn of layer is written by adding a suffix to the face\'s name. All moves should be applied as if you were looking at the face straight-on. Using the U face as an example here are all three cases:\n\nU - A 90-degree clockwise turn.\nU\' - A 90-degree counterclockwise turn.\nU2 - A 180-degree turn.</string>
+	<string name="notation_header">Notation</string>
+	<string name="notation_text">A turn of layer is written by adding a suffix to the face\'s name. All moves should be applied as if you were looking at the face straight-on. Using the U face as an example here are all three cases:\n\nU - A 90-degree clockwise turn.\nU\' - A 90-degree counterclockwise turn.\nU2 - A 180-degree turn.</string>
 
 	<!-- Other Settings -->
 	<string name="categorySystem">System</string>

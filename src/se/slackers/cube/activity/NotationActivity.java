@@ -25,14 +25,14 @@ import java.util.List;
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.config.AlgorithmTransform;
-import se.slackers.cube.widget.NotationView;
+import se.slackers.cube.view.listener.NotationView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 
-public class HelpActivity extends Activity {
+public class NotationActivity extends Activity {
 	protected Config config;
 	protected int id = 20000;
 
@@ -40,7 +40,7 @@ public class HelpActivity extends Activity {
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		config = new Config(this);
-		setContentView(R.layout.help);
+		setContentView(R.layout.layout_notation);
 
 		final AlgorithmTransform transformer = new AlgorithmTransform(config);
 		final List<NotationView> views = new LinkedList<NotationView>();
@@ -65,16 +65,15 @@ public class HelpActivity extends Activity {
 		views.add(new NotationView(this, "y", R.drawable.y));
 		views.add(new NotationView(this, "z", R.drawable.z));
 
-		final int imageWidth = (int) (75 * config.getScale());
 		final int padding = 5;
 		final int margin = padding * 2;
-		final int columns = Math.max((config.getDisplayWidth() - 2 * padding) / (imageWidth + 2 * padding), 1);
+		final int columns = 3;
 
 		final TableLayout helpTable = (TableLayout) findViewById(R.id.helpTable);
 		TableRow row = null;
 		int nextRow = 0;
 
-		for (NotationView view : views) {
+		for (final NotationView view : views) {
 			if (nextRow == 0) {
 				row = new TableRow(this);
 				row.setId(id++);

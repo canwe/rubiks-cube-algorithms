@@ -17,13 +17,14 @@
  * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.view;
+package se.slackers.cube.adapter;
 
 import java.util.List;
 
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.view.AlgorithmView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,7 @@ public class AlgorithmAdapter extends ArrayAdapter<Algorithm> {
 
 	public AlgorithmAdapter(final Context context, final Config config, final List<Algorithm> algorithms,
 			final Algorithm favorite) {
-		super(context, R.layout.algorithm_row, R.id.algorithm, algorithms);
+		super(context, R.layout.component_algorithm_row, R.id.algorithm, algorithms);
 		this.config = config;
 		this.favorite = favorite;
 	}
@@ -47,7 +48,7 @@ public class AlgorithmAdapter extends ArrayAdapter<Algorithm> {
 		if (convertView == null) {
 			final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
 					Context.LAYOUT_INFLATER_SERVICE);
-			convertView = inflater.inflate(R.layout.algorithm_row, null);
+			convertView = inflater.inflate(R.layout.component_algorithm_row, null);
 		}
 		final Algorithm algorithm = getItem(position);
 		final AlgorithmView algorithmView = (AlgorithmView) convertView.findViewById(R.id.algorithm);

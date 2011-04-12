@@ -20,30 +20,26 @@
 package se.slackers.cube;
 
 import se.slackers.cube.config.ColorTheme;
-import se.slackers.cube.config.CubeSize;
 import se.slackers.cube.config.DoubleNotation;
 import se.slackers.cube.config.NotationType;
-import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.graphics.Paint;
-import android.util.DisplayMetrics;
+import android.preference.PreferenceManager;
 
 public class Config {
 	public static final String COLOR_THEME = "color.theme";
-	public static final String CUBE_SIZE = "cube.size";
 	public static final String NOTATION = "cube.notation";
 	public static final String NOTATION_DOUBLE = "cube.notation.double";
 	public static final String NOTATION_COLOR_REVERSE = "cube.notation.reverse";
 	public static final String SHOW_TRIGGERS = "cube.triggers";
-	public static final String PREFERENCES = "cube.preferences";
 	public static final String SHOW_DIALOG = "cube.dialog";
 
 	public static final int COLOR = 0xffffffff;
 	public static final int REVERSE_COLOR = 0xffa0a0a0;
 
-	private final float scale;
-	private final int displayWidth;
 	private DoubleNotation doubleTurns;
 	private final boolean coloredReverse;
 	private boolean triggers;
@@ -51,30 +47,26 @@ public class Config {
 
 	private NotationType notationScheme;
 
-	private int listWidth;
-	private int viewWidth;
-	private int margin;
 	private int unknownFaceColor;
 	private int importantFaceColor;
 	private int borderColor;
 	private int backgroundColor;
 	private int edgeColor;
 	private int cornerColor;
-	private final int displayHeight;
 	private int sideFaceColor;
+
+	private final int cubeSizeList;
+	private final int cubeSizeView;
 
 	private final SharedPreferences settings;
 
-	public Config(final Activity activity) {
-		final DisplayMetrics dm = new DisplayMetrics();
-		activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+	public Config(final Context context) {
+		settings = PreferenceManager.getDefaultSharedPreferences(context);
 
-		scale = dm.density;
-		displayWidth = dm.widthPixels;
-		displayHeight = dm.heightPixels;
+		final Resources resources = context.getResources();
+		cubeSizeList = resources.getDimensionPixelSize(R.dimen.cube_size_list);
+		cubeSizeView = resources.getDimensionPixelSize(R.dimen.cube_size_view);
 
-		settings = activity.getSharedPreferences(PREFERENCES, 0);
-		setCubeSize(getString(CUBE_SIZE, CubeSize.Small.name()));
 		setColorTheme(getString(COLOR_THEME, ColorTheme.Default.name()));
 		setNotationScheme(getString(NOTATION, NotationType.Singmaster.name()));
 		setDoubleTurns(getString(NOTATION_DOUBLE, DoubleNotation.SuperScript.name()));
@@ -107,21 +99,6 @@ public class Config {
 			return settings.getString(key, defaultValue);
 		} catch (final Exception e) {
 			return defaultValue;
-		}
-	}
-
-	private void setCubeSize(final String size) {
-		viewWidth = Math.min(displayWidth, displayHeight) / 3;
-		switch (CubeSize.valueOf(size)) {
-		case Small:
-			listWidth = 50;
-			break;
-		case Medium:
-			listWidth = 75;
-			break;
-		case Large:
-			listWidth = 100;
-			break;
 		}
 	}
 
@@ -171,33 +148,16 @@ public class Config {
 			cornerColor = 0xff003399;
 			break;
 		}
-		margin = 2;
 		sideFaceColor = importantFaceColor;
 		backgroundColor = borderColor;
 	}
 
-	public int getDisplayHeight() {
-		return displayHeight;
+	public int getListCubeSize() {
+		return cubeSizeList;
 	}
 
-	public float getScale() {
-		return scale;
-	}
-
-	public int getListWidth() {
-		return (int) (listWidth * scale);
-	}
-
-	public int getViewWidth() {
-		return (int) (viewWidth * scale);
-	}
-
-	public int getDisplayWidth() {
-		return displayWidth;
-	}
-
-	public int getMargin() {
-		return margin;
+	public int getViewCubeSize() {
+		return cubeSizeView;
 	}
 
 	public int getUnknownFaceColor() {

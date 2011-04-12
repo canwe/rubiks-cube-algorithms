@@ -18,7 +18,15 @@
 -->
 
 <resources>
-	<dimen name="header">30sp</dimen>
-	<dimen name="large">18sp</dimen>
-	<dimen name="medium">13sp</dimen>
+	<dimen name="font_size_header">30dp</dimen>
+	<dimen name="font_size_standard">15dp</dimen>
+	<dimen name="font_size_smaller">12dp</dimen>
+	
+	<dimen name="margin_permutation">20dp</dimen>
+	<dimen name="margin_large">15dp</dimen>
+	<dimen name="dialog_border">10dp</dimen>
+	<dimen name="margin_standard">3dp</dimen>
+	
+	<dimen name="cube_size_list">50dp</dimen>
+	<dimen name="cube_size_view">100dp</dimen>
 </resources>

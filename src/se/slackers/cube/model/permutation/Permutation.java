@@ -20,7 +20,7 @@
 package se.slackers.cube.model.permutation;
 
 import se.slackers.cube.model.Rotatable;
-import se.slackers.cube.model.algorithm.AlgorithmType;
+import se.slackers.cube.model.algorithm.PermutationType;
 import se.slackers.cube.provider.AlgorithmProvider;
 import android.database.Cursor;
 import android.net.Uri;
@@ -31,6 +31,12 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 	public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.slackers.permutation";
 
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AlgorithmProvider.AUTHORITY + "/permutations");
+	public static final Uri CONTENT_URI_OLL = Uri.parse("content://" + AlgorithmProvider.AUTHORITY
+			+ "/permutations/oll");
+	public static final Uri CONTENT_URI_PLL = Uri.parse("content://" + AlgorithmProvider.AUTHORITY
+			+ "/permutations/pll");
+	public static final Uri CONTENT_URI_F2L = Uri.parse("content://" + AlgorithmProvider.AUTHORITY
+			+ "/permutations/f2l");
 
 	public static final String DEFAULT_SORT_ORDER = "type, name";
 	public static final String NAME = "name";
@@ -39,21 +45,23 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 	public static final String ARROW_CONFIG = "arrows";
 	public static final String ROTATION = "rotation";
 	public static final String VIEWS = "views";
+	public static final String QUICKLIST = "quicklist";
 
-	public static final String PLL_FILTER = TYPE + "='" + AlgorithmType.PLL.name() + "'";
-	public static final String OLL_FILTER = TYPE + "='" + AlgorithmType.OLL.name() + "'";
+	public static final String PLL_FILTER = TYPE + "=\"" + PermutationType.PLL.name() + "\"";
+	public static final String OLL_FILTER = TYPE + "='" + PermutationType.OLL.name() + "'";
 
 	private long id;
-	private AlgorithmType type;
+	private PermutationType type;
 	private String name;
 	private FaceConfiguration faceConfiguration;
 	private ArrowConfiguration arrowConfiguration;
 	private int views;
 	private int rotation;
+	private boolean quicklist = false;
 
-	public Permutation(final long id, final AlgorithmType type, final String name,
+	public Permutation(final long id, final PermutationType type, final String name,
 			final FaceConfiguration faceConfiguration, final ArrowConfiguration arrowConfig, final int rotation,
-			final int views) {
+			final int views, final boolean quicklist) {
 		this.id = id;
 		this.type = type;
 		this.name = name;
@@ -61,13 +69,14 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 		this.arrowConfiguration = arrowConfig;
 		this.rotation = rotation;
 		this.views = views;
+		this.quicklist = quicklist;
 	}
 
 	public Permutation rotate(final int turns) {
 		final int newRotation = (rotation + turns) % 4;
 		final FaceConfiguration faces = faceConfiguration.rotate(turns);
 		final ArrowConfiguration arrows = arrowConfiguration.rotate(turns);
-		return new Permutation(id, type, name, faces, arrows, newRotation, views);
+		return new Permutation(id, type, name, faces, arrows, newRotation, views, quicklist);
 	}
 
 	public long getId() {
@@ -78,11 +87,11 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 		this.id = id;
 	}
 
-	public AlgorithmType getType() {
+	public PermutationType getType() {
 		return type;
 	}
 
-	public void setType(final AlgorithmType type) {
+	public void setType(final PermutationType type) {
 		this.type = type;
 	}
 
@@ -126,11 +135,19 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 		this.views = views;
 	}
 
+	public boolean getQuickList() {
+		return quicklist;
+	}
+
+	public void setQuickList(final boolean quicklist) {
+		this.quicklist = quicklist;
+	}
+
 	public int compareTo(final Permutation p) {
 		if (type != p.type) {
 			return type.compareTo(p.type);
 		}
-		if (type == AlgorithmType.OLL) {
+		if (type == PermutationType.OLL) {
 			final int len = name.length();
 			final int plen = p.name.length();
 
@@ -202,6 +219,7 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 	private static int iArrow = -1;
 	private static int iRotation = -1;
 	private static int iViews = -1;
+	private static int iQuickList = -1;
 
 	public static Permutation fromCursor(final Cursor cursor) {
 		if (iId < 0) {
@@ -212,18 +230,20 @@ public class Permutation implements BaseColumns, Comparable<Permutation>, Rotata
 			iArrow = cursor.getColumnIndex(Permutation.ARROW_CONFIG);
 			iRotation = cursor.getColumnIndex(Permutation.ROTATION);
 			iViews = cursor.getColumnIndex(Permutation.VIEWS);
+			iQuickList = cursor.getColumnIndex(Permutation.QUICKLIST);
 		}
 
 		final long id = cursor.getLong(iId);
-		final AlgorithmType type = AlgorithmType.valueOf(cursor.getString(iType));
+		final PermutationType type = PermutationType.valueOf(cursor.getString(iType));
 		final String name = cursor.getString(iName);
 		final String faceConfig = cursor.getString(iFace);
 		final String arrowConfig = cursor.getString(iArrow);
 		final int rotation = cursor.getInt(iRotation);
 		final int views = cursor.getInt(iViews);
+		final boolean quicklist = cursor.getInt(iQuickList) == 1;
 
 		// Note(erik.b): This creation ignores rotation
 		return new Permutation(id, type, name, new FaceConfiguration(faceConfig), new ArrowConfiguration(arrowConfig),
-				rotation, views);
+				rotation, views, quicklist);
 	}
 }

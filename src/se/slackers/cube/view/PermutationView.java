@@ -22,13 +22,26 @@ package se.slackers.cube.view;
 import se.slackers.cube.model.permutation.Permutation;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.AttributeSet;
 import android.widget.ImageView;
 
 public class PermutationView extends ImageView {
-	private final Permutation permutation;
+	private Permutation permutation;
+
+	public PermutationView(final Context context) {
+		super(context);
+	}
+
+	public PermutationView(final Context context, final AttributeSet attrs) {
+		super(context, attrs);
+	}
 
 	public PermutationView(final Context context, final Permutation permutation) {
 		super(context);
+		this.permutation = permutation;
+	}
+
+	public void setPermutation(final Permutation permutation) {
 		this.permutation = permutation;
 	}
 
@@ -38,11 +51,6 @@ public class PermutationView extends ImageView {
 
 	public PermutationView image(final Bitmap bitmap) {
 		setImageBitmap(bitmap);
-		return this;
-	}
-
-	public PermutationView padding(final int padding) {
-		setPadding(padding, padding, padding, padding);
 		return this;
 	}
 }

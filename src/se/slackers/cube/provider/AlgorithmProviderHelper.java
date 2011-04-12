@@ -35,6 +35,7 @@ public class AlgorithmProviderHelper {
 		values.put(Permutation.VIEWS, permutation.getViews());
 		values.put(Permutation.TYPE, permutation.getType().name());
 		values.put(Permutation.ROTATION, permutation.getRotation());
+		values.put(Permutation.QUICKLIST, permutation.getQuickList() ? 1 : 0);
 
 		return 0 != resolver.update(uri, values, Permutation._ID + "=" + permutation.getId(), null);
 	}

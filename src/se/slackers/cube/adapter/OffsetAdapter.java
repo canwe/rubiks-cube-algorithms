@@ -17,7 +17,7 @@
  * along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package se.slackers.cube.view;
+package se.slackers.cube.adapter;
 
 import android.database.DataSetObserver;
 import android.view.View;
