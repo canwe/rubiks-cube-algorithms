@@ -165,6 +165,7 @@ public class FilterListActivity extends ListActivity implements OnItemClickListe
 
 		menu.findItem(R.id.menu_favorite).setVisible(false);
 		menu.findItem(R.id.menu_filtered).setVisible(false);
+		menu.findItem(R.id.menu_new).setVisible(false);
 		return true;
 	}
 

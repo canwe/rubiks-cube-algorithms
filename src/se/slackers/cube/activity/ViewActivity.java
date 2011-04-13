@@ -25,6 +25,7 @@ import java.util.List;
 
 import se.slackers.cube.R;
 import se.slackers.cube.adapter.AlgorithmAdapter;
+import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.algorithm.Algorithm;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
@@ -34,6 +35,7 @@ import se.slackers.cube.view.AlgorithmView;
 import se.slackers.cube.view.PermutationView;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -44,8 +46,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -55,7 +59,7 @@ import android.widget.Toast;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-public class ViewActivity extends BaseActivity implements OnItemClickListener {
+public class ViewActivity extends BaseActivity implements OnItemClickListener, OnItemLongClickListener {
 	private static final int SHOW_CHANGE_ALGORITHM_DIALOG = 1001;
 
 	private static final String ALGORITHM_CANDIDATE = "favorite.candidate";
@@ -129,9 +133,15 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	private void updateAlgorithm() {
 		final AlgorithmView algorithmView = new AlgorithmView(this, config, favorite);
 		algorithmView.setTextSize(getResources().getDimension(R.dimen.font_size_standard));
-		algorithmView.setOnClickListener(new View.OnClickListener() {
+		algorithmView.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
 				showDialog(SHOW_CHANGE_ALGORITHM_DIALOG);
+			}
+		});
+		algorithmView.setOnLongClickListener(new OnLongClickListener() {
+			public boolean onLongClick(final View v) {
+				editAlgorithm(algorithmView.getAlgorithm());
+				return true;
 			}
 		});
 		algorithmContainer.removeAllViews();
@@ -208,6 +218,27 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		candidate_id = candidate.getId();
 	}
 
+	/**
+	 * Called by the switch favorite dialog on long click
+	 */
+	public boolean onItemLongClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
+		final Algorithm algorithm = algorithmAdapter.getItem(position);
+		editAlgorithm(algorithm);
+		return true;
+	}
+
+	/**
+	 * Can be called both from the AlgorithmView longclick and onItemLongClick in the switch favorite dialog.
+	 * 
+	 * @param algorithm
+	 */
+	protected void editAlgorithm(final Algorithm algorithm) {
+		final Intent intent = new Intent(this, InputActivity.class);
+		intent.putExtra(InputActivity.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
+		intent.putExtra(InputActivity.ALGORITHM_ID, algorithm.getId());
+		startActivityForResult(intent, InputActivity.REQUEST_CODE_EDIT);
+	}
+
 	private void changeFavoriteAlgorithm() {
 		final Algorithm previous = favorite;
 
@@ -243,6 +274,7 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 			final ListView list = (ListView) dialog.findViewById(R.id.list);
 			list.setAdapter(algorithmAdapter);
 			list.setOnItemClickListener(this);
+			list.setOnItemLongClickListener(this);
 
 			final Button save = (Button) dialog.findViewById(R.id.save);
 			final Button cancel = (Button) dialog.findViewById(R.id.cancel);
@@ -277,8 +309,11 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
-		case SHOW_CHANGE_ALGORITHM_DIALOG:
+		case R.id.menu_favorite:
 			showDialog(SHOW_CHANGE_ALGORITHM_DIALOG);
+			return true;
+		case R.id.menu_new:
+			startActivityForResult(new Intent(this, InputActivity.class), InputActivity.REQUEST_CODE_NEW);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -290,5 +325,16 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener {
 		menu.findItem(R.id.menu_grid).setVisible(false);
 		menu.findItem(R.id.menu_filtered).setVisible(false);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+		switch (requestCode) {
+		case InputActivity.REQUEST_CODE_NEW:
+			break;
+
+		case InputActivity.REQUEST_CODE_EDIT:
+			break;
+		}
 	}
 }

@@ -39,10 +39,11 @@
 		<activity android:name=".activity.CubePreferencesActivity" />
 		<activity android:name=".activity.NotationActivity" />
 		<activity android:name=".activity.InfoActivity" />
+		<activity android:name=".activity.InputActivity" />
+		
  		<activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
 		
 		<provider android:name=".provider.AlgorithmProvider" android:authorities="se.slackers.cube.Algorithms"/>
-
 	</application>
 	<uses-sdk
         android:minSdkVersion="7"

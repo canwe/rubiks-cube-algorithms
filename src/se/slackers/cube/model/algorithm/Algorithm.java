@@ -19,9 +19,11 @@
 
 package se.slackers.cube.model.algorithm;
 
+import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.Rotatable;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProvider;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -142,5 +144,14 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 		a.setId(id);
 		return a;
 
+	}
+
+	public ContentValues toContentValues() {
+		final ContentValues values = new ContentValues();
+		values.put(Algorithm._ID, id);
+		values.put(Algorithm.PERMUTATION_ID, permutationId);
+		values.put(Algorithm.ALGORITHM, instruction.render(NotationType.Singmaster));
+		values.put(Algorithm.RANK, rank);
+		return values;
 	}
 }

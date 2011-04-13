@@ -25,6 +25,7 @@ import se.slackers.cube.model.algorithm.Algorithm;
 import se.slackers.cube.model.algorithm.PermutationType;
 import se.slackers.cube.model.permutation.Permutation;
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -157,8 +158,16 @@ public class AlgorithmProvider extends ContentProvider {
 	}
 
 	@Override
-	public Uri insert(final Uri uri, final ContentValues initialValues) {
-		throw new UnsupportedOperationException("insert is not implemented");
+	public Uri insert(final Uri uri, final ContentValues values) {
+		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+		switch (sUriMatcher.match(uri)) {
+		case ALGORITHMS:
+			final long id = db.insert(DatabaseHelper.ALGORITHM_TABLE, null, values);
+			getContext().getContentResolver().notifyChange(uri, null);
+			return ContentUris.withAppendedId(uri, id);
+		default:
+			throw new IllegalArgumentException("Unknown URI " + uri);
+		}
 	}
 
 	@Override

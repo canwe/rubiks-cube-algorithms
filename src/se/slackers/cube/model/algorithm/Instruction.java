@@ -20,6 +20,7 @@
 package se.slackers.cube.model.algorithm;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -99,6 +100,10 @@ public class Instruction implements Rotatable<Instruction>, Comparable<Instructi
 		moves.add(0, first.direction(direction));
 
 		return true;
+	}
+
+	public List<Move> moves() {
+		return Collections.unmodifiableList(moves);
 	}
 
 	/**

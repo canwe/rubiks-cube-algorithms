@@ -31,4 +31,10 @@
     	<item name="android:layout_height">wrap_content</item>
     	<item name="android:textSize">@dimen/font_size_smaller</item>
     </style>
+    
+    <style name="input_button">
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:textSize">20dp</item>
+    </style>
 </resources>

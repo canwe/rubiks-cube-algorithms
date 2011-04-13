@@ -51,7 +51,9 @@
     <string name="menu_properties">Preferences</string>
     <string name="menu_filtered">Quick list</string>
     <string name="menu_grid">Grid view</string>
-    <string name="menu_select">Change algorithm</string>
+    <string name="menu_new">Add algorithm</string>
+    <string name="menu_select">Switch algorithm</string>
+    <string name="menu_more">More</string>
     
     <!-- Dialog -->
 	<string name="quicklist_add">Do you want to add \'%s\' to the quick list?</string>
@@ -101,7 +103,6 @@
 	<string name="pref_reset_title">Reset statistics</string>
 	<string name="pref_reset_summary">Reset the permutation usage statistics.</string>
 	<string name="pref_reset_toast">All usage statistics deleted.</string>
-	
 
 	<!-- Notation text -->
 	<string name="notation_header">Notation</string>
@@ -111,4 +112,9 @@
 	<string name="infoText_1">I would like to acknowledge and thank the people who helped me with this release:\n- Patrick Kelly, algorithms (speedsolving.com)\n- Steven Partridge, testing and ideas.\n- Elin Lilius, layout and UI design.\n\nAll feedback/bugs/feature requests are welcome, it\'s always nice to hear from the users. Use the button below to send me an email, visit the google group at http://goo.gl/3Mh3k or the project page at http://goo.gl/n3V1D</string>
 	<string name="feedback">Send email</string>
 	<string name="email_chooser">Select email application</string>
+	
+	
+	<!-- Rubik Input Method -->
+	
+	<string name="input_rubiks_method">Rubik\'s Cube Input</string>
 </resources>
