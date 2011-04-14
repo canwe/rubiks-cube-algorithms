@@ -33,6 +33,7 @@
     
     <string name="additionalAlgorithms">Alternative algorithms:</string>
 
+	<string name="error_invalid_algorithm">Invalid algorithm syntax</string>
     <string name="favorite_algorithm_changed">Algorithm changed</string>
     <string name="favorite_title">Set favorite algorithm</string>
     <string name="save">Save</string>

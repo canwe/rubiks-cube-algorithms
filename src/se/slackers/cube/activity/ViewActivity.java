@@ -19,21 +19,23 @@
 
 package se.slackers.cube.activity;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
 
+import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.adapter.AlgorithmAdapter;
 import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.model.algorithm.Instruction;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
 import se.slackers.cube.provider.ContentURI;
 import se.slackers.cube.render.PermutationRenderer;
 import se.slackers.cube.view.AlgorithmView;
 import se.slackers.cube.view.PermutationView;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -59,9 +61,7 @@ import android.widget.Toast;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-public class ViewActivity extends BaseActivity implements OnItemClickListener, OnItemLongClickListener {
-	private static final int SHOW_CHANGE_ALGORITHM_DIALOG = 1001;
-
+public class ViewActivity extends BaseActivity {
 	private static final String ALGORITHM_CANDIDATE = "favorite.candidate";
 
 	private WakeLock wakeLock;
@@ -72,11 +72,8 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 	private FrameLayout algorithmContainer;
 	private PermutationView permutationView;
 
-	private List<Algorithm> algorithms;
-	private AlgorithmAdapter algorithmAdapter;
-
 	private Algorithm favorite;
-	private long candidate_id = -1;
+	private long favoriteCandidateId = -1;
 	private Permutation permutation;
 
 	@Override
@@ -88,17 +85,14 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 		final long permutationId = bundle.getLong(ListActivity.PERMUTATION);
 
 		if (state != null) {
-			candidate_id = state.getLong(ALGORITHM_CANDIDATE, -1);
+			favoriteCandidateId = state.getLong(ALGORITHM_CANDIDATE, -1);
 		}
 
 		permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(), permutationId);
-		algorithms = getAlgorithms(permutation);
-
-		favorite = algorithms.get(0);
 		try {
-			favorite = getFavoriteAlgorithm(permutation);
-		} catch (final IllegalArgumentException e) {
-			// ignore
+			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+		} catch (final NoSuchAlgorithmException e) {
+			favorite = null;
 		}
 
 		renderer = new PermutationRenderer(config, false);
@@ -106,10 +100,9 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 		permutationName = (TextView) findViewById(R.id.permutationName);
 		permutationContainer = (FrameLayout) findViewById(R.id.permutationContainer);
 		algorithmContainer = (FrameLayout) findViewById(R.id.algorithmContainer);
-		algorithmAdapter = new AlgorithmAdapter(this, config, algorithms, favorite);
 
 		updatePermutation(permutation);
-		updateAlgorithm();
+		updateViews();
 
 		// Look up the AdView as a resource and load a request.
 		final AdView adView = (AdView) this.findViewById(R.id.ad);
@@ -130,52 +123,22 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 		permutationName.setText(permutation.getName());
 	}
 
-	private void updateAlgorithm() {
+	private void updateViews() {
 		final AlgorithmView algorithmView = new AlgorithmView(this, config, favorite);
 		algorithmView.setTextSize(getResources().getDimension(R.dimen.font_size_standard));
 		algorithmView.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
-				showDialog(SHOW_CHANGE_ALGORITHM_DIALOG);
+				showSwitchFavoriteDialog();
 			}
 		});
 		algorithmView.setOnLongClickListener(new OnLongClickListener() {
 			public boolean onLongClick(final View v) {
-				editAlgorithm(algorithmView.getAlgorithm());
+				editAlgorithm(algorithmView.getAlgorithm().getId());
 				return true;
 			}
 		});
 		algorithmContainer.removeAllViews();
 		algorithmContainer.addView(algorithmView);
-	}
-
-	private Algorithm getFavoriteAlgorithm(final Permutation permutation) {
-		final Uri uri = ContentURI.favoriteForPermutation(permutation.getId());
-		final Cursor cursor = managedQuery(uri, null, null, null, null);
-		try {
-			if (cursor.moveToFirst()) {
-				return Algorithm.fromCursor(cursor, permutation);
-			}
-			throw new IllegalArgumentException("Favorite algorithms doesn't exist");
-		} finally {
-			cursor.close();
-		}
-	}
-
-	private List<Algorithm> getAlgorithms(final Permutation permutation) {
-		final Uri uri = ContentURI.algorithmsForPermutation(permutation.getId());
-		final Cursor cursor = managedQuery(uri, null, null, null, null);
-		try {
-			final List<Algorithm> results = new LinkedList<Algorithm>();
-			if (cursor.moveToFirst()) {
-				do {
-					results.add(Algorithm.fromCursor(cursor, permutation));
-				} while (cursor.moveToNext());
-			}
-			Collections.sort(results);
-			return results;
-		} finally {
-			cursor.close();
-		}
 	}
 
 	@Override
@@ -208,30 +171,22 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 			wakeLock.release();
 		}
 
-		out.putLong(ALGORITHM_CANDIDATE, candidate_id);
-	}
-
-	public void onItemClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
-		final Algorithm candidate = algorithmAdapter.getItem(position);
-		algorithmAdapter.setFavorite(candidate);
-
-		candidate_id = candidate.getId();
-	}
-
-	/**
-	 * Called by the switch favorite dialog on long click
-	 */
-	public boolean onItemLongClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
-		final Algorithm algorithm = algorithmAdapter.getItem(position);
-		editAlgorithm(algorithm);
-		return true;
+		out.putLong(ALGORITHM_CANDIDATE, favoriteCandidateId);
 	}
 
 	/**
 	 * Can be called both from the AlgorithmView longclick and onItemLongClick in the switch favorite dialog.
 	 * 
-	 * @param algorithm
+	 * @param id
 	 */
+	protected void editAlgorithm(final long id) {
+		try {
+			editAlgorithm(AlgorithmProviderHelper.getAlgorithm(getContentResolver(), permutation, id));
+		} catch (final NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	protected void editAlgorithm(final Algorithm algorithm) {
 		final Intent intent = new Intent(this, InputActivity.class);
 		intent.putExtra(InputActivity.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
@@ -239,78 +194,69 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 		startActivityForResult(intent, InputActivity.REQUEST_CODE_EDIT);
 	}
 
-	private void changeFavoriteAlgorithm() {
-		final Algorithm previous = favorite;
+	private void changeFavoriteAlgorithm(final long id) {
+		AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), id);
+		try {
+			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+		} catch (final NoSuchAlgorithmException e) {
+			favorite = null;
+		}
 
-		for (final Algorithm algorithm : algorithms) {
-			if (algorithm.getId() == candidate_id) {
-				favorite = algorithm;
+		// update UI
+		updateViews();
+		Toast.makeText(this, R.string.favorite_algorithm_changed, Toast.LENGTH_LONG).show();
+	}
 
-				previous.setRank(0);
-				favorite.setRank(1);
+	private void showSwitchFavoriteDialog() {
+		final Dialog dialog = new Dialog(this);
+		dialog.setTitle(R.string.favorite_title);
+		dialog.setContentView(R.layout.dialog_favorite_algorithm);
 
-				// update favorite algorithm in the db
-				AlgorithmProviderHelper.save(getContentResolver(), previous);
-				AlgorithmProviderHelper.save(getContentResolver(), favorite);
+		final ListView list = (ListView) dialog.findViewById(R.id.list);
 
-				// update UI
-				algorithmAdapter.setFavorite(favorite);
-				updateAlgorithm();
+		final Uri uri = ContentURI.algorithmsForPermutation(permutation.getId());
+		final Cursor cursor = managedQuery(uri, null, null, null, null);
+		final AlgorithmAdapter algorithmAdapter = new AlgorithmAdapter(this, cursor, permutation, config);
 
-				Toast.makeText(this, R.string.favorite_algorithm_changed, Toast.LENGTH_LONG).show();
-				break;
+		list.setAdapter(algorithmAdapter);
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(final AdapterView<?> _a, final View _b, final int _c, final long id) {
+				favoriteCandidateId = id;
+				algorithmAdapter.setFavorite(id);
+				algorithmAdapter.notifyDataSetChanged();
 			}
-		}
-	}
+		});
+		list.setOnItemLongClickListener(new OnItemLongClickListener() {
+			public boolean onItemLongClick(final AdapterView<?> _a, final View _b, final int position, final long id) {
+				dialog.dismiss();
+				editAlgorithm(id);
+				return true;
+			}
+		});
 
-	@Override
-	protected Dialog onCreateDialog(final int id) {
-		switch (id) {
-		case SHOW_CHANGE_ALGORITHM_DIALOG:
-			final Dialog dialog = new Dialog(this);
-			dialog.setTitle(R.string.favorite_title);
-			dialog.setContentView(R.layout.dialog_favorite_algorithm);
+		final Button save = (Button) dialog.findViewById(R.id.save);
+		final Button cancel = (Button) dialog.findViewById(R.id.cancel);
 
-			final ListView list = (ListView) dialog.findViewById(R.id.list);
-			list.setAdapter(algorithmAdapter);
-			list.setOnItemClickListener(this);
-			list.setOnItemLongClickListener(this);
+		save.setOnClickListener(new OnClickListener() {
+			public void onClick(final View v) {
+				changeFavoriteAlgorithm(favoriteCandidateId);
+				dialog.dismiss();
+			}
+		});
+		cancel.setOnClickListener(new OnClickListener() {
+			public void onClick(final View v) {
+				dialog.dismiss();
+			}
+		});
 
-			final Button save = (Button) dialog.findViewById(R.id.save);
-			final Button cancel = (Button) dialog.findViewById(R.id.cancel);
-
-			save.setOnClickListener(new OnClickListener() {
-				public void onClick(final View v) {
-					changeFavoriteAlgorithm();
-					dialog.dismiss();
-				}
-			});
-			cancel.setOnClickListener(new OnClickListener() {
-				public void onClick(final View v) {
-					dialog.dismiss();
-				}
-			});
-			return dialog;
-		}
-
-		return super.onCreateDialog(id);
-	}
-
-	@Override
-	protected void onPrepareDialog(final int id, final Dialog dialog) {
-		switch (id) {
-		case SHOW_CHANGE_ALGORITHM_DIALOG:
-			algorithmAdapter.setFavorite(favorite);
-			break;
-		}
-		super.onPrepareDialog(id, dialog);
+		dialog.show();
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_favorite:
-			showDialog(SHOW_CHANGE_ALGORITHM_DIALOG);
+			showSwitchFavoriteDialog();
 			return true;
 		case R.id.menu_new:
 			startActivityForResult(new Intent(this, InputActivity.class), InputActivity.REQUEST_CODE_NEW);
@@ -329,12 +275,52 @@ public class ViewActivity extends BaseActivity implements OnItemClickListener, O
 
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+		if (resultCode != Activity.RESULT_OK) {
+			return;
+		}
+
+		final String algorithm = data.getStringExtra(InputActivity.ALGORITHM);
+		final long algorithmId = data.getLongExtra(InputActivity.ALGORITHM_ID, -1);
+
 		switch (requestCode) {
 		case InputActivity.REQUEST_CODE_NEW:
+			insertNewAlgorithm(algorithm);
 			break;
-
 		case InputActivity.REQUEST_CODE_EDIT:
+			updateAlgoithm(algorithmId, algorithm);
 			break;
+		}
+	}
+
+	private void updateAlgoithm(final long algorithmId, final String algorithm) {
+		if (algorithmId < 0) {
+			Config.debug("Edited algorithm has id 0");
+			return;
+		}
+
+		try {
+			final ContentValues values = new ContentValues();
+			values.put(Algorithm.ALGORITHM, algorithm);
+			final Uri uri = ContentURI.algorithm(algorithmId);
+			getContentResolver().update(uri, values, null, null);
+
+			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), algorithmId);
+			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+			updateViews();
+		} catch (final NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void insertNewAlgorithm(final String algorithm) {
+		try {
+			final Algorithm algo = new Algorithm(permutation.getId(), new Instruction(algorithm), 1);
+			getContentResolver().insert(ContentURI.algorithms(), algo.toContentValues());
+			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), -1);
+			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+			updateViews();
+		} catch (final NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }

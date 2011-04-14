@@ -19,53 +19,56 @@
 
 package se.slackers.cube.adapter;
 
-import java.util.List;
-
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.model.algorithm.Algorithm;
+import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.view.AlgorithmView;
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 
-public class AlgorithmAdapter extends ArrayAdapter<Algorithm> {
+public class AlgorithmAdapter extends CursorAdapter {
 	private final Config config;
-	private Algorithm favorite;
+	private final LayoutInflater inflater;
+	private final Permutation permutation;
+	private long favoriteId = -1;
 
-	public AlgorithmAdapter(final Context context, final Config config, final List<Algorithm> algorithms,
-			final Algorithm favorite) {
-		super(context, R.layout.component_algorithm_row, R.id.algorithm, algorithms);
+	public AlgorithmAdapter(final Context context, final Cursor cursor, final Permutation permutation,
+			final Config config) {
+		super(context, cursor, true);
+		this.permutation = permutation;
 		this.config = config;
-		this.favorite = favorite;
+
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
-	public View getView(final int position, View convertView, final ViewGroup parent) {
-		if (convertView == null) {
-			final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
-					Context.LAYOUT_INFLATER_SERVICE);
-			convertView = inflater.inflate(R.layout.component_algorithm_row, null);
-		}
-		final Algorithm algorithm = getItem(position);
-		final AlgorithmView algorithmView = (AlgorithmView) convertView.findViewById(R.id.algorithm);
+	public void bindView(final View view, final Context context, final Cursor cursor) {
+		final Algorithm algorithm = Algorithm.fromCursor(cursor, permutation);
+
+		final AlgorithmView algorithmView = (AlgorithmView) view.findViewById(R.id.algorithm);
+		final ImageView image = (ImageView) view.findViewById(R.id.favorite);
+
 		algorithmView.setAlgorithm(config, algorithm);
 
-		final ImageView image = (ImageView) convertView.findViewById(R.id.favorite);
-		if (favorite != null && favorite.equals(algorithm)) {
+		if ((favoriteId < 0 && algorithm.isFavorite()) || (favoriteId == algorithm.getId())) {
 			image.setImageResource(R.drawable.ic_menu_star_selected);
 		} else {
 			image.setImageResource(R.drawable.ic_menu_star);
 		}
-
-		return convertView;
 	}
 
-	public void setFavorite(final Algorithm algorithm) {
-		this.favorite = algorithm;
-		notifyDataSetChanged();
+	@Override
+	public View newView(final Context context, final Cursor cursor, final ViewGroup viewGroup) {
+		return inflater.inflate(R.layout.component_algorithm_row, null);
+	}
+
+	public void setFavorite(final long id) {
+		favoriteId = id;
 	}
 }

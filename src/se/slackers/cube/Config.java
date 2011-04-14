@@ -27,6 +27,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class Config {
 	public static final String QUICKLIST = "quicklist";
@@ -39,6 +40,7 @@ public class Config {
 
 	public static final int COLOR = 0xffffffff;
 	public static final int REVERSE_COLOR = 0xffa0a0a0;
+	private static final String TAG = "CubeAlgorithms";
 
 	private final boolean coloredReverse;
 	private boolean triggers;
@@ -178,5 +180,15 @@ public class Config {
 
 	public boolean sortQuickListByViews() {
 		return sortQuickListByViews;
+	}
+
+	public static void debug(final String format, final Object... args) {
+		if (Log.isLoggable(TAG, Log.DEBUG)) {
+			debug(String.format(format, args));
+		}
+	}
+
+	public static void debug(final String msg) {
+		Log.d(TAG, msg);
 	}
 }

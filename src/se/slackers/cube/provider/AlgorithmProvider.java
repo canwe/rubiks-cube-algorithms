@@ -73,7 +73,7 @@ public class AlgorithmProvider extends ContentProvider {
 		case ALGORITHM_ID:
 			qb.setTables(DatabaseHelper.ALGORITHM_TABLE);
 			qb.setProjectionMap(algorithmProjectionMap);
-			qb.appendWhereEscapeString(Algorithm._ID + "=" + uri.getPathSegments().get(1));
+			qb.appendWhere(Algorithm._ID + "=" + uri.getPathSegments().get(1));
 			break;
 		case PERMUTATIONS:
 			qb.setTables(DatabaseHelper.PERMUTATION_TABLE);
@@ -185,6 +185,17 @@ public class AlgorithmProvider extends ContentProvider {
 			break;
 		case ALGORITHMS:
 			count = db.update(DatabaseHelper.ALGORITHM_TABLE, values, where, whereArgs);
+			break;
+		case ALGORITHM_ID:
+			count = db.update(DatabaseHelper.ALGORITHM_TABLE, values, Algorithm._ID + "="
+					+ uri.getPathSegments().get(1), null);
+			break;
+		case PERMUTATION_ALGORITHMS:
+			final String permutationWhere = String.format("(%s=%s)", Algorithm.PERMUTATION_ID, uri.getPathSegments()
+					.get(1));
+			final String extendedWhere = where == null ? permutationWhere : String.format("%s AND (%s)",
+					permutationWhere, where);
+			count = db.update(DatabaseHelper.ALGORITHM_TABLE, values, extendedWhere, whereArgs);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI " + uri);

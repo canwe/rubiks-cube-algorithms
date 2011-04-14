@@ -25,6 +25,7 @@ import java.util.List;
 import se.slackers.cube.R;
 import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.algorithm.Instruction;
+import se.slackers.cube.model.algorithm.InstructionParseException;
 import se.slackers.cube.model.algorithm.Move;
 import android.app.Activity;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InputActivity extends Activity implements OnClickListener {
 	public static final String ALGORITHM = "algorithm";
@@ -52,9 +54,8 @@ public class InputActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_input);
 
-		configure(getIntent());
-
 		algorithmView = (TextView) findViewById(R.id.algorithm);
+		configure(getIntent());
 
 		final Button save = (Button) findViewById(R.id.save);
 		save.setOnClickListener(new OnClickListener() {
@@ -123,8 +124,16 @@ public class InputActivity extends Activity implements OnClickListener {
 	}
 
 	protected void saveAlgorithm() {
+		final String algorithm = String.valueOf(algorithmView.getText());
+		try {
+			new Instruction(algorithm);
+		} catch (final InstructionParseException e) {
+			Toast.makeText(this, R.string.error_invalid_algorithm, Toast.LENGTH_LONG).show();
+			return;
+		}
+
 		final Intent intent = new Intent();
-		intent.putExtra(ALGORITHM, algorithmView.getText());
+		intent.putExtra(ALGORITHM, algorithm);
 		intent.putExtra(ALGORITHM_ID, getIntent().getLongExtra(ALGORITHM_ID, 0));
 		setResult(Activity.RESULT_OK, intent);
 		finish();

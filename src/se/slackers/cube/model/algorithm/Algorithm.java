@@ -72,6 +72,10 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 		return rank;
 	}
 
+	public boolean isFavorite() {
+		return rank != 0;
+	}
+
 	public int compareTo(final Algorithm a) {
 		if (permutationId != a.permutationId) {
 			return permutationId.compareTo(a.permutationId);

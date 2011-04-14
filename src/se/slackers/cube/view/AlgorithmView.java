@@ -54,7 +54,9 @@ public class AlgorithmView extends TextView {
 
 	public AlgorithmView(final Context context, final Config config, final Algorithm algorithm) {
 		super(context);
-		setAlgorithm(config, algorithm);
+		if (algorithm != null) {
+			setAlgorithm(config, algorithm);
+		}
 	}
 
 	public void setAlgorithm(final Config config, final Algorithm algorithm) {

@@ -19,6 +19,8 @@
 
 package se.slackers.cube.provider;
 
+import java.security.NoSuchAlgorithmException;
+
 import se.slackers.cube.config.NotationType;
 import se.slackers.cube.model.algorithm.Algorithm;
 import se.slackers.cube.model.permutation.Permutation;
@@ -56,6 +58,45 @@ public class AlgorithmProviderHelper {
 				return Permutation.fromCursor(cursor);
 			}
 			throw new IllegalArgumentException("The provided id is not a valid algorithm: id=" + id);
+		} finally {
+			cursor.close();
+		}
+	}
+
+	public static void setFavorite(final ContentResolver resolver, final long oldId, final long newId) {
+		final ContentValues values = new ContentValues();
+		if (oldId >= 0) {
+			values.put(Algorithm.RANK, 0);
+			resolver.update(ContentURI.algorithm(oldId), values, null, null);
+		}
+		if (newId >= 0) {
+			values.put(Algorithm.RANK, 1);
+			resolver.update(ContentURI.algorithm(newId), values, null, null);
+		}
+	}
+
+	public static Algorithm getFavoriteAlgorithm(final ContentResolver resolver, final Permutation permutation)
+			throws NoSuchAlgorithmException {
+		final Uri uri = ContentURI.favoriteForPermutation(permutation.getId());
+		final Cursor cursor = resolver.query(uri, null, null, null, null);
+		try {
+			if (cursor.moveToFirst()) {
+				return Algorithm.fromCursor(cursor, permutation);
+			}
+			throw new NoSuchAlgorithmException("Favorite algorithms doesn't exist");
+		} finally {
+			cursor.close();
+		}
+	}
+
+	public static Algorithm getAlgorithm(final ContentResolver resolver, final Permutation permutation, final long id)
+			throws NoSuchAlgorithmException {
+		final Cursor cursor = resolver.query(ContentURI.algorithm(id), null, null, null, null);
+		try {
+			if (cursor.moveToFirst()) {
+				return Algorithm.fromCursor(cursor, permutation);
+			}
+			throw new NoSuchAlgorithmException("Algorithm " + id + " doesn't exist");
 		} finally {
 			cursor.close();
 		}
