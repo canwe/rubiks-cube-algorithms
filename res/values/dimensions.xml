@@ -18,6 +18,7 @@
 -->
 
 <resources>
+	<dimen name="font_size_header_2">24dp</dimen>
 	<dimen name="font_size_header">30dp</dimen>
 	<dimen name="font_size_standard">15dp</dimen>
 	<dimen name="font_size_smaller">12dp</dimen>

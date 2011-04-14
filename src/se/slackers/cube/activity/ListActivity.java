@@ -92,7 +92,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 			showDialog(MESSAGE_DIALOG);
 			config.setMessageDialogVersion(version);
 		} else if (config.startWithQuickList()) {
-			startActivity(new Intent(this, FilterListActivity.class));
+			startActivity(new Intent(this, QuickListActivity.class));
 		}
 	}
 

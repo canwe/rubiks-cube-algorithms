@@ -57,7 +57,7 @@ public abstract class BaseActivity extends Activity {
 			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_filtered:
-			startActivityForResult(new Intent(this, FilterListActivity.class), item.getItemId());
+			startActivityForResult(new Intent(this, QuickListActivity.class), item.getItemId());
 			return true;
 		}
 		return false;

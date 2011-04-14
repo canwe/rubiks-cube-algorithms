@@ -51,7 +51,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-public class FilterListActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
+public class QuickListActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 	public static final String PERMUTATION = "permutation";
 	private PermutationAlgorithmAdapter adapter;
 	private WakeLock wakeLock;

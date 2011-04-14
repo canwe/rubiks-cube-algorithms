@@ -35,7 +35,7 @@
 		<TextView
 			android:id="@+id/permutationName"
 			style="@style/text_headers"
-			android:layout_marginBottom="@dimen/margin_large" 
+			android:layout_marginBottom="@dimen/margin_large"
 			/>		
 		<FrameLayout 
 			android:id="@+id/permutationContainer" 
@@ -53,7 +53,7 @@
 			android:layout_marginBottom="20dp"
 			/>			
 	</LinearLayout>
-	
+
 	<com.google.ads.AdView 
 		android:id="@+id/ad"
         android:layout_width="fill_parent"

@@ -19,6 +19,8 @@
 
 package se.slackers.cube.activity;
 
+import java.util.Random;
+
 import se.slackers.cube.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,6 +34,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class InfoActivity extends Activity {
+
+	private static String[] persons = { "girlfriend", "dog", "roommate", "boss", "I" };
+	private static String[] verbs = { "ate", "smoked", "cursed", "stole" };
+	private static String[] nouns = { "my credit card", "my soul", "my pay check", "my shoes", "all of my food" };
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -52,11 +58,22 @@ public class InfoActivity extends Activity {
 				i.setType("message/rfc822"); // use from live device
 				i.putExtra(Intent.EXTRA_EMAIL, new String[] { email, "" });
 				i.putExtra(Intent.EXTRA_SUBJECT, subject);
-				i.putExtra(Intent.EXTRA_TEXT, "Android version: " + android.os.Build.VERSION.RELEASE + "\n---\n");
+				final String reason = generateReason();
+				i.putExtra(Intent.EXTRA_TEXT, "Hey, your app is awesome!\nI was going to give you a donation but "
+						+ reason + "\nAnyway, have a nice day!\n");
 
 				startActivity(Intent.createChooser(i, getText(R.string.email_chooser)));
 			}
 		});
+	}
+
+	protected String generateReason() {
+		final Random random = new Random();
+		final String person = persons[random.nextInt(persons.length)];
+		final String verb = verbs[random.nextInt(verbs.length)];
+		final String noun = nouns[random.nextInt(nouns.length)];
+
+		return String.format("my %s %s %s.", person, verb, noun);
 	}
 
 	private String getCurrentVersion() {

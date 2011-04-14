@@ -20,10 +20,20 @@
     	<item name="android:textSize">@dimen/font_size_header</item>
     </style>
     
+    <style name="info_header" parent="text_headers">
+   		<item name="android:gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">@dimen/margin_standard</item>
+		<item name="android:textSize">@dimen/font_size_header_2</item> 
+	</style>
+    
     <style name="text_standard">
     	<item name="android:layout_width">wrap_content</item>
     	<item name="android:layout_height">wrap_content</item>
     	<item name="android:textSize">@dimen/font_size_standard</item>
+    </style>
+    
+    <style name="info_text" parent="text_standard">
+    	<item name="android:layout_marginBottom">@dimen/margin_large</item>
     </style>
    
      <style name="text_smaller">

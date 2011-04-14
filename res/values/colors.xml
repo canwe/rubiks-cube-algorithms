@@ -7,4 +7,6 @@
 	<color name="arrow_corner">#ff003399</color>
 	<color name="border">#ff000000</color>
 	<color name="background">#ff000000</color>
+	
+	<color name="help_color">#80202020</color>
 </resources>
