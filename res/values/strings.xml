@@ -25,10 +25,12 @@
     
     <string name="messageTitle">Changes in Algorithms</string>
     <string name="message">
-    	In this release I\'ve added support for adding your own algorithms, a new 
-    	views and extended the help view with more information. The new view is 
-    	the Quick list where you can view a subset of the algorithms. There are, 
-    	of course, also a heap of changes in the backend.
+    	New features in this release are:
+    	\n* Adding and editing algorithms.
+    	\n* Application documentation in the help view. 
+    	\n* Quick list, where you can view a subset 
+    	of the algorithms. It can also be accessed by a Home Screen shortcut.
+    	\n* And a lot of backend improvements to make way for F2L. 
     </string>
 
 	<string name="firststart_title">Welcome to Algorithms</string>    
