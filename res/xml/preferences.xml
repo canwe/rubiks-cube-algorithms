@@ -5,13 +5,6 @@
     <PreferenceCategory
     	android:title="@string/category_application"
     	>
-    	<!-- Quick list -->
-    	<CheckBoxPreference
-    		android:key="quicklist"
-    		android:title="@string/pref_quicklist_title"
-    		android:summary="@string/pref_quicklist_summary"
-    		android:defaultValue="@string/pref_quicklist_default"
-    		/>
     	<!-- Quick list sorting-->
     	<CheckBoxPreference
     		android:key="quicklist.sort"

@@ -293,7 +293,6 @@
 <item>1, OLL, d0e0e, , OLL 14, R\'FRUR\'F\'Ry\'RU\'R\'</item>
 <item>0, OLL, d0e0e, , OLL 14, y\'R\'U\'y\'R\'UR2BR\'U\'R\'UR</item>
 <item>0, OLL, d0e0e, , OLL 14, y2B\'U\'R\'UR2BR\'U\'R\'UR</item>
-<item>0, OLL, d0e0e, , OLL 14, y2x\'RU\'R\'F\'RUR\'xyR\'UR</item>
 <item>0, OLL, d0e0e, , OLL 14, y2r\'UrUr\'U\'ryRU\'R\'</item>
 <item>1, OLL, 92e83, , OLL 15, y2l\'U\'lL\'U\'LUl\'Ul</item>
 <item>0, OLL, 92e83, , OLL 15, y2R\'F\'RL\'U\'LUR\'FR</item>
@@ -359,7 +358,6 @@
 <item>0, OLL, 94e52, , OLL 57, x\'M\'U\'RUMU\'R\'Ux</item>
 <item>1, OLL, 94e52, , OLL 57, R\'U\'RUMU\'R\'Ur</item>
 <item>0, OLL, 94e52, , OLL 57, MUMUMU2M\'UM\'UM\'</item>
-<item>0, OLL, 94e52, , OLL 57, MUMUMU2M\'UM\'UM\'</item>
 <item>0, OLL, 94e52, , OLL 57, M\'U\'M\'U\'M\'U2MU\'MU\'M</item>
 <item>0, OLL, 94e52, , OLL 57, MUM\'U\'MUM\'UMU2M\'</item>
 <item>0, OLL, 94e52, , OLL 57, M\'U\'MUM\'U\'MU\'M\'U2M</item>
@@ -376,6 +374,7 @@
 <item>0, OLL, 94e52, , OLL 57, M\'U\'MUF2M\'U\'MUF2</item>
 <item>0, OLL, 94e52, , OLL 57, M2U\'F2U\'M\'UM2F2UM</item>
 <item>0, OLL, 94e52, , OLL 57, FM\'FUM2U2M2UF\'MF\'</item>
+
 	</string-array>
 	<string-array name="pll_algorithms">
 <item>1, PLL, 1ce70, 17355371, H Permutation, M2UM2U2M2UM2</item>

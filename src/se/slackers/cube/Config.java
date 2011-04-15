@@ -30,7 +30,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class Config {
-	public static final String QUICKLIST = "quicklist";
 	public static final String QUICKLIST_SORT = "quicklist.sort";
 	public static final String NOTATION = "cube.notation";
 	public static final String NOTATION_DOUBLE = "cube.notation.double";
@@ -45,7 +44,6 @@ public class Config {
 	private final boolean coloredReverse;
 	private boolean triggers;
 	private int showDialog;
-	private final boolean startWithQuickList;
 	private final boolean sortQuickListByViews;
 
 	private final NotationType notationScheme;
@@ -82,15 +80,10 @@ public class Config {
 		notationScheme = NotationType.valueOf(getString(NOTATION, NotationType.Singmaster.name()));
 		doubleTurns = DoubleNotation.valueOf(getString(NOTATION_DOUBLE, DoubleNotation.Superscript.name()));
 
-		startWithQuickList = settings.getBoolean(QUICKLIST, false);
 		sortQuickListByViews = settings.getBoolean(QUICKLIST_SORT, false);
 		coloredReverse = settings.getBoolean(NOTATION_COLOR_REVERSE, true);
 		triggers = settings.getBoolean(SHOW_TRIGGERS, true);
 		showDialog = settings.getInt(SHOW_DIALOG, 0);
-	}
-
-	public boolean startWithQuickList() {
-		return startWithQuickList;
 	}
 
 	public boolean isFirstStart() {

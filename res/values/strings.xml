@@ -20,8 +20,8 @@
 
 <resources>
     <string name="app_name">Algorithms</string>
-    <string name="labelView">View Algorithm</string>
-    <string name="labelPreferences">Preferences</string>
+    <string name="app_shortcut">Algorithms Quick List</string>
+    <string name="app_quicklist">Quick List</string>
     
     <string name="messageTitle">Changes in Algorithms</string>
     <string name="message">
@@ -78,10 +78,6 @@
 	<string name="category_system">System</string>
 		
 	<!-- General -->
-	<string name="pref_quicklist_title">Start with quick list</string>
-	<string name="pref_quicklist_summary">Go directly to the quick list when the application starts. (experimental)</string>
-	<string name="pref_quicklist_default">false</string>
-
 	<string name="pref_quicklistsort_title">Sort quick list by usage</string>
 	<string name="pref_quicklistsort_summary">Sort the permutations in the quick list by the number of times they\'ve been used.</string>
 	<string name="pref_quicklistsort_default">false</string>

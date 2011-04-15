@@ -42,6 +42,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.view.Menu;
@@ -76,6 +77,8 @@ public class ViewActivity extends BaseActivity {
 	private long favoriteCandidateId = -1;
 	private Permutation permutation;
 
+	private AdView adView;
+
 	@Override
 	protected void onCreate(final Bundle state) {
 		super.onCreate(state);
@@ -88,25 +91,27 @@ public class ViewActivity extends BaseActivity {
 			favoriteCandidateId = state.getLong(ALGORITHM_CANDIDATE, -1);
 		}
 
-		permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(), permutationId);
-		try {
-			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
-		} catch (final NoSuchAlgorithmException e) {
-			favorite = null;
-		}
-
 		renderer = new PermutationRenderer(config, false);
-
 		permutationName = (TextView) findViewById(R.id.permutationName);
 		permutationContainer = (FrameLayout) findViewById(R.id.permutationContainer);
 		algorithmContainer = (FrameLayout) findViewById(R.id.algorithmContainer);
+		adView = (AdView) this.findViewById(R.id.ad);
 
-		updatePermutation(permutation);
-		updateViews();
+		// execute the 'heavier' operations later
+		new Handler().post(new Runnable() {
+			public void run() {
+				permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(), permutationId);
+				try {
+					favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+				} catch (final NoSuchAlgorithmException e) {
+					favorite = null;
+				}
+				updatePermutation(permutation);
+				updateViews();
 
-		// Look up the AdView as a resource and load a request.
-		final AdView adView = (AdView) this.findViewById(R.id.ad);
-		adView.loadAd(new AdRequest());
+				adView.loadAd(new AdRequest());
+			}
+		});
 
 		// prevent the screen from turning off
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);

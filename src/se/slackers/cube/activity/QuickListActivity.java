@@ -65,6 +65,21 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 		super.onCreate(state);
 		setContentView(R.layout.layout_quick_list);
 
+		// check if we were triggered by a shortcut request
+		if ("android.intent.action.CREATE_SHORTCUT".equals(getIntent().getAction())) {
+			final Intent shortcutIntent = new Intent(this, QuickListActivity.class);
+			shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+			final Intent intent = new Intent();
+			intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+			intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getResources().getString(R.string.app_quicklist));
+			intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+					Intent.ShortcutIconResource.fromContext(this, R.drawable.icon));
+			intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+			setResult(RESULT_OK, intent);
+			finish();
+		}
+
 		final Map<Long, Algorithm> algorithms = new HashMap<Long, Algorithm>();
 
 		tracker = Usage.start(this);
