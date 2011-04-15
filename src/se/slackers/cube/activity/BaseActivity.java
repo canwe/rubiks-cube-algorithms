@@ -21,6 +21,7 @@ package se.slackers.cube.activity;
 
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
+import se.slackers.cube.Usage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,13 +29,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 public abstract class BaseActivity extends Activity {
 	protected Config config;
+	protected GoogleAnalyticsTracker tracker;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		config = new Config(this);
+
+		tracker = Usage.start(this);
 	}
 
 	@Override
@@ -48,15 +54,19 @@ public abstract class BaseActivity extends Activity {
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_properties:
+			tracker.trackPageView(Usage.PROPERTIES);
 			startActivityForResult(new Intent(this, CubePreferencesActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_info:
+			tracker.trackPageView(Usage.HELP);
 			startActivityForResult(new Intent(this, InfoActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_notation:
+			tracker.trackPageView(Usage.NOTATION);
 			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_filtered:
+			tracker.trackPageView(Usage.QUICK_LIST);
 			startActivityForResult(new Intent(this, QuickListActivity.class), item.getItemId());
 			return true;
 		}

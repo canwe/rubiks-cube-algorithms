@@ -21,6 +21,7 @@ package se.slackers.cube.activity;
 
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
+import se.slackers.cube.Usage;
 import se.slackers.cube.adapter.PermutationCursorAdapter;
 import se.slackers.cube.model.permutation.Permutation;
 import se.slackers.cube.provider.AlgorithmProviderHelper;
@@ -112,6 +113,8 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		permutation.setViews(permutation.getViews() + 1);
 		AlgorithmProviderHelper.save(getContentResolver(), permutation);
 
+		tracker.trackPageView(String.format(Usage.ALGORITHM_ID, permutation.getName()));
+
 		// start activity
 		final Intent intent = new Intent(this, ViewActivity.class);
 		final Bundle bundle = new Bundle();
@@ -122,6 +125,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 
 	public boolean onLongClick(final View view) {
 		final Permutation permutation = ((PermutationView) view).getPermutation();
+
 		if (permutation.getQuickList()) {
 			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			final String title = getResources().getString(R.string.quicklist_remove, permutation.getName());
@@ -140,6 +144,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 							case F2L:
 								break;
 							}
+							tracker.trackPageView(String.format(Usage.QUICK_LIST_REMOVE, permutation.getName()));
 						}
 					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
@@ -155,6 +160,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(true);
 							AlgorithmProviderHelper.save(getContentResolver(), permutation);
+							tracker.trackPageView(String.format(Usage.QUICK_LIST_ADD, permutation.getName()));
 						}
 					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {

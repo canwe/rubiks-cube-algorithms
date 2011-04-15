@@ -24,6 +24,7 @@ import java.util.Map;
 
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
+import se.slackers.cube.Usage;
 import se.slackers.cube.adapter.PermutationAlgorithmAdapter;
 import se.slackers.cube.model.algorithm.Algorithm;
 import se.slackers.cube.model.permutation.Permutation;
@@ -50,11 +51,13 @@ import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class QuickListActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 	public static final String PERMUTATION = "permutation";
 	private PermutationAlgorithmAdapter adapter;
 	private WakeLock wakeLock;
+	private GoogleAnalyticsTracker tracker;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -63,6 +66,8 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 		setContentView(R.layout.layout_quick_list);
 
 		final Map<Long, Algorithm> algorithms = new HashMap<Long, Algorithm>();
+
+		tracker = Usage.start(this);
 
 		final ContentResolver resolver = getContentResolver();
 		final Cursor favorites = resolver.query(Algorithm.CONTENT_URI, null, Algorithm.RANK + "<>0", null, null);
@@ -111,6 +116,8 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 		permutation.setViews(permutation.getViews() + 1);
 		AlgorithmProviderHelper.save(getContentResolver(), permutation);
 
+		tracker.trackPageView(String.format(Usage.ALGORITHM_ID, permutation.getName()));
+
 		// start activity
 		final Intent intent = new Intent(this, ViewActivity.class);
 		final Bundle bundle = new Bundle();
@@ -132,6 +139,7 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 							permutation.setQuickList(false);
 							AlgorithmProviderHelper.save(getContentResolver(), permutation);
 							adapter.notifyDataSetChanged();
+							tracker.trackPageView(String.format(Usage.QUICK_LIST_REMOVE, permutation.getName()));
 						}
 					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
@@ -147,6 +155,7 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 						public void onClick(final DialogInterface dialog, final int id) {
 							permutation.setQuickList(true);
 							AlgorithmProviderHelper.save(getContentResolver(), permutation);
+							tracker.trackPageView(String.format(Usage.QUICK_LIST_ADD, permutation.getName()));
 						}
 					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog, final int id) {
@@ -173,15 +182,23 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_properties:
+			tracker.trackPageView(Usage.PROPERTIES);
 			startActivityForResult(new Intent(this, CubePreferencesActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_info:
+			tracker.trackPageView(Usage.HELP);
 			startActivityForResult(new Intent(this, InfoActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_notation:
+			tracker.trackPageView(Usage.NOTATION);
 			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
 			return true;
+		case R.id.menu_filtered:
+			tracker.trackPageView(Usage.QUICK_LIST);
+			startActivityForResult(new Intent(this, QuickListActivity.class), item.getItemId());
+			return true;
 		case R.id.menu_grid:
+			tracker.trackPageView(Usage.PERMUTATION);
 			startActivityForResult(new Intent(this, se.slackers.cube.activity.ListActivity.class), item.getItemId());
 			return true;
 		}

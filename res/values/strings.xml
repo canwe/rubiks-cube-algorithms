@@ -132,7 +132,7 @@
 		On this screen you get an overview of all the cube permutations that the application 
 		has solutions for. You can scroll up and down until you find the case you\'re looking 
 		for and then click on the image to view algorithms for that permutation. 
-		\nTo <u>add a permutation to the quick list</u>, long press on a permutation and a small 
+		\n\nTo <u>add a permutation to the quick list</u>, long press on a permutation and a small 
 		dialog will appear where you have the choice of adding/removing it to/from the quick list.
 	</string>
 
@@ -141,18 +141,17 @@
 		The quick list is a list of permutations and the chosen algorithm for each of them. 
 		The list can be sorted by the name of the permutation or by the number of times the 
 		user it, this is done in the preferences.
-		\nBy clicking on an item you get to the corresponding algorithm view. 
-		\nIf you long press
+		\n\nBy clicking on an item you get to the corresponding algorithm view. If you long press
 		on an item you will get a dialog where you can <u>remove the item from the quick list</u>.
 	</string>
 	
 	<string name="help_algo_header">Algorithm view</string>
 	<string name="help_algo_text">
 		In the algorithm view you see the chosen algorithm for the current permutation.
-		\nTo <u>change the algorithm</u>, click on the algorithm to show the selection 
+		\n\nTo <u>change the algorithm</u>, click on the algorithm to show the selection 
 		dialog. In this dialog you can select an algorithm you like better. You can also 
 		access the dialog from the menu.
-		\nTo <u>add an algorithm</u>, click on the corresponding menu item. 
+		\n\nTo <u>add an algorithm</u>, click on the corresponding menu item. 
 		In the input mode you type the algorithm, in Singmaster notation, and press save to
 		store it.
 		\nIf you want to <u>edit an algorithm</u> just long press on an algorithm. 
@@ -168,8 +167,8 @@
 		the users. Use the button below to send me an email, visit the google group at 
 		http://goo.gl/3Mh3k or the project page at http://goo.gl/n3V1D
 	</string>
-	<string name="feedback">Send E-mail</string>
-	<string name="email_chooser">Select E-mail application</string>
+	<string name="feedback">Send Email</string>
+	<string name="email_chooser">Select email application</string>
 	
 	
 	<!-- Rubik Input Method -->
