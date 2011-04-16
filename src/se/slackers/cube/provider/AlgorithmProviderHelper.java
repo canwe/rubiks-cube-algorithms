@@ -102,4 +102,23 @@ public class AlgorithmProviderHelper {
 		}
 	}
 
+	/**
+	 * @param id
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static void randomFavorite(final ContentResolver resolver, final long permutationId)
+			throws NoSuchAlgorithmException {
+		final Cursor cursor = resolver
+				.query(ContentURI.algorithmsForPermutation(permutationId), null, null, null, null);
+		try {
+			if (cursor.moveToFirst()) {
+				final long id = cursor.getLong(cursor.getColumnIndex(Algorithm._ID));
+				setFavorite(resolver, -1, id);
+				return;
+			}
+			throw new NoSuchAlgorithmException("No algorithms found");
+		} finally {
+			cursor.close();
+		}
+	}
 }

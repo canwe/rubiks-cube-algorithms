@@ -172,7 +172,14 @@ public class AlgorithmProvider extends ContentProvider {
 
 	@Override
 	public int delete(final Uri uri, final String where, final String[] whereArgs) {
-		throw new UnsupportedOperationException("delete is not implemented");
+		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+		switch (sUriMatcher.match(uri)) {
+		case ALGORITHM_ID:
+			final String myWhere = String.format("%s=%s AND %s=0", Algorithm._ID, uri.getPathSegments().get(1),
+					Algorithm.BUILTIN);
+			return db.delete(DatabaseHelper.ALGORITHM_TABLE, myWhere, null);
+		}
+		throw new IllegalArgumentException("Unknown URI " + uri);
 	}
 
 	@Override
@@ -222,6 +229,7 @@ public class AlgorithmProvider extends ContentProvider {
 		algorithmProjectionMap.put(Algorithm.PERMUTATION_ID, Algorithm.PERMUTATION_ID);
 		algorithmProjectionMap.put(Algorithm.ALGORITHM, Algorithm.ALGORITHM);
 		algorithmProjectionMap.put(Algorithm.RANK, Algorithm.RANK);
+		algorithmProjectionMap.put(Algorithm.BUILTIN, Algorithm.BUILTIN);
 
 		permutationProjectionMap = new HashMap<String, String>();
 		permutationProjectionMap.put(Permutation._ID, Permutation._ID);

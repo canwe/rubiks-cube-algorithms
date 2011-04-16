@@ -90,9 +90,9 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 			showDialog(FIRSTSTART_DIALOG);
 			config.setMessageDialogVersion(version);
 		} else if (config.getMessageDialogVersion() < version) {
+			showDialog(MESSAGE_DIALOG);
 			config.setMessageDialogVersion(version);
 		}
-		showDialog(MESSAGE_DIALOG);
 	}
 
 	private PackageInfo getPackageInfo() {

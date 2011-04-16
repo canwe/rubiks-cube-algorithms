@@ -18,36 +18,27 @@
   along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<RelativeLayout 
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res/se.slackers.cube.view" 
-	android:orientation="horizontal" 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"
-	android:padding="2dp"
-	>
-	<se.slackers.cube.view.AlgorithmView
-		android:id="@+id/algorithm"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="@dimen/dialog_border"
+              >
+	<TextView
+		android:id="@+id/menu_edit"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true" 		
+		android:layout_marginRight="@dimen/dialog_border"
+		android:text="@string/menu_edit"
+		android:drawableTop="@drawable/ic_menu_edit"
 		/>
-	<ImageView
-		android:id="@+id/favorite"
+	
+ 
+	<TextView
+		android:id="@+id/menu_delete"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:layout_centerVertical="true"
-		android:src="@drawable/ic_menu_star"
-		
+		android:text="@string/menu_delete"
+		android:drawableTop="@drawable/ic_menu_delete"
 		/>
-	<ImageView
-		android:id="@+id/locked"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_toLeftOf="@+id/favorite"
-		android:layout_centerVertical="true"
-		android:layout_marginRight="@dimen/margin_standard"
-		android:src="@drawable/ic_lock_idle_lock"
-		/>
-</RelativeLayout>
+</LinearLayout>

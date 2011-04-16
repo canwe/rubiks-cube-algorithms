@@ -31,6 +31,7 @@ import android.provider.BaseColumns;
 public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<Algorithm> {
 	public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.slackers.algorithm";
 	public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.slackers.algorithm";
+	public static final int BUILTIN_ALGORITHM = 1;
 
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AlgorithmProvider.AUTHORITY + "/algorithms");
 	public static final String DEFAULT_SORT_ORDER = "algorithm";
@@ -38,20 +39,23 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 	public static final String PERMUTATION_ID = "permutation";
 	public static final String ALGORITHM = "algorithm";
 	public static final String RANK = "rank";
+	public static final String BUILTIN = "builtin";
 
 	private Long id;
 	private Long permutationId;
 	private final Instruction instruction;
 	private Integer rank;
+	private final int builtin;
 
-	public Algorithm(final long permutationId, final Instruction instruction, final int rank) {
+	public Algorithm(final long permutationId, final Instruction instruction, final int rank, final int builtin) {
 		this.permutationId = permutationId;
 		this.instruction = instruction;
 		this.rank = rank;
+		this.builtin = builtin;
 	}
 
 	public Algorithm rotate(final int turns) {
-		final Algorithm algorithm = new Algorithm(permutationId, instruction.rotate(turns), rank);
+		final Algorithm algorithm = new Algorithm(permutationId, instruction.rotate(turns), rank, builtin);
 		algorithm.setId(id);
 		return algorithm;
 	}
@@ -70,6 +74,10 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 
 	public int getRank() {
 		return rank;
+	}
+
+	public int getBuiltIn() {
+		return builtin;
 	}
 
 	public boolean isFavorite() {
@@ -137,14 +145,15 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 		final long id = cursor.getLong(cursor.getColumnIndex(Algorithm._ID));
 		final long pid = cursor.getLong(cursor.getColumnIndex(Algorithm.PERMUTATION_ID));
 		final int rank = cursor.getInt(cursor.getColumnIndex(Algorithm.RANK));
+		final int builtin = cursor.getInt(cursor.getColumnIndex(Algorithm.BUILTIN));
 		final String algorithm = cursor.getString(cursor.getColumnIndex(Algorithm.ALGORITHM));
 
 		if (permutation == null) {
-			final Algorithm a = new Algorithm(pid, new Instruction(algorithm), rank);
+			final Algorithm a = new Algorithm(pid, new Instruction(algorithm), rank, builtin);
 			a.setId(id);
 			return a;
 		}
-		final Algorithm a = new Algorithm(pid, new Instruction(algorithm, permutation.getRotation()), rank);
+		final Algorithm a = new Algorithm(pid, new Instruction(algorithm, permutation.getRotation()), rank, builtin);
 		a.setId(id);
 		return a;
 
@@ -156,6 +165,7 @@ public class Algorithm implements BaseColumns, Comparable<Algorithm>, Rotatable<
 		values.put(Algorithm.PERMUTATION_ID, permutationId);
 		values.put(Algorithm.ALGORITHM, instruction.render(NotationType.Singmaster));
 		values.put(Algorithm.RANK, rank);
+		values.put(Algorithm.BUILTIN, builtin);
 		return values;
 	}
 }

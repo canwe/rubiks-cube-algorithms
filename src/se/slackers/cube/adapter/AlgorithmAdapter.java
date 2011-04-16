@@ -53,6 +53,13 @@ public class AlgorithmAdapter extends CursorAdapter {
 
 		final AlgorithmView algorithmView = (AlgorithmView) view.findViewById(R.id.algorithm);
 		final ImageView image = (ImageView) view.findViewById(R.id.favorite);
+		final ImageView locked = (ImageView) view.findViewById(R.id.locked);
+
+		if (algorithm.getBuiltIn() == Algorithm.BUILTIN_ALGORITHM) {
+			locked.setVisibility(View.VISIBLE);
+		} else {
+			locked.setVisibility(View.INVISIBLE);
+		}
 
 		algorithmView.setAlgorithm(config, algorithm);
 

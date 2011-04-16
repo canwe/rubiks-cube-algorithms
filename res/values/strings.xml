@@ -48,6 +48,10 @@
     <string name="additionalAlgorithms">Alternative algorithms:</string>
 
 	<string name="error_invalid_algorithm">Invalid algorithm syntax</string>
+	<string name="error_edit_builtin">Built-in algorithms can\'t be edited</string>
+	<string name="msg_algorithm_saved">Algorithm saved</string>
+	<string name="confirm_algorithm_remove">Do you really want to delete this algorithm?</string>
+	
     <string name="favorite_algorithm_changed">Algorithm changed</string>
     <string name="favorite_title">Set favorite algorithm</string>
     <string name="save">Save</string>
@@ -69,6 +73,8 @@
     <string name="menu_new">New algorithm</string>
     <string name="menu_select">Switch algorithm</string>
     <string name="menu_more">More</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Delete</string>
     
     <!-- Dialog -->
 	<string name="quicklist_add">Do you want to add \'%s\' to the quick list?</string>
@@ -152,7 +158,7 @@
 		\n\nTo <u>add an algorithm</u>, click on the corresponding menu item. 
 		In the input mode you type the algorithm, in Singmaster notation, and press save to
 		store it.
-		\nIf you want to <u>edit an algorithm</u> just long press on an algorithm. 
+		\nIf you want to <u>edit or delete an algorithm</u> just long press on it. 
 	</string>
 
 	<string name="help_info_header">About</string>

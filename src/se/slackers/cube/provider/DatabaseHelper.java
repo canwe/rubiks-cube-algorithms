@@ -43,7 +43,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "algorithms.db";
-	private static final int DATABASE_VERSION = 11;
+	private static final int DATABASE_VERSION = 12;
 
 	public static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
 	public static final String ALGORITHM_TABLE = "algorithms";
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		db.execSQL("CREATE TABLE " + ALGORITHM_TABLE + " (" + Algorithm._ID + " INTEGER PRIMARY KEY,"
 				+ Algorithm.PERMUTATION_ID + " INTEGER," + Algorithm.ALGORITHM + " TEXT," + Algorithm.RANK
-				+ " INTEGER);");
+				+ " INTEGER," + Algorithm.BUILTIN + " INTEGER);");
 
 		db.execSQL("CREATE TABLE " + PERMUTATION_TABLE + " (" + Permutation._ID + " INTEGER PRIMARY KEY,"
 				+ Permutation.TYPE + " TEXT," + Permutation.NAME + " INTEGER," + Permutation.FACE_CONFIG + " TEXT,"
@@ -97,11 +97,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
 		Log.w(LOG_TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
-
 		switch (oldVersion) {
 		default:
 			recreateButSaveFavorites(db);
+		case 11:
+			updateTo12(db);
 		}
+	}
+
+	/**
+	 * @param db
+	 */
+	private void updateTo12(final SQLiteDatabase db) {
+		db.execSQL(String.format("ALTER TABLE %s ADD %s INTEGER;", ALGORITHM_TABLE, Algorithm.BUILTIN));
+		final ContentValues values = new ContentValues();
+		values.put(Algorithm.BUILTIN, Algorithm.BUILTIN_ALGORITHM);
+		db.update(ALGORITHM_TABLE, values, null, null);
 	}
 
 	/**
@@ -160,7 +171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				permutation = lookup.get(permutation);
 			}
 			final int rank = Integer.parseInt(part[0]);
-			insertAlgorithm(db, new Algorithm(permutation.getId(), new Instruction(part[5]), rank));
+			insertAlgorithm(db, new Algorithm(permutation.getId(), new Instruction(part[5]), rank, 1));
 		}
 	}
 

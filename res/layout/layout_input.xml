@@ -29,16 +29,18 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="50dp"
-		android:layout_marginBottom="50dp"
+		android:layout_alignParentTop="true"
 		android:gravity="center"
 		android:textSize="24dp"
 		android:maxLength="40"
 		/>
+		
 	<LinearLayout 
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
 		android:layout_below="@+id/algorithm"
 		android:layout_above="@+id/save"
+		android:gravity="bottom"
 		android:layout_marginBottom="@dimen/margin_large"
 		android:orientation="vertical"
 		>
@@ -51,7 +53,7 @@
 			>
 			<Button style="@style/input_button" android:text="2" android:id="@+id/turn_double" />
 			<Button style="@style/input_button" android:text="'" android:id="@+id/turn_ccw" />
-			<ImageButton style="@style/input_button" android:src="@drawable/backspace" android:id="@+id/turn_backspace" />
+			<ImageButton style="@style/input_button" android:src="@drawable/ic_input_delete" android:id="@+id/turn_backspace" />
 		</LinearLayout>
 	
 		<LinearLayout

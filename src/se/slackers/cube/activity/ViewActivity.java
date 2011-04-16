@@ -34,9 +34,11 @@ import se.slackers.cube.render.PermutationRenderer;
 import se.slackers.cube.view.AlgorithmView;
 import se.slackers.cube.view.PermutationView;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -50,6 +52,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -101,11 +104,6 @@ public class ViewActivity extends BaseActivity {
 		new Handler().post(new Runnable() {
 			public void run() {
 				permutation = AlgorithmProviderHelper.getPermutationById(getContentResolver(), permutationId);
-				try {
-					favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
-				} catch (final NoSuchAlgorithmException e) {
-					favorite = null;
-				}
 				updatePermutation(permutation);
 				updateViews();
 
@@ -129,6 +127,12 @@ public class ViewActivity extends BaseActivity {
 	}
 
 	private void updateViews() {
+		try {
+			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+		} catch (final NoSuchAlgorithmException e) {
+			favorite = null;
+		}
+
 		final AlgorithmView algorithmView = new AlgorithmView(this, config, favorite);
 		algorithmView.setTextSize(getResources().getDimension(R.dimen.font_size_standard));
 		algorithmView.setOnClickListener(new OnClickListener() {
@@ -138,7 +142,7 @@ public class ViewActivity extends BaseActivity {
 		});
 		algorithmView.setOnLongClickListener(new OnLongClickListener() {
 			public boolean onLongClick(final View v) {
-				editAlgorithm(algorithmView.getAlgorithm().getId());
+				spawnAlgorithmMenuDialog(algorithmView.getAlgorithm().getId(), null);
 				return true;
 			}
 		});
@@ -179,26 +183,6 @@ public class ViewActivity extends BaseActivity {
 		out.putLong(ALGORITHM_CANDIDATE, favoriteCandidateId);
 	}
 
-	/**
-	 * Can be called both from the AlgorithmView longclick and onItemLongClick in the switch favorite dialog.
-	 * 
-	 * @param id
-	 */
-	protected void editAlgorithm(final long id) {
-		try {
-			editAlgorithm(AlgorithmProviderHelper.getAlgorithm(getContentResolver(), permutation, id));
-		} catch (final NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected void editAlgorithm(final Algorithm algorithm) {
-		final Intent intent = new Intent(this, InputActivity.class);
-		intent.putExtra(InputActivity.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
-		intent.putExtra(InputActivity.ALGORITHM_ID, algorithm.getId());
-		startActivityForResult(intent, InputActivity.REQUEST_CODE_EDIT);
-	}
-
 	private void changeFavoriteAlgorithm(final long id) {
 		AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), id);
 		try {
@@ -233,8 +217,7 @@ public class ViewActivity extends BaseActivity {
 		});
 		list.setOnItemLongClickListener(new OnItemLongClickListener() {
 			public boolean onItemLongClick(final AdapterView<?> _a, final View _b, final int position, final long id) {
-				dialog.dismiss();
-				editAlgorithm(id);
+				spawnAlgorithmMenuDialog(id, dialog);
 				return true;
 			}
 		});
@@ -312,6 +295,7 @@ public class ViewActivity extends BaseActivity {
 			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), algorithmId);
 			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
 			updateViews();
+			Toast.makeText(this, R.string.msg_algorithm_saved, Toast.LENGTH_LONG).show();
 		} catch (final NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
@@ -319,13 +303,86 @@ public class ViewActivity extends BaseActivity {
 
 	private void insertNewAlgorithm(final String algorithm) {
 		try {
-			final Algorithm algo = new Algorithm(permutation.getId(), new Instruction(algorithm), 1);
-			getContentResolver().insert(ContentURI.algorithms(), algo.toContentValues());
+			final Algorithm algo = new Algorithm(permutation.getId(), new Instruction(algorithm), 1, 0);
+			final ContentValues values = algo.toContentValues();
+			values.remove(Algorithm._ID);
+			getContentResolver().insert(ContentURI.algorithms(), values);
 			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), -1);
 			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
 			updateViews();
+			Toast.makeText(this, R.string.msg_algorithm_saved, Toast.LENGTH_LONG).show();
 		} catch (final NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private boolean spawnAlgorithmMenuDialog(final long id, final Dialog parent) {
+		Algorithm algorithm = null;
+		try {
+			algorithm = AlgorithmProviderHelper.getAlgorithm(getContentResolver(), permutation, id);
+			if (algorithm.getBuiltIn() == Algorithm.BUILTIN_ALGORITHM) {
+				Toast.makeText(this, R.string.error_edit_builtin, Toast.LENGTH_LONG).show();
+				return false;
+			}
+		} catch (final NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+
+		// create the intents
+		final Intent editIntent = new Intent(this, InputActivity.class);
+		editIntent.putExtra(InputActivity.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
+		editIntent.putExtra(InputActivity.ALGORITHM_ID, algorithm.getId());
+
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_algorithm_menu);
+
+		final TextView edit = (TextView) dialog.findViewById(R.id.menu_edit);
+		final TextView delete = (TextView) dialog.findViewById(R.id.menu_delete);
+
+		edit.setOnClickListener(new OnClickListener() {
+			public void onClick(final View v) {
+				dialog.dismiss();
+				if (parent != null) {
+					parent.dismiss();
+				}
+				startActivityForResult(editIntent, InputActivity.REQUEST_CODE_EDIT);
+			}
+		});
+
+		delete.setOnClickListener(new OnClickListener() {
+			public void onClick(final View v) {
+				final AlertDialog.Builder builder = new AlertDialog.Builder(dialog.getContext());
+				builder.setMessage(R.string.confirm_algorithm_remove).setCancelable(false)
+						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+							public void onClick(final DialogInterface me, final int _a) {
+								getContentResolver().delete(ContentURI.algorithm(id), null, null);
+								if (id == favorite.getId()) {
+									try {
+										AlgorithmProviderHelper.randomFavorite(getContentResolver(),
+												permutation.getId());
+									} catch (final NoSuchAlgorithmException e) {
+										throw new RuntimeException("No algorithms found for permutation "
+												+ permutation.getId());
+									}
+									updateViews();
+								}
+
+								dialog.dismiss();
+								if (parent != null) {
+									parent.dismiss();
+								}
+							}
+						}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+							public void onClick(final DialogInterface me, final int _a) {
+								me.cancel();
+							}
+						});
+				builder.create().show();
+			}
+		});
+
+		dialog.show();
+		return true;
 	}
 }
