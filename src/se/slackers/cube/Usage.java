@@ -26,7 +26,7 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
  */
 public class Usage {
 	public static final String ID = "UA-22737397";
-	private static final int INTERVAL = 60;
+	private static final int INTERVAL = 30;
 
 	public static final String ALGORITHM_ID = "/algorithm/%s";
 	public static final String QUICK_LIST_ADD = "/quick-list/add/%s";

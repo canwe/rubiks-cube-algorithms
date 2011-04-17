@@ -19,6 +19,7 @@
 
 package se.slackers.cube.activity;
 
+import se.slackers.cube.Common;
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.Usage;
@@ -29,13 +30,9 @@ import se.slackers.cube.render.PermutationRenderer;
 import se.slackers.cube.view.FlowLayout;
 import se.slackers.cube.view.PermutationView;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -45,9 +42,6 @@ import android.view.View.OnLongClickListener;
 
 public class ListActivity extends BaseActivity implements OnLongClickListener, OnClickListener {
 	public static final String PERMUTATION = "permutation";
-
-	private static final int MESSAGE_DIALOG = 0;
-	private static final int FIRSTSTART_DIALOG = 1;
 
 	private PermutationCursorAdapter pllCursorAdapter;
 	private PermutationCursorAdapter ollCursorAdapter;
@@ -82,26 +76,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		ollGrid.setOnItemClickListener(this);
 		ollGrid.setOnItemLongClickListener(this);
 
-		// fetch version to see if the welcome/update dialog needs to be shown
-		final PackageInfo info = getPackageInfo();
-		final int version = info.versionCode;
-
-		if (config.isFirstStart()) {
-			showDialog(FIRSTSTART_DIALOG);
-			config.setMessageDialogVersion(version);
-		} else if (config.getMessageDialogVersion() < version) {
-			showDialog(MESSAGE_DIALOG);
-			config.setMessageDialogVersion(version);
-		}
-	}
-
-	private PackageInfo getPackageInfo() {
-		final PackageManager manager = getPackageManager();
-		try {
-			return manager.getPackageInfo(getPackageName(), 0);
-		} catch (final NameNotFoundException e) {
-			return null;
-		}
+		Common.showMessages(this, config);
 	}
 
 	public void onClick(final View view) {
@@ -168,48 +143,6 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 			builder.create().show();
 		}
 		return true;
-	}
-
-	@Override
-	protected Dialog onCreateDialog(final int id) {
-		switch (id) {
-		case FIRSTSTART_DIALOG: {
-			final Dialog dialog = new Dialog(this);
-			final PackageInfo info = getPackageInfo();
-
-			final OnClickListener firstDismissListener = new OnClickListener() {
-				public void onClick(final View v) {
-					dialog.dismiss();
-				}
-			};
-
-			dialog.setContentView(R.layout.dialog_firststart);
-			dialog.setTitle(getResources().getString(R.string.firststart_title)
-					+ String.format(" v%s", info.versionName));
-			dialog.findViewById(R.id.text).setOnClickListener(firstDismissListener);
-			dialog.findViewById(R.id.dialogRoot).setOnClickListener(firstDismissListener);
-
-			return dialog;
-		}
-		case MESSAGE_DIALOG: {
-			final Dialog dialog = new Dialog(this);
-			final PackageInfo info = getPackageInfo();
-
-			final OnClickListener dismissListener = new OnClickListener() {
-				public void onClick(final View v) {
-					dialog.dismiss();
-				}
-			};
-
-			dialog.setContentView(R.layout.dialog_message);
-			dialog.setTitle(getResources().getString(R.string.messageTitle) + String.format(" v%s", info.versionName));
-			dialog.findViewById(R.id.text).setOnClickListener(dismissListener);
-			dialog.findViewById(R.id.dialogRoot).setOnClickListener(dismissListener);
-			return dialog;
-		}
-		}
-
-		return super.onCreateDialog(id);
 	}
 
 	@Override

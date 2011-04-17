@@ -22,6 +22,7 @@ package se.slackers.cube.activity;
 import java.util.HashMap;
 import java.util.Map;
 
+import se.slackers.cube.Common;
 import se.slackers.cube.Config;
 import se.slackers.cube.R;
 import se.slackers.cube.Usage;
@@ -121,6 +122,8 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 		// prevent the screen from turning off
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "permutationView-algorithm lock");
+
+		Common.showMessages(this, config);
 	}
 
 	public void onItemClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
