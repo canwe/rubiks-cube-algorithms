@@ -35,7 +35,7 @@
     <style name="info_text" parent="text_standard">
     	<item name="android:layout_marginBottom">@dimen/margin_large</item>
     </style>
-   
+    
      <style name="text_smaller">
     	<item name="android:layout_width">wrap_content</item>
     	<item name="android:layout_height">wrap_content</item>

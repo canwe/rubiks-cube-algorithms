@@ -23,12 +23,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import se.slackers.cube.Config;
+import se.slackers.cube.R;
 import se.slackers.cube.config.AlgorithmTransform;
 import se.slackers.cube.config.DoubleNotation;
 import se.slackers.cube.model.algorithm.Algorithm;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -43,13 +45,11 @@ public class AlgorithmView extends TextView {
 
 	private boolean isColoredReverse;
 	private DoubleNotation doubleNotation = DoubleNotation.Normal;
-
-	public AlgorithmView(final Context context, final AttributeSet attrs, final int defStyle) {
-		super(context, attrs, defStyle);
-	}
+	private final int fontSize;
 
 	public AlgorithmView(final Context context, final AttributeSet attrs) {
 		super(context, attrs);
+		fontSize = context.getResources().getDimensionPixelOffset(R.dimen.font_size_quicklist);
 	}
 
 	public AlgorithmView(final Context context, final Config config, final Algorithm algorithm) {
@@ -57,6 +57,8 @@ public class AlgorithmView extends TextView {
 		if (algorithm != null) {
 			setAlgorithm(config, algorithm);
 		}
+
+		fontSize = context.getResources().getDimensionPixelOffset(R.dimen.font_size_quicklist);
 	}
 
 	public void setAlgorithm(final Config config, final Algorithm algorithm) {
@@ -76,6 +78,7 @@ public class AlgorithmView extends TextView {
 		final SpannableStringBuilder span = new SpannableStringBuilder(text);
 
 		span.setSpan(new ForegroundColorSpan(Config.COLOR), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		span.setSpan(new AbsoluteSizeSpan(fontSize), 0, span.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
 		if (doubleNotation != DoubleNotation.Normal) {
 			final Matcher matcher = Pattern.compile("2'?").matcher(text);

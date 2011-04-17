@@ -22,6 +22,7 @@
 	<dimen name="font_size_header">30dp</dimen>
 	<dimen name="font_size_standard">15dp</dimen>
 	<dimen name="font_size_smaller">12dp</dimen>
+	<dimen name="font_size_quicklist">18dp</dimen>
 	
 	<dimen name="margin_permutation">20dp</dimen>
 	<dimen name="margin_large">15dp</dimen>

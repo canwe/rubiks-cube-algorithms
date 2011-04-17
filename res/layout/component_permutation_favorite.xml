@@ -32,8 +32,7 @@
 		/>
 	<se.slackers.cube.view.AlgorithmView
 		android:id="@+id/placeholder_algorithm"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		style="@style/text_standard"
 		/>
 		
 </LinearLayout>
