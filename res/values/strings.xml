@@ -25,12 +25,8 @@
     
     <string name="messageTitle">Changes in Algorithms</string>
     <string name="message">
-    	New features in this release are:
-    	\n* Adding and editing algorithms.
-    	\n* Application documentation in the help view. 
-    	\n* Quick list, where you can view a subset 
-    	of the algorithms. It can also be accessed by a Home Screen shortcut.
-    	\n* And a lot of backend improvements to make way for F2L. 
+    	Sorry for the delayed update, i have had a busy couple of weeks at work. This update
+    	contains a fix for the no-favorite-crash and also locks the built-in algorithms even for new installs.
     </string>
 
 	<string name="firststart_title">Welcome to Algorithms</string>    

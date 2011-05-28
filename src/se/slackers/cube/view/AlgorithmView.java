@@ -54,9 +54,7 @@ public class AlgorithmView extends TextView {
 
 	public AlgorithmView(final Context context, final Config config, final Algorithm algorithm) {
 		super(context);
-		if (algorithm != null) {
-			setAlgorithm(config, algorithm);
-		}
+		setAlgorithm(config, algorithm);
 
 		fontSize = context.getResources().getDimensionPixelOffset(R.dimen.font_size_quicklist);
 	}
@@ -64,9 +62,11 @@ public class AlgorithmView extends TextView {
 	public void setAlgorithm(final Config config, final Algorithm algorithm) {
 		this.isColoredReverse = config.isColoredReverse();
 		this.doubleNotation = config.getDoubleTurns();
-		this.algorithm = algorithm;
 		this.transform = new AlgorithmTransform(config);
-		adjust(algorithm.getInstruction().render(config.getNotationScheme()));
+		this.algorithm = algorithm;
+		if (algorithm != null) {
+			adjust(algorithm.getInstruction().render(config.getNotationScheme()));
+		}
 	}
 
 	public Algorithm getAlgorithm() {

@@ -43,7 +43,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "algorithms.db";
-	private static final int DATABASE_VERSION = 12;
+	private static final int DATABASE_VERSION = 13;
 
 	public static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
 	public static final String ALGORITHM_TABLE = "algorithms";
@@ -102,12 +102,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			recreateButSaveFavorites(db);
 		case 11:
 			updateTo12(db);
+		case 12:
+			updateTo13(db);
 		}
 	}
 
-	/**
-	 * @param db
-	 */
+	private void updateTo13(final SQLiteDatabase db) {
+		db.execSQL(String.format("UPDATE %s set %s=1 WHERE %s <= 603", ALGORITHM_TABLE, Algorithm.BUILTIN,
+				Algorithm._ID));
+	}
+
 	private void updateTo12(final SQLiteDatabase db) {
 		db.execSQL(String.format("ALTER TABLE %s ADD %s INTEGER;", ALGORITHM_TABLE, Algorithm.BUILTIN));
 		final ContentValues values = new ContentValues();
@@ -180,6 +184,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Algorithm.PERMUTATION_ID, algorithm.getPermutationId());
 		values.put(Algorithm.ALGORITHM, algorithm.getInstruction().render(NotationType.Singmaster));
 		values.put(Algorithm.RANK, algorithm.getRank());
+		values.put(Algorithm.BUILTIN, algorithm.getBuiltIn());
 		algorithm.setId(db.insert(ALGORITHM_TABLE, null, values));
 	}
 
