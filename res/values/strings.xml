@@ -25,12 +25,12 @@
     
     <string name="messageTitle">Changes in Algorithms</string>
     <string name="message">
-    	New features in this release are:
-    	\n* Adding and editing algorithms.
-    	\n* Application documentation in the help view. 
-    	\n* Quick list, where you can view a subset 
-    	of the algorithms. It can also be accessed by a Home Screen shortcut.
-    	\n* And a lot of backend improvements to make way for F2L. 
+    	Sorry for the delayed update, i have had a busy couple of weeks at work. This update
+    	contains a fix for the upgrade problems, the no-favorite-crash and a bug with 
+    	text size on different resolution devices. I\'ve also made sure the built-in 
+    	algorithms are locked from editing.\n
+    	I would like to remind you that the tracker on http://goo.gl/n3V1D is a good place
+    	to report and view known issues.
     </string>
 
 	<string name="firststart_title">Welcome to Algorithms</string>    

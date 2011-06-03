@@ -39,7 +39,6 @@ public abstract class BaseActivity extends Activity {
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		config = new Config(this);
-
 		tracker = Usage.start(this);
 	}
 
@@ -66,7 +65,6 @@ public abstract class BaseActivity extends Activity {
 			startActivityForResult(new Intent(this, NotationActivity.class), item.getItemId());
 			return true;
 		case R.id.menu_filtered:
-			tracker.trackPageView(Usage.QUICK_LIST);
 			startActivityForResult(new Intent(this, QuickListActivity.class), item.getItemId());
 			return true;
 		}

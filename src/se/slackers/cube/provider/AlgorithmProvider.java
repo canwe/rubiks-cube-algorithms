@@ -127,7 +127,7 @@ public class AlgorithmProvider extends ContentProvider {
 		}
 
 		// Get the database and run the query
-		final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		final Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
 
 		// Tell the cursor what uri to watch, so it knows when its source data changes

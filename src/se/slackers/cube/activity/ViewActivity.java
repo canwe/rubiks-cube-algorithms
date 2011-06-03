@@ -127,14 +127,9 @@ public class ViewActivity extends BaseActivity {
 	}
 
 	private void updateViews() {
-		try {
-			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
-		} catch (final NoSuchAlgorithmException e) {
-			favorite = null;
-		}
+		favorite = getFavoriteAlgorithm();
 
 		final AlgorithmView algorithmView = new AlgorithmView(this, config, favorite);
-		algorithmView.setTextSize(getResources().getDimension(R.dimen.font_size_standard));
 		algorithmView.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
 				showSwitchFavoriteDialog();
@@ -142,7 +137,14 @@ public class ViewActivity extends BaseActivity {
 		});
 		algorithmView.setOnLongClickListener(new OnLongClickListener() {
 			public boolean onLongClick(final View v) {
-				spawnAlgorithmMenuDialog(algorithmView.getAlgorithm().getId(), null);
+				final Algorithm algorithm = algorithmView.getAlgorithm();
+				if (algorithm == null) {
+					// long press on a user favorite that was deleted should spawn the switch
+					// algorithm dialog
+					showSwitchFavoriteDialog();
+				} else {
+					spawnAlgorithmMenuDialog(algorithm.getId(), null);
+				}
 				return true;
 			}
 		});
@@ -185,15 +187,24 @@ public class ViewActivity extends BaseActivity {
 
 	private void changeFavoriteAlgorithm(final long id) {
 		AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), id);
-		try {
-			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
-		} catch (final NoSuchAlgorithmException e) {
-			favorite = null;
-		}
+		favorite = getFavoriteAlgorithm();
 
 		// update UI
 		updateViews();
 		Toast.makeText(this, R.string.favorite_algorithm_changed, Toast.LENGTH_LONG).show();
+	}
+
+	private Algorithm getFavoriteAlgorithm() {
+		try {
+			return AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+		} catch (final NoSuchAlgorithmException e) {
+			try {
+				AlgorithmProviderHelper.randomFavorite(getContentResolver(), permutation.getId());
+				return AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
+			} catch (final NoSuchAlgorithmException e1) {
+			}
+			return null;
+		}
 	}
 
 	private void showSwitchFavoriteDialog() {
@@ -286,19 +297,16 @@ public class ViewActivity extends BaseActivity {
 			return;
 		}
 
-		try {
-			final ContentValues values = new ContentValues();
-			values.put(Algorithm.ALGORITHM, algorithm);
-			final Uri uri = ContentURI.algorithm(algorithmId);
-			getContentResolver().update(uri, values, null, null);
-
+		final ContentValues values = new ContentValues();
+		values.put(Algorithm.ALGORITHM, algorithm);
+		final Uri uri = ContentURI.algorithm(algorithmId);
+		getContentResolver().update(uri, values, null, null);
+		if (favorite != null) {
 			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), algorithmId);
-			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
-			updateViews();
-			Toast.makeText(this, R.string.msg_algorithm_saved, Toast.LENGTH_LONG).show();
-		} catch (final NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
 		}
+		favorite = getFavoriteAlgorithm();
+		updateViews();
+		Toast.makeText(this, R.string.msg_algorithm_saved, Toast.LENGTH_LONG).show();
 	}
 
 	private void insertNewAlgorithm(final String algorithm) {
@@ -307,7 +315,9 @@ public class ViewActivity extends BaseActivity {
 			final ContentValues values = algo.toContentValues();
 			values.remove(Algorithm._ID);
 			getContentResolver().insert(ContentURI.algorithms(), values);
-			AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), -1);
+			if (favorite != null) {
+				AlgorithmProviderHelper.setFavorite(getContentResolver(), favorite.getId(), -1);
+			}
 			favorite = AlgorithmProviderHelper.getFavoriteAlgorithm(getContentResolver(), permutation);
 			updateViews();
 			Toast.makeText(this, R.string.msg_algorithm_saved, Toast.LENGTH_LONG).show();
@@ -357,14 +367,8 @@ public class ViewActivity extends BaseActivity {
 						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 							public void onClick(final DialogInterface me, final int _a) {
 								getContentResolver().delete(ContentURI.algorithm(id), null, null);
-								if (id == favorite.getId()) {
-									try {
-										AlgorithmProviderHelper.randomFavorite(getContentResolver(),
-												permutation.getId());
-									} catch (final NoSuchAlgorithmException e) {
-										throw new RuntimeException("No algorithms found for permutation "
-												+ permutation.getId());
-									}
+								if (favorite == null || id == favorite.getId()) {
+									favorite = getFavoriteAlgorithm();
 									updateViews();
 								}
 

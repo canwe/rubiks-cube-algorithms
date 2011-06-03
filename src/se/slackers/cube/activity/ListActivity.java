@@ -77,6 +77,7 @@ public class ListActivity extends BaseActivity implements OnLongClickListener, O
 		ollGrid.setOnItemLongClickListener(this);
 
 		Common.showMessages(this, config);
+		tracker.trackPageView("/");
 	}
 
 	public void onClick(final View view) {

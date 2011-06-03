@@ -84,6 +84,7 @@ public class QuickListActivity extends ListActivity implements OnItemClickListen
 		final Map<Long, Algorithm> algorithms = new HashMap<Long, Algorithm>();
 
 		tracker = Usage.start(this);
+		tracker.trackPageView(Usage.QUICK_LIST);
 
 		final ContentResolver resolver = getContentResolver();
 		final Cursor favorites = resolver.query(Algorithm.CONTENT_URI, null, Algorithm.RANK + "<>0", null, null);
