@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2010 Erik Byström.
+  
+  This file is part of Rubik's Cube Algorithms.
+  
+  Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Rubik's Cube Algorithms is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ScrollView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:scrollbars="vertical"
+	>	
+	<LinearLayout 
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		>
+		<TextView 
+			style="@style/text_headers"
+			android:gravity="center_horizontal"
+			android:text="@string/header_oll" 
+			/>
+			
+		<se.slackers.cube.view.FlowLayout 
+			android:id="@+id/grid_oll"
+			style="@style/permutation_grid" 
+			/>
+
+		<TextView
+			style="@style/text_headers"
+			android:gravity="center_horizontal"
+			android:text="@string/header_pll" 
+			/>
+			
+		<se.slackers.cube.view.FlowLayout
+			android:id="@+id/grid_pll"
+			style="@style/permutation_grid"
+			/>
+	
+<!-- 		<TextView  -->
+<!-- 			style="@style/text_headers" -->
+<!-- 			android:gravity="center_horizontal" -->
+<!-- 			android:text="@string/header_f2l"  -->
+<!-- 			/> -->
+	
+<!-- 		<se.slackers.cube.view.FlowLayout   -->
+<!-- 			android:id="@+id/grid_f2l" -->
+<!-- 			style="@style/permutation_grid"  -->
+<!-- 			/> -->
+	</LinearLayout>
+</ScrollView>

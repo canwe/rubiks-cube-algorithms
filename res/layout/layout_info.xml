@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2010 Erik Byström.
+  
+  This file is part of Rubik's Cube Algorithms.
+  
+  Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Rubik's Cube Algorithms is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	>
+	<LinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		>
+		
+		<TextView 
+			android:id="@+id/infoAppName"
+			style="@style/text_headers" 
+			android:text="@string/app_name"
+			/>
+		<TextView 
+			style="@style/info_text" 
+			android:text="@string/help_intro"
+			/>
+			
+		<!-- Permutation view -->
+		<TextView 
+			style="@style/info_header" 
+			android:text="@string/help_perm_header"
+			/>
+		<TextView 
+			style="@style/info_text" 
+			android:text="@string/help_perm_text"
+			/>
+			
+		<!-- Quick list -->
+		<TextView 
+			style="@style/info_header" 
+			android:text="@string/help_quick_header"
+			/>
+		<TextView 
+			style="@style/info_text" 
+			android:text="@string/help_quick_text"
+			/>
+			
+		<!-- Algorithm view -->
+		<TextView 
+			style="@style/info_header" 
+			android:text="@string/help_algo_header"
+			/>
+		<TextView 
+			style="@style/info_text" 
+			android:text="@string/help_algo_text"
+			/>
+			
+		<!-- Info -->
+		<TextView 
+			style="@style/info_header" 
+			android:text="@string/help_info_header"
+			/>		
+		<TextView 
+			android:id="@+id/text1"
+			style="@style/text_standard" 
+			android:text="@string/help_info_text" 
+			android:layout_marginBottom="@dimen/margin_large"
+			android:autoLink="web" 
+			/>
+		<Button
+			android:id="@+id/feedback"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:gravity="center"
+			android:text="@string/feedback"
+			/>
+	</LinearLayout>
+</ScrollView>

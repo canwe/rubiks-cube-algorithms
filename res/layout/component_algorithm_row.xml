@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2010 Erik Byström.
+  
+  This file is part of Rubik's Cube Algorithms.
+  
+  Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Rubik's Cube Algorithms is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/se.slackers.cube.view" 
+	android:orientation="horizontal" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:padding="2dp"
+	>
+	<se.slackers.cube.view.AlgorithmView
+		android:id="@+id/algorithm"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true" 		
+		/>
+	<ImageView
+		android:id="@+id/favorite"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:src="@drawable/ic_menu_star"
+		
+		/>
+	<ImageView
+		android:id="@+id/locked"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toLeftOf="@+id/favorite"
+		android:layout_centerVertical="true"
+		android:layout_marginRight="@dimen/margin_standard"
+		android:src="@drawable/ic_lock_idle_lock"
+		/>
+</RelativeLayout>

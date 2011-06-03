@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- 
+		Common style for all permutation GridViews
+ 	-->
+	<style name="permutation_grid">
+    	<item name="android:layout_width">fill_parent</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:layout_marginBottom">@dimen/margin_permutation</item>
+    	<item name="android:gravity">center</item>
+	</style>
+
+	<!--
+		Style for large headers. 
+	 -->
+    <style name="text_headers">
+    	<item name="android:layout_width">fill_parent</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:textSize">@dimen/font_size_header</item>
+    </style>
+    
+    <style name="info_header" parent="text_headers">
+   		<item name="android:gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">@dimen/margin_standard</item>
+		<item name="android:textSize">@dimen/font_size_header_2</item> 
+	</style>
+    
+    <style name="text_standard">
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:textSize">@dimen/font_size_standard</item>
+    </style>
+    
+    <style name="info_text" parent="text_standard">
+    	<item name="android:layout_marginBottom">@dimen/margin_large</item>
+    </style>
+    
+     <style name="text_smaller">
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:textSize">@dimen/font_size_smaller</item>
+    </style>
+    
+    <style name="input_button">
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:textSize">20dp</item>
+    </style>
+</resources>

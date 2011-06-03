@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="face_unknown">#ff4d4d4d</color>
+	<color name="face_important">#fff0f0f0</color>
+	<color name="face_side">#fff0f0f0</color>
+	<color name="arrow_edge">#ffcc0000</color>
+	<color name="arrow_corner">#ff003399</color>
+	<color name="border">#ff000000</color>
+	<color name="background">#ff000000</color>
+	
+	<color name="help_color">#80202020</color>
+</resources>

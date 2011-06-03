@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2010 Erik Byström.
+  
+  This file is part of Rubik's Cube Algorithms.
+  
+  Rubik's Cube Algorithms is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Rubik's Cube Algorithms is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with Rubik's Cube Algorithms.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	>
+
+	<TextView
+		android:id="@+id/algorithm"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:layout_alignParentTop="true"
+		android:gravity="center"
+		android:textSize="24dp"
+		android:maxLength="40"
+		/>
+		
+	<LinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_below="@+id/algorithm"
+		android:layout_above="@+id/save"
+		android:gravity="bottom"
+		android:layout_marginBottom="@dimen/margin_large"
+		android:orientation="vertical"
+		>
+		<LinearLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginBottom="@dimen/margin_large"
+			>
+			<Button style="@style/input_button" android:text="2" android:id="@+id/turn_double" />
+			<Button style="@style/input_button" android:text="'" android:id="@+id/turn_ccw" />
+			<ImageButton style="@style/input_button" android:src="@drawable/ic_input_delete" android:id="@+id/turn_backspace" />
+		</LinearLayout>
+	
+		<LinearLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginBottom="@dimen/margin_large"
+			>
+			<Button style="@style/input_button" android:text="B" android:id="@+id/turn_big_b" />
+			<Button style="@style/input_button" android:text="D" android:id="@+id/turn_big_d" />
+			<Button style="@style/input_button" android:text="F" android:id="@+id/turn_big_f" />
+			<Button style="@style/input_button" android:text="L" android:id="@+id/turn_big_l" />
+			<Button style="@style/input_button" android:text="R" android:id="@+id/turn_big_r" />
+			<Button style="@style/input_button" android:text="U" android:id="@+id/turn_big_u" />
+		</LinearLayout>
+	
+		<LinearLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginBottom="@dimen/margin_large"
+			>
+			<Button style="@style/input_button" android:text="b" android:id="@+id/turn_b" />
+			<Button style="@style/input_button" android:text="d" android:id="@+id/turn_d" />
+			<Button style="@style/input_button" android:text="f" android:id="@+id/turn_f" />
+			<Button style="@style/input_button" android:text="l" android:id="@+id/turn_l" />
+			<Button style="@style/input_button" android:text="r" android:id="@+id/turn_r" />
+			<Button style="@style/input_button" android:text="u" android:id="@+id/turn_u" />
+		</LinearLayout>
+		
+		<LinearLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			>
+			<Button style="@style/input_button" android:text="M" android:id="@+id/turn_m" />
+			<Button style="@style/input_button" android:text="E" android:id="@+id/turn_e" />
+			<Button style="@style/input_button" android:text="S" android:id="@+id/turn_s" />
+	
+			<Button style="@style/input_button" android:text="x" android:id="@+id/turn_x" />
+			<Button style="@style/input_button" android:text="y" android:id="@+id/turn_y" />
+			<Button style="@style/input_button" android:text="z" android:id="@+id/turn_z" />
+		</LinearLayout>
+	</LinearLayout>
+	
+	<Button 
+		android:id="@+id/save"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_margin="@dimen/margin_standard"
+		android:text="@string/save"
+		/>
+</RelativeLayout>
